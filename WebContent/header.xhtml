@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	<ui:composition>
+		<div id="activityTitle" class="#{pagecontroller.currentPage.name}">
+			<h1>
+				<ui:insert name="sectionTitle">Default Section Title</ui:insert>
+			</h1>
+		</div>
+		<div id="userManagement">
+			<div id="signup">
+				<h:commandButton value="add" action="#{userControler.goLogin}" />
+				<h:outputText value="Become a member" />
+			</div>
+			<div id="signin">
+				<h:form>
+					<h:inputText a:placeholder="Login" id="userLogin"
+						value="#{loginBean.login}" required="true"></h:inputText>
+					<h:inputSecret a:placeholder="Password" id="userPwd"
+						value="#{loginBean.pwd}" required="true"></h:inputSecret>
+					<h:commandButton value="next" type="submit"
+						action="#{userControlerBean.checkUser(loginBean)}" />
+				</h:form>
+			</div>
+		</div>
+	</ui:composition>
+</body>
+</html>
