@@ -17,20 +17,25 @@ import dao.instance.UserDao;
 @ApplicationScoped
 public class UserControlerBean {
 	private UserDao userDao;
+	private String connectionOK = null;
 	
+	public String getConnectionOK() {
+		return connectionOK;
+	}
+
 	public UserControlerBean() {
 		this.userDao=DaoFabric.getInstance().createUserDao();
 	}
 	
-	public String checkUser(LoginBean loginBean){
+	public void checkUser(LoginBean loginBean){
 		UserModelBean user = this.userDao.checkUser(loginBean.getLogin(), loginBean.getPwd());
 		if( user!=null){
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			Map<String, Object> sessionMap = externalContext.getSessionMap();
 			sessionMap.put("loggedUser", user);
-			return "userdisplay.xhtml";
+			this.connectionOK = "OK";
 		}else{
-			return "userLogin.xhtml";
+			this.connectionOK = "NOK";
 		}
 	}
 	

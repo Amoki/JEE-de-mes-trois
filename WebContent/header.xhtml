@@ -3,6 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <body>
@@ -24,7 +25,19 @@
 					<h:inputSecret a:placeholder="Password" id="userPwd"
 						value="#{loginBean.pwd}" required="true"></h:inputSecret>
 					<h:commandButton value="next" type="submit"
-						action="#{userControlerBean.checkUser(loginBean)}" />
+						action="#{userControlerBean.checkUser(loginBean)}">
+						<f:ajax render="idValidateLogin" execute="@form" />
+					</h:commandButton>
+					<h:panelGroup id="idValidateLogin">
+						<h:panelGroup layout="block"
+							rendered="#{userControlerBean.connectionOK == 'NOK'}">
+					    	Wrong username/password.
+						</h:panelGroup>
+						<h:panelGroup layout="block"
+							rendered="#{userControlerBean.connectionOK == 'OK'}">
+					    	Good username/password.
+						</h:panelGroup>
+					</h:panelGroup>
 				</h:form>
 			</div>
 		</div>
