@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<title>Research module</title>
+</head>
+<body>
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets" template="/template.xhtml">
+		<ui:define name="title">Recipes results</ui:define>
+		<ui:define name="body">
+			<!-- Résumé des caractéristiques de la recette -->
+			<div>
+				<!-- type -->
+				<h:outputLabel id="logoType" />
+				<h:outputText id="recipeType" value="#{selectedRecipe.type}"></h:outputText>
+				<!-- time -->
+				<h:outputLabel id="logoTime" />
+				<h:outputText id="preparationDuration"
+					value="#{selectedRecipe.duration}"></h:outputText>
+				<!-- nbpeople -->
+				<h:outputLabel id="logoPeople" />
+				<h:outputText id="recipeNbPeople" value="#{selectedRecipe.nbpeople}"></h:outputText>
+				<!-- expertise -->
+				<h:outputLabel id="logoExpertise" />
+				<h:outputText id="recipeExpertise"
+					value="#{selectedRecipe.expertise}"></h:outputText>
+			</div>
+			<!-- zone de détails -->
+			<div>
+				<!-- Titre de la recette -->
+				<h:outputText id="recipeTitle" value="#{selectedRecipe.title}"></h:outputText>
+
+				<!-- Détail de la recette -->
+				<h:outputText id="recipeDescription"
+					value="#{selectedRecipe.description}"></h:outputText>
+
+				<!-- Bouton permettant de revenir à l’affichage de la liste de recette -->
+				<h:commandButton value="Back" action="BACK" />
+
+				<!-- Image représentant le résultat de la recette -->
+				<h:outputLabel id="recipePicture" value="image"></h:outputLabel>
+			</div>
+			<!-- zone de commentaires (visualisation + écriture) -->
+			<div>
+				<!-- Liste des précédents commentaires incluant : icone + nom de la personne connecté -->
+				<!-- 
+					LISTE PRECEDENTS COMMs !
+					MAJ AJAX (après nouveau commentaire !)
+					 -->
+				<div>
+					<h:form id="allComments">
+						<p:dataScroller
+							value="#{commentControlerBean.loadAllRecipeComments(selectedRecipe.idRecipe)}"
+							var="comment" chunkSize="10">
+							<f:facet name="header">
+								<h:outputText value="Comments" />
+							</f:facet>
+							<h:panelGrid columns="4" style="width:100%"
+								columnClasses="user,date,comment,mark">
+								<p:outputPanel>
+									<h:outputText value="#{comment.userLogin}" />
+								</p:outputPanel>
+								<p:outputPanel>
+									<h:outputText value="#{comment.date}" />
+								</p:outputPanel>
+								<p:outputPanel>
+									<h:outputText value="#{comment.detail}" />
+								</p:outputPanel>
+								<p:outputPanel>
+									<h:outputText value="#{comment.rate}" />
+								</p:outputPanel>
+							</h:panelGrid>
+						</p:dataScroller>
+					</h:form>
+				</div>
+				<!--Zone de saisie d’un nouveau commentaire -->
+				<div>
+					<h:form>
+						<!-- zone de saisie de texte -->
+						<h:inputTextarea value="#{commentSubmissionBean.detail}"></h:inputTextarea>
+
+						<!-- zone de « rating » -->
+						<h:inputText value="#{commentSubmissionBean.rate}"></h:inputText>
+						<!-- bouton permettant de valider le commentaire -->
+						<p:commandButton value="Post your comment"
+							action="#{commentControlerBean.addComment(commentSubmissionBean,loggedUser.login, selectedRecipe.idRecipe)}">
+							<f:ajax render=":allComments" execute="@form" />
+						</p:commandButton>
+					</h:form>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
