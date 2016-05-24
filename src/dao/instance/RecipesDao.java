@@ -221,7 +221,7 @@ public class RecipesDao {
 		Iterator<RecipeModel> it = dao.getAllRecipes().iterator();
 		
 		while(it.hasNext()){
-			dao.delete(it.next());
+			//dao.delete(it.next());
 		}
 
 		System.out.println(dao.getAllRecipes());

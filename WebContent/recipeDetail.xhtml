@@ -16,26 +16,25 @@
 			<div>
 				<!-- type -->
 				<h:outputLabel id="logoType" />
-				<h:outputText id="recipeType" value="#{RecipeModel.type}"></h:outputText>
+				<h:outputText id="recipeType" value="#{selectedRecipe.type}"></h:outputText>
 				<!-- time -->
 				<h:outputLabel id="logoTime" />
-				<h:outputText id="preparationDuration" value="#{RecipeModel.duration}"></h:outputText>
+				<h:outputText id="preparationDuration" value="#{selectedRecipe.duration}"></h:outputText>
 				<!-- nbpeople -->
 				<h:outputLabel id="logoPeople" />
-				<h:outputText id="recipeNbPeople" value="#{RecipeModel.nbpeople}"></h:outputText>
+				<h:outputText id="recipeNbPeople" value="#{selectedRecipe.nbpeople}"></h:outputText>
 				<!-- expertise -->
 				<h:outputLabel id="logoExpertise" />
-				<h:outputText id="recipeExpertise" value="#{RecipeModel.expertise}"></h:outputText>
-
+				<h:outputText id="recipeExpertise" value="#{selectedRecipe.expertise}"></h:outputText>
 			</div>
 			<!-- zone de détails -->
 			<div>
 				<!-- Titre de la recette -->
-				<h:outputText id="recipeTitle" value="#{RecipeModel.title}"></h:outputText>
+				<h:outputText id="recipeTitle" value="#{selectedRecipe.title}"></h:outputText>
 
 				<!-- Détail de la recette -->
 				<h:outputText id="recipeDescription"
-					value="#{RecipeModel.description}"></h:outputText>
+					value="#{selectedRecipe.description}"></h:outputText>
 
 				<!-- Bouton permettant de revenir à l’affichage de la liste de recette -->
 				<h:commandButton value="Back" action="BACK" />

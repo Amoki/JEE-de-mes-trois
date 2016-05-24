@@ -18,30 +18,30 @@
 						<!-- Temps de préparation (pré-formatage voir input mask) : input + icone +label -->
 						<td>Preparation duration</td>
 						<td><h:inputText id="preparationDuration"
-								value="#{RecipeModel.duration}"></h:inputText></td>
+								value="#{searchRecipeBean.duration}"></h:inputText></td>
 					</tr>
 					<tr>
 						<!-- Complexité de la recette : input forme étoile (voir rating ) star + icone + label -->
 						<td>Cook expertise</td>
 						<td><h:inputText id="cookExpertise"
-								value="#{RecipeModel.expertise}"></h:inputText></td>
+								value="#{searchRecipeBean.expertise}"></h:inputText></td>
 					</tr>
 					<tr>
 						<!-- Nombre de personnes : slider + icone + label -->
 						<td>For how many people</td>
 						<td><h:inputText id="nbPeople"
-								value="#{RecipeModel.nbpeople}"></h:inputText></td>
+								value="#{searchRecipeBean.nbpeople}"></h:inputText></td>
 					</tr>
 					<tr>
 						<!-- Type de nourriture : combobox +icone +label -->
 						<td>Cook type</td>
 						<td><h:inputText id="cookType"
-								value="#{RecipeModel.type}"></h:inputText></td>
+								value="#{searchRecipeBean.type}"></h:inputText></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td><h:commandButton value="Teach me !"
-								action="#{searchRecipeBean.SearchRecipeBean(RecipeModel)}" /></td>
+								action="#{recipeControlerBean.searchRecipe(searchRecipeBean)}" /></td>
 					</tr>
 				</table>
 			</h:form>

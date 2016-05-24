@@ -10,6 +10,8 @@ import javax.faces.context.FacesContext;
 
 import model.RecipeListModelBean;
 import model.RecipeModel;
+import model.RecipeSubmissionModelBean;
+import model.SearchRecipeBean;
 import dao.fabric.DaoFabric;
 import dao.instance.RecipesDao;
 
@@ -34,13 +36,13 @@ public class RecipeControlerBean {
 		sessionMap.put("recipeList", recipeList);
 	}
 
-	public String addRecipe(RecipeModel recipe){
+	public String addRecipe(RecipeSubmissionModelBean recipe){
 		//TODO testé les valeurs des champs
 		this.recipeDao.addRecipe(recipe);
 		return "successfulRegister.xhtml";
 	}
 
-	public String searchRecipe(RecipeModel recipe){
+	public String searchRecipe(SearchRecipeBean recipe){
 		ArrayList<RecipeModel> list = this.recipeDao.getSearchedRecipes(recipe);
 		RecipeListModelBean recipeList=new RecipeListModelBean();
 
@@ -55,6 +57,10 @@ public class RecipeControlerBean {
 	}
 	
 	public String displayRecipeDetail(RecipeModel recipe){
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		Map<String, Object> sessionMap = externalContext.getSessionMap();
+		sessionMap.put("selectedRecipe", recipe);
+		
 		return "recipeDetail.jsf";
 	}
 }
