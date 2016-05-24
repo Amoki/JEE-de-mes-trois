@@ -20,21 +20,35 @@
 			</div>
 			<div id="signin">
 				<h:form>
-					<h:inputText a:placeholder="Login" id="userLogin"
-						value="#{loginBean.login}" required="true"></h:inputText>
-					<h:inputSecret a:placeholder="Password" id="userPwd"
-						value="#{loginBean.pwd}" required="true"></h:inputSecret>
-					<h:commandButton value="next" type="submit"
-						action="#{userControlerBean.checkUser(loginBean)}">
-						<f:ajax render="idValidateLogin" execute="@form" />
-					</h:commandButton>
+					<h:panelGroup id="idFormLogin">
+						<h:panelGroup layout="block"
+							rendered="#{loggedUser == null}">
+							<h:inputText a:placeholder="Login" id="userLogin"
+								value="#{loginBean.login}" required="true"></h:inputText>
+							<h:inputSecret a:placeholder="Password" id="userPwd"
+								value="#{loginBean.pwd}" required="true"></h:inputSecret>
+							<h:commandButton value="next" type="submit"
+								action="#{userControlerBean.checkUser(loginBean)}">
+								<f:ajax render="idValidateLogin idFormLogin" execute="@form" />
+							</h:commandButton>
+						</h:panelGroup>
+						<h:panelGroup layout="block"
+							rendered="#{loggedUser != null}">
+					    	<h:outputText value="Welcome #{loggedUser.login}" />
+					    	<h:outputText value="#{userControlerBean.nbUsers} connected" />
+					    	<h:commandButton value="logout" type="submit"
+								action="#{userControlerBean.logout(loggedUser)}">
+								<f:ajax render="idValidateLogin idFormLogin" execute="@form" />
+							</h:commandButton>			    	
+						</h:panelGroup>
+					</h:panelGroup>
 					<h:panelGroup id="idValidateLogin">
 						<h:panelGroup layout="block"
-							rendered="#{userControlerBean.connectionOK == 'NOK'}">
+							rendered="#{connectionError}">
 					    	Wrong username/password.
 						</h:panelGroup>
 						<h:panelGroup layout="block"
-							rendered="#{userControlerBean.connectionOK == 'OK'}">
+							rendered="#{connectionError == false and loggedUser != null}">
 					    	Good username/password.
 						</h:panelGroup>
 					</h:panelGroup>

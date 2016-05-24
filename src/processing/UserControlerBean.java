@@ -16,11 +16,14 @@ import dao.instance.UserDao;
 @ManagedBean
 @ApplicationScoped
 public class UserControlerBean {
-	private UserDao userDao;
-	private String connectionOK = null;
+	private static String LOGGED_LBL = "loggedUser";
+	private static String ERROR_LBL = "connectionError";
 	
-	public String getConnectionOK() {
-		return connectionOK;
+	private UserDao userDao;
+	private int nbUsers = 0;
+	
+	public int getNbUsers() {
+		return nbUsers;
 	}
 
 	public UserControlerBean() {
@@ -32,10 +35,13 @@ public class UserControlerBean {
 		if( user!=null){
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			Map<String, Object> sessionMap = externalContext.getSessionMap();
-			sessionMap.put("loggedUser", user);
-			this.connectionOK = "OK";
-		}else{
-			this.connectionOK = "NOK";
+			sessionMap.put(LOGGED_LBL, user);
+			sessionMap.put(ERROR_LBL, false);
+			nbUsers++;
+		}else{ 
+			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+			Map<String, Object> sessionMap = externalContext.getSessionMap();
+			sessionMap.put(ERROR_LBL, true);
 		}
 	}
 	
@@ -44,5 +50,15 @@ public class UserControlerBean {
 		//TODO
 		//ajout de l'utilisateur à la base de données
 		this.userDao.addUser(userSubmitted);
+	}
+	
+	public void logout(UserModelBean loggedUser){
+		if( loggedUser!=null){
+			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+			Map<String, Object> sessionMap = externalContext.getSessionMap();
+			sessionMap.remove(LOGGED_LBL);
+			
+			nbUsers--;
+		}else{ }
 	}
 }
