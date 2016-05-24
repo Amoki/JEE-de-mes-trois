@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.RecipeModel;
-import model.UserModelBean;
 
 public class RecipesDao {
 	private Connection connection;
@@ -59,6 +58,37 @@ public class RecipesDao {
 
 			query = connection.prepareStatement("SELECT * FROM recipes");
 
+			ResultSet res = query.executeQuery();
+
+			while(res.next()){
+				recipeList.add(new RecipeModel(res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
+			}			
+
+			res.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return recipeList;
+	}
+	
+	public ArrayList<RecipeModel> getSearchedRecipes(RecipeModel recipe) {
+		//return value
+		ArrayList<RecipeModel> recipeList=new ArrayList<RecipeModel>();
+		// Création de la requête
+		java.sql.PreparedStatement query;
+		try {
+			// create connection
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+
+			query = connection.prepareStatement("SELECT * FROM recipes where expertise = ? and nbPeople = ? and duration = ? and type = ?");
+			
+			query.setInt(1, recipe.getExpertise());
+			query.setInt(2, recipe.getNbpeople());
+			query.setInt(3, recipe.getDuration());
+			query.setString(4, recipe.getType());
+			
 			ResultSet res = query.executeQuery();
 
 			while(res.next()){
