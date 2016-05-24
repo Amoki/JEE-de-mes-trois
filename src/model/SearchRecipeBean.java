@@ -8,6 +8,7 @@ import javax.faces.bean.RequestScoped;
 public class SearchRecipeBean extends RecipeModel{
 	public static final String ALL_VALUES_STRING="[ALL]";
 	public static final int ALL_VALUES_INT=-2;
+	
 	public SearchRecipeBean() {
 		this.setDescription(ALL_VALUES_STRING);
 		this.setTitle(ALL_VALUES_STRING);

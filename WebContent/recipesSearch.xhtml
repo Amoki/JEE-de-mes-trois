@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<title>Research module</title>
+</head>
+<body>
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets" template="/template.xhtml">
+		<ui:define name="title">Tell what do you want</ui:define>
+		<ui:define name="body">
+			<h:form>
+				<table border="0">
+					<tr>
+						<!-- Temps de préparation (pré-formatage voir input mask) : input + icone +label -->
+						<td>Preparation duration</td>
+						<td><h:inputText id="preparationDuration"
+								value="#{RecipeModel.duration}"></h:inputText></td>
+					</tr>
+					<tr>
+						<!-- Complexité de la recette : input forme étoile (voir rating ) star + icone + label -->
+						<td>Cook expertise</td>
+						<td><h:inputText id="cookExpertise"
+								value="#{RecipeModel.expertise}"></h:inputText></td>
+					</tr>
+					<tr>
+						<!-- Nombre de personnes : slider + icone + label -->
+						<td>For how many people</td>
+						<td><h:inputText id="nbPeople"
+								value="#{RecipeModel.nbpeople}"></h:inputText></td>
+					</tr>
+					<tr>
+						<!-- Type de nourriture : combobox +icone +label -->
+						<td>Cook type</td>
+						<td><h:inputText id="cookType"
+								value="#{RecipeModel.type}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><h:commandButton value="Teach me !"
+								action="#{searchRecipeBean.SearchRecipeBean(RecipeModel)}" /></td>
+					</tr>
+				</table>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
