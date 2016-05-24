@@ -10,8 +10,10 @@ import javax.faces.context.FacesContext;
 
 import model.CommentListModelBean;
 import model.CommentModel;
+import model.CommentSubmissionBean;
 import model.RecipeListModelBean;
 import model.RecipeModel;
+import model.UserModelBean;
 import dao.fabric.DaoFabric;
 import dao.instance.CommentDao;
 
@@ -24,14 +26,13 @@ public class CommentControlerBean {
 		this.commentDao=DaoFabric.getInstance().createCommentDao();
 	}
 
-	public String addComment(CommentModel comment){
+	public void addComment(CommentSubmissionBean comment, String loginUser, int idRecipe){
+		comment.setRecipeId(idRecipe);
+		comment.setUserLogin(loginUser);
 		this.commentDao.addComment(comment);
-
-		// redirection vers une page de confirmation
-		return "successfulRegister.xhtml";
 	}
 
-	public void loadAllRecipeComments(int recipeId){
+	public ArrayList<CommentModel> loadAllRecipeComments(int recipeId){
 		ArrayList<CommentModel> list = this.commentDao.getAllComment(recipeId);
 		CommentListModelBean commentList = new CommentListModelBean();
 
@@ -45,5 +46,6 @@ public class CommentControlerBean {
 
 		//place la liste de recette dans l'espace de mémoire de JSF
 		sessionMap.put("commentList", commentList);
+		return list;
 	} 	
 }

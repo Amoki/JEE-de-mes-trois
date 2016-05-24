@@ -35,7 +35,8 @@
 								</div>
 								<div class="ui-grid-col-6">
 									<h:panelGrid columns="1" cellpadding="5" layout="block">
-										<h:commandLink action="#{recipeControlerBean.displayRecipeDetail(recipe)}">
+										<h:commandLink
+											action="#{recipeControlerBean.displayRecipeDetail(recipe)}">
 											<h:outputText value="#{recipe.title}" />
 										</h:commandLink>
 										<h:outputText value="#{recipe.description}" />
@@ -44,11 +45,8 @@
 							</div>
 						</div>
 					</p:panel>
-
-
 				</p:dataGrid>
 			</h:form>
-
 		</ui:define>
 	</ui:composition>
 </body>
