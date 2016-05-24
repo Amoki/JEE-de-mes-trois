@@ -9,10 +9,9 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import model.CommentModelBean;
-import model.RecipeListModelBean;
-import model.RecipeModel;
 import dao.fabric.DaoFabric;
 import dao.instance.CommentDao;
+
 
 @ManagedBean
 @ApplicationScoped
@@ -32,15 +31,11 @@ public class CommentControlerBean {
 	
 	public void loadAllComment(){
 		ArrayList<CommentModelBean> list = this.commentDao.getAllComment();
-		RecipeListModelBean recipeList=new RecipeListModelBean();
-
-		for(RecipeModel recipe:list){
-			recipeList.addRecipeList(recipe);
-		}
+				
 		//récupère l'espace de mémoire de JSF
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		//place la liste de recette dans l'espace de mémoire de JSF
-		sessionMap.put("recipeList", recipeList);
+		sessionMap.put("commentList", list);
 	} 
 }
