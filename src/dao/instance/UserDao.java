@@ -32,13 +32,14 @@ public class UserDao {
 			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 			
-			query = connection.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?)");
+			query = connection.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?)");
 			
 			query.setString(1, user.getLastname());
 			query.setString(2, user.getSurname());
 			query.setInt(3, user.getAge());
 			query.setString(4, user.getLogin());
 			query.setString(5, user.getPwd());
+			query.setString(6, user.getEmail());
 			
 			query.execute();
 
@@ -62,7 +63,7 @@ public class UserDao {
 			ResultSet res = query.executeQuery();
 			
 			while(res.next()){
-				userList.add(new UserModelBean(res.getString("lastname"),res.getString("surname"),res.getInt("age"),res.getString("login"),res.getString("pwd")));
+				userList.add(new UserModelBean(res.getString("lastname"),res.getString("surname"),res.getInt("age"),res.getString("login"),res.getString("pwd"),res.getString("email")));
 			}		
 			
 			res.close();

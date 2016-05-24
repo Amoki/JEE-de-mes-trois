@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Inscription</title>
+</head>
+<body>
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets" template="/template.xhtml">
+		<ui:define name="title">
+		Isncription
+</ui:define>
+		<ui:define name="body">
+			<h:form>
+				<h:inputText id="firstName" value="#{userSubmissionModelBean.surname}" required="true" style="#{ component.valid ? '' : 'border-color:red;'}">
+					<f:validator validatorId="validators.username" />
+				</h:inputText>
+				<h:inputText id="lastName" value="#{userSubmissionModelBean.lastname}" required="true" style="#{ component.valid ? '' : 'border-color:red;'}">
+					<f:validator validatorId="validators.username" />
+				</h:inputText>
+				<h:inputText id="age" value="#{userSubmissionModelBean.age}" required="true" style="#{ component.valid ? ' ' : 'border-color:red;'}">
+					<f:validator validatorId="validators.age" />
+				</h:inputText>
+				<h:inputText id="email" value="#{userSubmissionModelBean.email}" required="true" style="#{ component.valid ? ' ' : 'border-color:red;'}">
+					<f:validator validatorId="validators.email" />
+				</h:inputText>
+				<h:inputText id="login" value="#{userSubmissionModelBean.login}" required="true" style="#{ component.valid ? ' ' : 'border-color:red;'}">
+					<f:validator validatorId="validators.login" />
+				</h:inputText>
+				<h:inputText id="password" value="#{userSubmissionModelBean.pwd}" required="true" style="#{ component.valid ? ' ' : 'border-color:red;'}">
+					<f:validator validatorId="validators.pwd" />
+				</h:inputText>
+				<h:inputText id="password2" value="#{userSubmissionModelBean.pwd2}" required="true" style="#{ component.valid ? '' : 'border-color:red;'}">
+					<f:validator validatorId="validators.pwd" />
+				</h:inputText>
+				<h:commandButton value="Cancel" action="myAction" />
+				<h:commandButton value="Register" action="myAction" />
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
