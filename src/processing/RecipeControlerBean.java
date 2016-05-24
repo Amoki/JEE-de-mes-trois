@@ -16,7 +16,7 @@ import dao.instance.RecipesDao;
 @ManagedBean
 @ApplicationScoped
 public class RecipeControlerBean {
-	private RecipesDao recipeDao;
+	protected RecipesDao recipeDao;
 
 	public RecipeControlerBean() {
 		this.recipeDao=DaoFabric.getInstance().createRecipesDao();

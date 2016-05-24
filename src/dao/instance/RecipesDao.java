@@ -142,7 +142,7 @@ public class RecipesDao {
 
 		return recipeList;
 	}
-	
+
 	public void delete(RecipeModel recipe) {
 		// Création de la requête
 		java.sql.PreparedStatement query;
@@ -172,20 +172,46 @@ public class RecipesDao {
 		dao.addRecipe(recipe);
 		dao.addRecipe(recipe1);
 		dao.addRecipe(recipe2);
-		
+
 		System.out.println(dao.getAllRecipes());
 		System.out.println(dao.getSearchedRecipes(recipe));		
 		System.out.println(dao.getSearchedRecipes(recipe1));
 		System.out.println(dao.getSearchedRecipes(recipe2));
-		
+
 		SearchRecipeBean searchrecipe = new SearchRecipeBean();
 		searchrecipe.setType("Plat");
 		System.out.println(dao.getSearchedRecipes(searchrecipe).size());
-		
+
 		dao.delete(recipe);
 		dao.delete(recipe1);
 		dao.delete(recipe2);
-		
+
 		System.out.println(dao.getAllRecipes());
+	}
+
+	public void update(RecipeModel recipe) {
+		// Création de la requête
+		java.sql.PreparedStatement query;
+		try {
+			// create connection
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+
+			query = connection.prepareStatement("UPDATE recipes SET title=?,description=?,expertise=?,nbpeople=?,duration=?,type=? WHERE idRecipe=?");
+
+			query.setString(1, recipe.getTitle());
+			query.setString(2, recipe.getDescription());
+			query.setInt(3, recipe.getExpertise());
+			query.setInt(3, recipe.getNbpeople());
+			query.setInt(3, recipe.getDuration());
+			query.setString(6, recipe.getType());
+
+			query.setString(8, recipe.getIdRecipe());
+
+			query.execute();
+
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
