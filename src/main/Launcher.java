@@ -13,8 +13,8 @@ public class Launcher {
 		UserDao userDao=DaoFabric.getInstance().createUserDao();
 		RecipesDao recipesDao=DaoFabric.getInstance().createRecipesDao();
 		UserModelBean user1=new UserModelBean("Doe", "John",55, "jdoe", "pwd","j@gmail.com");
-		RecipeModel recipe1=new RecipeModel("Fish Salad", "bla bla bal bla", 5, 180, 10, "salad");
-		RecipeModel recipe2=new RecipeModel("Fresh Meat", "bla bla bal bla", 1, 20, 1, "meat");
+		RecipeModel recipe1=new RecipeModel(1, "Fish Salad", "bla bla bal bla", 5, 180, 10, "salad");
+		RecipeModel recipe2=new RecipeModel(2, "Fresh Meat", "bla bla bal bla", 1, 20, 1, "meat");
 		userDao.addUser(user1);
 		recipesDao.addRecipe(recipe1);
 		recipesDao.addRecipe(recipe2);

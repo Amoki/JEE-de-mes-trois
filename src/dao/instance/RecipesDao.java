@@ -61,7 +61,7 @@ public class RecipesDao {
 			ResultSet res = query.executeQuery();
 
 			while(res.next()){
-				recipeList.add(new RecipeModel(res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
+				recipeList.add(new RecipeModel(res.getInt("idRecipe"), res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
 			}			
 
 			res.close();
@@ -92,7 +92,7 @@ public class RecipesDao {
 			ResultSet res = query.executeQuery();
 
 			while(res.next()){
-				recipeList.add(new RecipeModel(res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
+				recipeList.add(new RecipeModel(res.getInt("idRecipe"), res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
 			}			
 
 			res.close();
