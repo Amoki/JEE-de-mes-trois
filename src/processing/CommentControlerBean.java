@@ -8,7 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import model.CommentModelBean;
+import model.CommentListModelBean;
+import model.CommentModel;
 import model.RecipeListModelBean;
 import model.RecipeModel;
 import dao.fabric.DaoFabric;
@@ -18,29 +19,31 @@ import dao.instance.CommentDao;
 @ApplicationScoped
 public class CommentControlerBean {
 	private CommentDao commentDao;
-	
+
 	public CommentControlerBean() {
 		this.commentDao=DaoFabric.getInstance().createCommentDao();
 	}
-	
-	public String addComment(){
-		// TODO ajouter le commentaire provenant de la zone de saisie de comm
-		
+
+	public String addComment(CommentModel comment){
+		this.commentDao.addComment(comment);
+
 		// redirection vers une page de confirmation
 		return "successfulRegister.xhtml";
 	}
-	
-	public void loadAllComment(){
-		ArrayList<CommentModelBean> list = this.commentDao.getAllComment();
-		RecipeListModelBean recipeList=new RecipeListModelBean();
 
-		for(RecipeModel recipe:list){
-			recipeList.addRecipeList(recipe);
-		}
+	public void loadAllComment(){
+		ArrayList<CommentModel> list = this.commentDao.getAllComment();
+		CommentListModelBean commentList = new CommentListModelBean();
+
+		for(CommentModel comment:list){
+			commentList.addRecipeList(comment);
+		}		
+
 		//récupère l'espace de mémoire de JSF
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
+
 		//place la liste de recette dans l'espace de mémoire de JSF
-		sessionMap.put("recipeList", recipeList);
+		sessionMap.put("commentList", commentList);
 	} 
 }

@@ -1,6 +1,8 @@
 package model;
 
 public class RecipeModel {
+
+	private int idRecipe;
 	private String title;
 	private String description;
 	private int expertise;
@@ -10,7 +12,8 @@ public class RecipeModel {
 
 	public RecipeModel() {}
 
-	public RecipeModel(String title,String description,int expertise,int duration,int nbpeople,String type) {
+	public RecipeModel(int idRecipe, String title,String description,int expertise,int duration,int nbpeople,String type) {
+		this.idRecipe = idRecipe;
 		this.title = title;
 		this.description = description;
 		this.expertise = expertise;
@@ -31,8 +34,10 @@ public class RecipeModel {
 	public void setType(String type) {this.type = type;}
 	public int getDuration() {return duration;}
 	public void setDuration(int duration) {this.duration = duration; }
+	public int getIdRecipe() {return idRecipe;}
+	public void setIdRecipe(int idRecipe) {this.idRecipe = idRecipe;}
 
 	public String toString() {
-		return "[TITLE]:"+this.getTitle()+",[DESCRIPTION]:"+this.getDescription()+",[EXPERTISE]:"+this.getExpertise()+",[DURATION]:"+this.getDuration()+",[NBPEOPLE]:"+this.getNbpeople()+",[TYPE]:"+this.getType();
+		return "[TITLE]:"+this.getTitle()+",[DESCRIPTION]:"+this.getDescription()+",[EXPERTISE]:"+this.getExpertise()+",[DURATION]:"+this.getDuration()+",[NBPEOPLE]:"+this.getNbpeople()+",[TYPE]:"+this.getType()+",[ID_RECIPE]:"+this.getIdRecipe();
 	}
 }
