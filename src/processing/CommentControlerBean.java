@@ -36,7 +36,7 @@ public class CommentControlerBean {
 		CommentListModelBean commentList = new CommentListModelBean();
 
 		for(CommentModel comment:list){
-			commentList.addRecipeList(comment);
+			commentList.addCommentList(comment);
 		}		
 
 		//récupère l'espace de mémoire de JSF
@@ -45,5 +45,5 @@ public class CommentControlerBean {
 
 		//place la liste de recette dans l'espace de mémoire de JSF
 		sessionMap.put("commentList", commentList);
-	} 
+	} 	
 }
