@@ -10,7 +10,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-@FacesValidator(value = "validators.username")
+@FacesValidator(value = "validators.pwd")
 public class PasswordValidator implements Validator {
 	public PasswordValidator() {
 
@@ -18,8 +18,9 @@ public class PasswordValidator implements Validator {
 	
 	@Override
 	public void validate(FacesContext context, UIComponent component,Object value) throws ValidatorException {
-			
+		 FacesContext.getCurrentInstance().getViewRoot().findComponent(component.getId()) ;
 
 		}
 }
 
+ 

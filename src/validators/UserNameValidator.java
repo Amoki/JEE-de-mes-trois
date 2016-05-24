@@ -13,7 +13,7 @@ import javax.faces.validator.ValidatorException;
 
 @FacesValidator(value = "validators.username")
 public class UserNameValidator implements Validator {
-	private static final String USERNAME_PATTERN = "^[a-zA-Z0-9]+" ;
+	private static final String USERNAME_PATTERN = "[a-zA-Z0-9]" ;
 	private Pattern pattern;
 	private Matcher matcher;
 	public UserNameValidator() {
@@ -24,8 +24,9 @@ public class UserNameValidator implements Validator {
 	public void validate(FacesContext context, UIComponent component,Object value) throws ValidatorException {
 		matcher = pattern.matcher(value.toString());
 		if(!matcher.matches()){
+			//context.validationFailed();
 			((UIInput) component).setValid(false);
-			FacesMessage msg =new FacesMessage("user name validation failed.","User Name Validation failed please follow the contraint"+USERNAME_PATTERN);
+			FacesMessage msg =new FacesMessage("Erreur sur les noms","Les noms doivent respecter la contrainte suivante: "+USERNAME_PATTERN);
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			throw new ValidatorException(msg); 
 			}

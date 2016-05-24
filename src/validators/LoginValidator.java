@@ -13,7 +13,7 @@ import javax.faces.validator.ValidatorException;
 
 @FacesValidator(value = "validators.login")
 public class LoginValidator implements Validator {
-	private static final String LOGIN_PATTERN = "^[a-zA-Z0-9-._]+" ;
+	private static final String LOGIN_PATTERN = "[a-zA-Z0-9-._]" ;
 	private Pattern pattern;
 	private Matcher matcher;
 	public LoginValidator() {

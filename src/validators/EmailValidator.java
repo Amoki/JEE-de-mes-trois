@@ -11,9 +11,9 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-@FacesValidator(value = "validators.username")
+@FacesValidator(value = "validators.email")
 public class EmailValidator implements Validator {
-	private static final String EMAIL_PATTERN = "[a-zA-Z0-9-._]+@[a-zA-Z0-9-._].[a-z]+" ;
+	private static final String EMAIL_PATTERN = "[a-zA-Z0-9-._]+@[a-zA-Z0-9-._].[a-z]" ;
 	private Pattern pattern;
 	private Matcher matcher;
 	public EmailValidator() {
