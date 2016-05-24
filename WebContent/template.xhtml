@@ -8,14 +8,20 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 </h:head>
 <h:body>
-	<ui:insert name="header">
-		<ui:include src="header.xhtml" />
-	</ui:insert>
-	<div class="corebody">
-		<ui:insert name="body">Default Section Content</ui:insert>
+	<div class="ui-grid ui-grid-responsive">
+		<div class="ui-grid-row">
+			<ui:insert name="header">
+				<ui:include src="header.xhtml" />
+			</ui:insert>
+		</div>
+		<div class="ui-grid-row corebody">
+			<ui:insert name="body">Default Section Content</ui:insert>
+		</div>
+		<div class="ui-grid-row">
+			<ui:insert name="footer">
+				<ui:include src="footer.xhtml" />
+			</ui:insert>
+		</div>
 	</div>
-	<ui:insert name="footer">
-		<ui:include src="footer.xhtml" />
-	</ui:insert>
 </h:body>
 </html>

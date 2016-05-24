@@ -4,55 +4,58 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <body>
 	<ui:composition>
-		<div id="activityTitle" class="#{pagecontroller.currentPage.name}">
+		<div class="ui-grid-col-6 #{pagecontroller.currentPage.name}"
+			id="activityTitle">
 			<h1>
 				<ui:insert name="sectionTitle">Default Section Title</ui:insert>
 			</h1>
 		</div>
-		<div id="userManagement">
-			<div id="signup">
-				<h:commandButton value="add" action="#{userControler.goLogin}" />
-				<h:outputText value="Become a member" />
-			</div>
-			<div id="signin">
-				<h:form>
-					<h:panelGroup id="idFormLogin">
-						<h:panelGroup layout="block"
-							rendered="#{loggedUser == null}">
-							<h:inputText a:placeholder="Login" id="userLogin"
-								value="#{loginBean.login}" required="true"></h:inputText>
-							<h:inputSecret a:placeholder="Password" id="userPwd"
-								value="#{loginBean.pwd}" required="true"></h:inputSecret>
-							<h:commandButton value="next" type="submit"
-								action="#{userControlerBean.checkUser(loginBean)}">
-								<f:ajax render="idValidateLogin idFormLogin" execute="@form" />
-							</h:commandButton>
+		<div class="ui-grid-col-6" id="userManagement">
+			<div class="ui-grid ui-grid-responsive">
+				<div class="ui-grid-col-6" id="signup">				
+					<p:commandButton action="#{userControlerBean.goLogin}" icon="ui-icon-plusthick"/>
+					<p:outputLabel value="Become a member" />
+				</div>
+				<div class="ui-grid-col-6" id="signin">
+					<h:form>
+						<h:panelGroup id="idFormLogin">
+							<h:panelGrid columns="2" cellpadding="5" layout="block"
+								rendered="#{loggedUser == null}">
+								<p:outputLabel value="Login:" />
+								<p:inputText id="userLogin" value="#{loginBean.login}"
+									required="true"></p:inputText>
+								<p:outputLabel value="Password:" />
+								<p:password id="userPwd" value="#{loginBean.pwd}"
+									required="true"></p:password>
+								<p:commandButton type="submit" icon="ui-icon-arrow-1-e"
+									action="#{userControlerBean.checkUser(loginBean)}">
+									<f:ajax render="idValidateLogin idFormLogin" execute="@form" />
+								</p:commandButton>
+							</h:panelGrid>
+							<h:panelGroup layout="block" rendered="#{loggedUser != null}">
+								<h:outputText value="Welcome #{loggedUser.login}" />
+								<h:outputText value="#{userControlerBean.nbUsers} connected" />
+								<p:commandButton icon="ui-icon-arrow-1-w"
+									action="#{userControlerBean.logout(loggedUser)}">
+									<f:ajax render="idValidateLogin idFormLogin" execute="@form" />
+								</p:commandButton>
+							</h:panelGroup>
 						</h:panelGroup>
-						<h:panelGroup layout="block"
-							rendered="#{loggedUser != null}">
-					    	<h:outputText value="Welcome #{loggedUser.login}" />
-					    	<h:outputText value="#{userControlerBean.nbUsers} connected" />
-					    	<h:commandButton value="logout" type="submit"
-								action="#{userControlerBean.logout(loggedUser)}">
-								<f:ajax render="idValidateLogin idFormLogin" execute="@form" />
-							</h:commandButton>			    	
-						</h:panelGroup>
-					</h:panelGroup>
-					<h:panelGroup id="idValidateLogin">
-						<h:panelGroup layout="block"
-							rendered="#{connectionError}">
+						<h:panelGroup id="idValidateLogin">
+							<h:panelGroup layout="block" rendered="#{connectionError}">
 					    	Wrong username/password.
 						</h:panelGroup>
-						<h:panelGroup layout="block"
-							rendered="#{connectionError == false and loggedUser != null}">
+							<h:panelGroup layout="block"
+								rendered="#{connectionError == false and loggedUser != null}">
 					    	Good username/password.
 						</h:panelGroup>
-					</h:panelGroup>
-				</h:form>
+						</h:panelGroup>
+					</h:form>
+				</div>
 			</div>
 		</div>
 	</ui:composition>
