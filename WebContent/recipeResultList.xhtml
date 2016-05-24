@@ -2,23 +2,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html">
 <head>
-<title>Register</title>
+<title>Research module</title>
 </head>
 <body>
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:ui="http://java.sun.com/jsf/facelets" template="/template.xhtml">
-		<ui:define name="title">
-			Register
-		</ui:define>
+		<ui:define name="title">Recipes results</ui:define>
 		<ui:define name="body">
-			<ui:insert name="information">
-				<ui:include src="userInformation.xhtml" />
-			</ui:insert>
+			<!-- Présentation des items, résultat de recherche de recettes (voir DataGrid) -->
+					
 		</ui:define>
 	</ui:composition>
 </body>

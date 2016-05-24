@@ -12,15 +12,23 @@
 <body>
 	<div id="content">
 		<h:form>
-			<h:commandButton value="Emergency"
-				action="registerUser.jsf" />
-			<h:commandButton value="Recipes" action="#{menuControler.goRecipes}" />
-			<h:commandButton value="Shop" action="#{menuControler.goShop}" />
+			<div class="ui-grid ui-grid-responsive">
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-4">
+						<h:commandButton value="Emergency" action="registerUser.jsf" />
+					</div>
+					<div class="ui-grid-col-4">
+						<h:commandButton value="Recipes"
+							action="#{menuControler.goRecipes}" />
+					</div>
+					<div class="ui-grid-col-4">
+						<h:commandButton value="Shop" action="#{menuControler.goShop}" />
+					</div>
+				</div>
+			</div>
 		</h:form>
 	</div>
-	<footer>
-		<h:outputText value="Copyright-Sapaudia and co"/>
-		<h:graphicImage value="img/logo.png" />
-	</footer>
+	<footer> <h:outputText value="Copyright-Sapaudia and co" /> <h:graphicImage
+		value="img/logo.png" /> </footer>
 </body>
 </html>
