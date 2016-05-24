@@ -31,8 +31,8 @@ public class CommentControlerBean {
 		return "successfulRegister.xhtml";
 	}
 
-	public void loadAllComment(){
-		ArrayList<CommentModel> list = this.commentDao.getAllComment();
+	public void loadAllRecipeComments(int recipeId){
+		ArrayList<CommentModel> list = this.commentDao.getAllComment(recipeId);
 		CommentListModelBean commentList = new CommentListModelBean();
 
 		for(CommentModel comment:list){
