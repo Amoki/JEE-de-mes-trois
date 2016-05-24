@@ -6,19 +6,22 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <head>
-<title>Register</title>
+<title>Home Administrator</title>
 </head>
 <body>
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:ui="http://java.sun.com/jsf/facelets" template="/template.xhtml">
+		xmlns:ui="http://java.sun.com/jsf/facelets" template="/templateAdmin.xhtml">
 		<ui:define name="title">
-			Register
+		Home Administrator
 		</ui:define>
 		<ui:define name="body">
-			<ui:insert name="information">
-				<ui:include src="userInformation.xhtml" />
-			</ui:insert>
+			<h:form>
+				<h:panelGrid columns="2" cellpadding="15" layout="block">
+					<p:commandButton value="Manage Users" actionListener="AdminUserControlerBean.goToAdminUsersManagement"/>
+					<p:commandButton value="Manager Recipes" actionListener="AdminUserControlerBean.goToAdminRecipesManagement"/>
+				</h:panelGrid>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </body>

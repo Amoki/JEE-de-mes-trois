@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<title>Manage Recipes</title>
+</head>
+<body>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		template="/templateAdmin.xhtml">
+		<ui:define name="title">
+		Manage Users
+		</ui:define>
+		<ui:define name="body">
+			<h:form>
+				<p:dataTable value="#{UserControlerBean.getUserList()}" var="user" >
+					<p:column headerText="Name" >
+						<h:outputText value="#{user.surname}" />
+					</p:column>
+
+					<p:column headerText="Login">
+						<h:outputText value="#{user.login}" />
+					</p:column>
+
+					<p:column headerText="Admin" >
+						<h:outputText value="#{user.admin}" />
+					</p:column>
+
+					<p:column headerText=" " >
+						<h:commandLink value="Delete"
+							action="#{UserControlerBean.delete(user)}" />
+						<h:commandLink value="Edit"
+							action="#{UserControlerBean.update(user)}" />
+					</p:column>
+				</p:dataTable>
+				<ui:insert name="information">
+					<ui:include src="userInformation.xhtml" />
+				</ui:insert>
+				<h:commandButton value="ADD" action="#{UserControlerBean.addUser(user)}"/>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
