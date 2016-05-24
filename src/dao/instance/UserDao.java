@@ -90,7 +90,7 @@ public class UserDao {
 			ResultSet res = query.executeQuery();
 			
 			if(res.next()){
-				user = new UserModelBean(res.getString("lastname"),res.getString("surname"),res.getInt("age"),res.getString("login"),res.getString("pwd"));
+				user = new UserModelBean(res.getString("lastname"),res.getString("surname"),res.getInt("age"),res.getString("login"),res.getString("pwd"),res.getString("email"));
 			}
 			
 			res.close();
