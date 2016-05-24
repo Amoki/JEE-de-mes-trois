@@ -23,6 +23,7 @@ import dao.instance.UserDao;
 public class UserControlerBean {
 	protected static String LOGGED_LBL = "loggedUser";
 	protected static String ERROR_LBL = "connectionError";
+
 	
 	protected UserDao userDao;
 	private int nbUsers = 0;
@@ -35,7 +36,7 @@ public class UserControlerBean {
 		this.userDao=DaoFabric.getInstance().createUserDao();
 	}
 	
-	public void checkUser(LoginBean loginBean){
+	public String checkUser(LoginBean loginBean){
 		UserModelBean user = this.userDao.checkUser(loginBean.getLogin(), loginBean.getPwd());
 		if( user!=null){
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -43,10 +44,12 @@ public class UserControlerBean {
 			sessionMap.put(LOGGED_LBL, user);
 			sessionMap.put(ERROR_LBL, false);
 			nbUsers++;
+			return "";
 		}else{ 
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			Map<String, Object> sessionMap = externalContext.getSessionMap();
 			sessionMap.put(ERROR_LBL, true);
+			return "";
 		}
 	}
 	

@@ -7,6 +7,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import validators.EmailValidator;
 import validators.LoginValidator;
@@ -22,8 +23,17 @@ import model.UserSubmissionModelBean;
 @ApplicationScoped
 public class AdminUserControlerBean extends UserControlerBean {
 	
-	@Override
-	public void checkUser(LoginBean loginBean) {
+	private String hidePanel = "none";
+	
+	public String goToAdminUsersManagement(){
+		return "adminUsersManagement.xhtml";
+	}
+	
+	public String goToAdminRecipesManagement(){
+		return "adminRecipesManagement.xhtml";
+	}
+	
+	public String checkUser(LoginBean loginBean) {
 		super.checkUser(loginBean);
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
@@ -32,13 +42,16 @@ public class AdminUserControlerBean extends UserControlerBean {
 		if(user != null && !user.getIsAdmin()){
 			sessionMap.remove(LOGGED_LBL);
 			sessionMap.put(ERROR_LBL, true);
+			return "admin.xhtml";
 		}
 		else if(user == null){
 			sessionMap.put(ERROR_LBL, true);
+			return "admin.xhtml";
 		}
+		return "adminHome.xhtml";
 	}
 
-	public void getAllUsers(){
+	public ArrayList<UserModelBean> getAllUsers(){
 		ArrayList<UserModelBean> list = this.userDao.getAllUser();
 		UserListModelBean userList=new UserListModelBean();
 
@@ -50,6 +63,7 @@ public class AdminUserControlerBean extends UserControlerBean {
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 
 		sessionMap.put("userlist", userList);
+		return list;
 	}
 	
 	public void updateUser(UserSubmissionModelBean user){
@@ -58,13 +72,14 @@ public class AdminUserControlerBean extends UserControlerBean {
 				&& user.getEmail().matches(EmailValidator.EMAIL_PATTERN)
 				&& user.getLogin().matches(LoginValidator.LOGIN_PATTERN)
 				&& user.getAge() > 0 && user.getAge() <= 100
-				&& user.getPwd() == user.getPwd2())
+				&& user.getPwd().equals(user.getPwd2()))
 		{
 			this.userDao.update(user);
 		}
 	}
 	
 	public void deleteUser(UserModelBean user){
+		System.out.println("DELETE");
 		if(user != null){
 			this.userDao.delete(user);
 		}
@@ -82,4 +97,5 @@ public class AdminUserControlerBean extends UserControlerBean {
 		sub.setAdmin(true);
 		controler.updateUser(sub);
 	}
+
 }

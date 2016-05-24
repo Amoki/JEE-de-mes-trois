@@ -5,11 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<head>
-<title>Manage Recipes</title>
-</head>
 <body>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		template="/templateAdmin.xhtml">
@@ -18,8 +15,9 @@
 		</ui:define>
 		<ui:define name="body">
 			<h:form>
-				<p:dataTable value="#{UserControlerBean.getUserList()}" var="user" >
-					<p:column headerText="Name" >
+				<p:dataTable id="userTable"
+					value="#{adminUserControlerBean.getAllUsers()}" var="user">
+					<p:column headerText="Name">
 						<h:outputText value="#{user.surname}" />
 					</p:column>
 
@@ -27,21 +25,71 @@
 						<h:outputText value="#{user.login}" />
 					</p:column>
 
-					<p:column headerText="Admin" >
-						<h:outputText value="#{user.admin}" />
+					<p:column headerText="Admin">
+						<h:outputText value="#{user.isAdmin}" />
 					</p:column>
 
-					<p:column headerText=" " >
-						<h:commandLink value="Delete"
-							action="#{UserControlerBean.delete(user)}" />
+					<p:column headerText=" ">
+						<p:commandButton value="Delete"
+							action="#{adminUserControlerBean.deleteUser(user)}"
+							update="userTable" />
 						<h:commandLink value="Edit"
-							action="#{UserControlerBean.update(user)}" />
+							action="#{adminUserControlerBean.updateUser(user)}"
+							update="userTable" />
 					</p:column>
 				</p:dataTable>
-				<ui:insert name="information">
-					<ui:include src="userInformation.xhtml" />
-				</ui:insert>
-				<h:commandButton value="ADD" action="#{UserControlerBean.addUser(user)}"/>
+				<h:commandButton value="ADD"
+					action="#{adminUserControlerBean.checkAndAddUser(user)}" />
+			</h:form>
+			<h:form> 
+					<h:panelGrid columns="2" cellpadding="15" layout="block">
+						<p:outputLabel value="Firstname: " />
+						<p:inputText id="firstName"
+							value="#{userSubmissionModelBean.surname}" required="true"
+							style="#{ component.valid ? ' ' : 'border-color:red;'}">
+							<f:validator validatorId="validators.username" />
+						</p:inputText>
+						<p:outputLabel value="Lastname: " />
+						<p:inputText id="lastName"
+							value="#{userSubmissionModelBean.lastname}" required="true"
+							style="#{ component.valid ? ' ' : 'border-color:red;'}">
+							<f:validator validatorId="validators.username" />
+						</p:inputText>
+						<p:outputLabel value="Age: " />
+						<p:inputText id="age" value="#{userSubmissionModelBean.age}"
+							required="true"
+							style="#{ component.valid ? ' ' : 'border-color:red;'}">
+							<f:validator validatorId="validators.age" />
+						</p:inputText>
+						<p:outputLabel value="Email: " />
+						<p:inputText label="Email: " id="email"
+							value="#{userSubmissionModelBean.email}" required="true"
+							style="#{ component.valid ? ' ' : 'border-color:red;'}">
+							<f:validator validatorId="validators.email" />
+						</p:inputText>
+						<p:outputLabel value="Login: " />
+						<p:inputText id="login" value="#{userSubmissionModelBean.login}"
+							required="true"
+							style="#{ component.valid ? ' ' : 'border-color:red;'}">
+							<f:validator validatorId="validators.login" />
+						</p:inputText>
+
+						<p:outputLabel value="Password: " />
+						<p:password id="password" match="password2"
+							value="#{userSubmissionModelBean.pwd}" required="true"
+							style="#{ component.valid ? ' ' : 'border-color:red;'}">
+
+						</p:password>
+						<p:outputLabel value="Confirm: " />
+						<p:password id="password2" value="#{userSubmissionModelBean.pwd2}"
+							required="true"
+							style="#{ component.valid ? '' : 'border-color:red;'}">
+
+						</p:password>
+						<p:button value="Cancel" outcome="menu.jsf" />
+						<h:commandButton value="Save"
+							action="#{userSubmissionModelBean.checkAndAddUser(userSubmissionModelBean)}" />
+					</h:panelGrid>
 			</h:form>
 		</ui:define>
 	</ui:composition>
