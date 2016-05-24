@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<title>Inscription</title>
+</head>
+<body>
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets" template="/template.xhtml">
+		<ui:define name="title">
+		Isncription
+</ui:define>
+		<ui:define name="body">
+			<h:form>
+				<h:panelGrid columns="2" cellpadding="15" layout="block">
+					<p:outputLabel value="Firstname: " />
+					<p:inputText id="firstName"
+						value="#{userSubmissionModelBean.surname}" required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+						<f:validator validatorId="validators.username" />
+					</p:inputText>
+					<p:outputLabel value="Lastname: " />
+					<p:inputText id="lastName"
+						value="#{userSubmissionModelBean.lastname}" required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+						<f:validator validatorId="validators.username" />
+					</p:inputText>
+					<p:outputLabel value="Age: " />
+					<p:inputText id="age" value="#{userSubmissionModelBean.age}"
+						required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+						<f:validator validatorId="validators.age" />
+					</p:inputText>
+					<p:outputLabel value="Email: " />
+					<p:inputText label="Email: " id="email"
+						value="#{userSubmissionModelBean.email}" required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+						<f:validator validatorId="validators.email" />
+					</p:inputText>
+					<p:outputLabel value="Login: " />
+					<p:inputText id="login" value="#{userSubmissionModelBean.login}"
+						required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+						<f:validator validatorId="validators.login" />
+					</p:inputText>
+					 					
+					<p:outputLabel value="Password: " />
+					<p:password id="password"  match="password2" value="#{userSubmissionModelBean.pwd}"
+						required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+
+					</p:password>
+					<p:outputLabel value="Confirm: " />
+					<p:password id="password2" value="#{userSubmissionModelBean.pwd2}"
+						required="true"
+						style="#{ component.valid ? '' : 'border-color:red;'}">
+
+					</p:password>
+					<p:button value="Cancel" outcome="menu.jsf" />
+					<h:commandButton value="Register" action="#{userControlerBean.checkAndAddUser(userSubmissionModelBean)}"/>
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

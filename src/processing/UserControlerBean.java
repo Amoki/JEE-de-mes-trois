@@ -45,11 +45,13 @@ public class UserControlerBean {
 		}
 	}
 	
-	public void checkAndAddUser(UserSubmissionModelBean userSubmitted){
+	public String checkAndAddUser(UserSubmissionModelBean userSubmitted){
+		System.out.println("titi");
 		//Vérifier les propriétés de l'utilisateur
 		//TODO
 		//ajout de l'utilisateur à la base de données
 		this.userDao.addUser(userSubmitted);
+		return "menu.xhtml";
 	}
 	
 	public void logout(UserModelBean loggedUser){
@@ -59,6 +61,8 @@ public class UserControlerBean {
 			sessionMap.remove(LOGGED_LBL);
 			
 			nbUsers--;
-		}else{ }
+		}else{
+			
+		}
 	}
 }
