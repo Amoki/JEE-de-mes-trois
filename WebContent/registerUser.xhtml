@@ -48,10 +48,10 @@
 						style="#{ component.valid ? ' ' : 'border-color:red;'}">
 						<f:validator validatorId="validators.login" />
 					</p:inputText>
-					 					
+
 					<p:outputLabel value="Password: " />
-					<p:password id="password"  match="password2" value="#{userSubmissionModelBean.pwd}"
-						required="true"
+					<p:password id="password" match="password2"
+						value="#{userSubmissionModelBean.pwd}" required="true"
 						style="#{ component.valid ? ' ' : 'border-color:red;'}">
 
 					</p:password>
@@ -62,7 +62,8 @@
 
 					</p:password>
 					<p:button value="Cancel" outcome="menu.jsf" />
-					<h:commandButton value="Register" action="#{userControlerBean.checkAndAddUser(userSubmissionModelBean)}"/>
+					<h:commandButton value="Register"
+						action="#{userControlerBean.checkAndAddUser(userSubmissionModelBean)}" />
 				</h:panelGrid>
 			</h:form>
 		</ui:define>

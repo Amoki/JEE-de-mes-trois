@@ -15,6 +15,9 @@ public class UserModelBean implements Serializable{
 	private String email;
 	private String login;
 	private String pwd;
+
+	private boolean isAdmin;
+
 	//Contrainte BEAN constructeur sans paramètre
 	public UserModelBean() {
 	}
@@ -27,6 +30,7 @@ public class UserModelBean implements Serializable{
 		this.email = email;
 		this.login = login;
 		this.pwd = pwd;
+		this.isAdmin = false;
 	}
 
 	public String getLastname() {return lastname;}
@@ -41,9 +45,11 @@ public class UserModelBean implements Serializable{
 	public void setLogin(String login) {this.login = login;}
 	public String getPwd() {return pwd;}
 	public void setPwd(String pwd) {this.pwd = pwd;}
+	public boolean getIsAdmin() {return this.isAdmin;	}
+	public void setAdmin(boolean isAdmin) {this.isAdmin = isAdmin;	}
 
 	@Override
 	public String toString() {
-		return "[SURNAME]:"+this.getSurname()+",[LASTNAME]:"+this.getLastname()+",[AGE]:"+this.getAge()+",[EMAIL]:"+this.getEmail()+",[LOGIN]:"+this.getLogin()+",[PWD]:"+this.getPwd();
+		return "[SURNAME]:"+this.getSurname()+",[LASTNAME]:"+this.getLastname()+",[AGE]:"+this.getAge()+",[EMAIL]:"+this.getEmail()+",[LOGIN]:"+this.getLogin()+",[PWD]:"+this.getPwd()+",[EMAIL]:"+this.getEmail()+",[ISADMIN]:"+this.getIsAdmin();
 	}
 }

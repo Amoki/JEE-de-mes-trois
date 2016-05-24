@@ -11,6 +11,15 @@ public class RecipeModel {
 	private String type;
 
 	public RecipeModel() {}
+	
+	public RecipeModel(String title,String description,int expertise,int duration,int nbpeople,String type) {
+		this.title = title;
+		this.description = description;
+		this.expertise = expertise;
+		this.duration = duration;
+		this.nbpeople = nbpeople;
+		this.type = type;
+	}
 
 	public RecipeModel(int idRecipe, String title,String description,int expertise,int duration,int nbpeople,String type) {
 		this.idRecipe = idRecipe;
