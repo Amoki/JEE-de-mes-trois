@@ -56,7 +56,7 @@ public class UserControlerBean {
 				&& userSubmitted.getEmail().matches(EmailValidator.EMAIL_PATTERN)
 				&& userSubmitted.getLogin().matches(LoginValidator.LOGIN_PATTERN)
 				&& userSubmitted.getAge() > 0 && userSubmitted.getAge() <= 100
-				&& userSubmitted.getPwd() == userSubmitted.getPwd2())
+				&& userSubmitted.getPwd().equals(userSubmitted.getPwd2()))
 		{
 			this.userDao.addUser(userSubmitted);
 			return "menu.xhtml";

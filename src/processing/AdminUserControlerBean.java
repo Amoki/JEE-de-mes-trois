@@ -58,7 +58,7 @@ public class AdminUserControlerBean extends UserControlerBean {
 				&& user.getEmail().matches(EmailValidator.EMAIL_PATTERN)
 				&& user.getLogin().matches(LoginValidator.LOGIN_PATTERN)
 				&& user.getAge() > 0 && user.getAge() <= 100
-				&& user.getPwd() == user.getPwd2())
+				&& user.getPwd().equals(user.getPwd2()))
 		{
 			this.userDao.update(user);
 		}
