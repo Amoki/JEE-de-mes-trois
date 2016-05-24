@@ -1,6 +1,9 @@
 package dao.instance;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+
+import model.CommentModelBean;
 
 public class CommentDao {
 	private Connection connection;
@@ -21,5 +24,10 @@ public class CommentDao {
 	public void addComment() {
 	// TODO
 		
+	}
+
+	public ArrayList<CommentModelBean> getAllComment() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

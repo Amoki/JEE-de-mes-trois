@@ -4,55 +4,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <body>
 	<ui:composition>
-		<div id="activityTitle" class="#{pagecontroller.currentPage.name}">
+		<div class="ui-grid-col-6 #{pagecontroller.currentPage.name}"
+			id="activityTitle">
 			<h1>
 				<ui:insert name="sectionTitle">Default Section Title</ui:insert>
 			</h1>
 		</div>
-		<div id="userManagement">
-			<div id="signup">
-				<h:commandButton value="add" action="#{userControler.goLogin}" />
-				<h:outputText value="Become a member" />
-			</div>
-			<div id="signin">
-				<h:form>
-					<h:panelGroup id="idFormLogin">
-						<h:panelGroup layout="block"
-							rendered="#{loggedUser == null}">
-							<h:inputText a:placeholder="Login" id="userLogin"
-								value="#{loginBean.login}" required="true"></h:inputText>
-							<h:inputSecret a:placeholder="Password" id="userPwd"
-								value="#{loginBean.pwd}" required="true"></h:inputSecret>
-							<h:commandButton value="next" type="submit"
-								action="#{userControlerBean.checkUser(loginBean)}">
-								<f:ajax render="idValidateLogin idFormLogin" execute="@form" />
-							</h:commandButton>
+		<div class="ui-grid-col-6">
+			<h:panelGroup id="idValidateLogin">
+				<h:panelGroup layout="block" rendered="#{connectionError}">
+					    	Connection fail
 						</h:panelGroup>
-						<h:panelGroup layout="block"
-							rendered="#{loggedUser != null}">
-					    	<h:outputText value="Welcome #{loggedUser.login}" />
-					    	<h:outputText value="#{userControlerBean.nbUsers} connected" />
-					    	<h:commandButton value="logout" type="submit"
-								action="#{userControlerBean.logout(loggedUser)}">
-								<f:ajax render="idValidateLogin idFormLogin" execute="@form" />
-							</h:commandButton>			    	
+				<h:panelGroup layout="block"
+					rendered="#{connectionError == false and loggedUser != null}">
+					    	Connection success
 						</h:panelGroup>
-					</h:panelGroup>
-					<h:panelGroup id="idValidateLogin">
-						<h:panelGroup layout="block"
-							rendered="#{connectionError}">
-					    	Wrong username/password.
+			</h:panelGroup>
+		</div>
+		<div class="ui-grid-col-6" id="userManagement">
+			<div class="ui-grid ui-grid-responsive">
+				<div class="ui-grid-col-6" id="signin">
+					<h:form>
+						<h:panelGroup id="idFormLogin">
+							<h:panelGrid layout="block" rendered="#{loggedUser == null}">
+								<h:panelGrid columns="2" cellpadding="5" layout="block">
+									<p:commandButton action="#{userControlerBean.goSignin}"
+										icon="ui-icon-plusthick" />
+									<p:outputLabel value="Become a member" />
+								</h:panelGrid>
+								<h:panelGrid columns="2" cellpadding="5" layout="block">
+									<p:outputLabel value="Login: " />
+									<p:inputText id="userLogin" value="#{loginBean.login}"
+										required="true"></p:inputText>
+									<p:outputLabel value="Password: " />
+									<p:password id="userPwd" value="#{loginBean.pwd}"
+										required="true"></p:password>
+									<p:commandButton type="submit" icon="ui-icon-arrow-1-e"
+										action="#{userControlerBean.checkUser(loginBean)}">
+										<f:ajax render=":idValidateLogin idFormLogin" execute="@form" />
+									</p:commandButton>
+								</h:panelGrid>
+							</h:panelGrid>
+							<h:panelGrid columns="1" cellpadding="5" layout="block"
+								rendered="#{loggedUser != null}">
+								<p:outputLabel value="Welcome #{loggedUser.login}" />
+								<p:outputLabel
+									value="#{userControlerBean.nbUsers} user(s) already connected" />
+								<p:commandButton icon="ui-icon-arrow-1-w"
+									action="#{userControlerBean.logout(loggedUser)}">
+									<f:ajax render=":idValidateLogin idFormLogin" execute="@form" />
+								</p:commandButton>
+							</h:panelGrid>
 						</h:panelGroup>
-						<h:panelGroup layout="block"
-							rendered="#{connectionError == false and loggedUser != null}">
-					    	Good username/password.
-						</h:panelGroup>
-					</h:panelGroup>
-				</h:form>
+					</h:form>
+				</div>
 			</div>
 		</div>
 	</ui:composition>

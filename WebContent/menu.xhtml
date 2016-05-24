@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <head>
 <title>Cook me!</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -12,7 +13,7 @@
 	<div id="content">
 		<h:form>
 			<h:commandButton value="Emergency"
-				action="#{menuControler.goEmergency}" />
+				action="registerUser.jsf" />
 			<h:commandButton value="Recipes" action="#{menuControler.goRecipes}" />
 			<h:commandButton value="Shop" action="#{menuControler.goShop}" />
 		</h:form>
