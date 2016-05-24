@@ -6,7 +6,12 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
+import validators.AgeValidator;
+import validators.EmailValidator;
+import validators.LoginValidator;
+import validators.UserNameValidator;
 import model.LoginBean;
 import model.UserModelBean;
 import model.UserSubmissionModelBean;
@@ -45,13 +50,19 @@ public class UserControlerBean {
 		}
 	}
 	
-	public String checkAndAddUser(UserSubmissionModelBean userSubmitted){
-		System.out.println("titi");
-		//Vérifier les propriétés de l'utilisateur
-		//TODO
-		//ajout de l'utilisateur à la base de données
-		this.userDao.addUser(userSubmitted);
-		return "menu.xhtml";
+	public String checkAndAddUser(UserSubmissionModelBean userSubmitted) throws Exception{
+		if(userSubmitted.getSurname().matches(UserNameValidator.USERNAME_PATTERN) 
+				&& userSubmitted.getLastname().matches(UserNameValidator.USERNAME_PATTERN) 
+				&& userSubmitted.getEmail().matches(EmailValidator.EMAIL_PATTERN)
+				&& userSubmitted.getLogin().matches(LoginValidator.LOGIN_PATTERN)
+				&& userSubmitted.getAge() > 0 && userSubmitted.getAge() <= 100
+				&& userSubmitted.getPwd() == userSubmitted.getPwd2())
+		{
+			this.userDao.addUser(userSubmitted);
+			return "menu.xhtml";
+		}	
+		else
+			throw new Exception("Problème lors dans les propriétés de l'utilisateur lors de l'ajout"); 
 	}
 	
 	public void logout(UserModelBean loggedUser){
