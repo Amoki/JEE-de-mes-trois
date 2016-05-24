@@ -6,28 +6,36 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class CommentModel{
-	private UserModelBean user;
-	private RecipeModel recipe;
+	private int recipeId;
+	private String userLogin;
 	private String date;
 	private String detail;
 	private int rate;
 	
 	public CommentModel(){}
 	
-	public String getUser() {return user.getLogin();}
-	public String getRecipe() {return recipe.getTitle();}
+	public CommentModel(int recipeId, String userLogin, String date, String detail, int rate){
+		this.recipeId = recipeId;
+		this.userLogin = userLogin;
+		this.date = date;
+		this.detail = detail;
+		this.rate = rate;
+	}
+
+	public int getRecipeId() {return recipeId;}
+	public String getUserLogin() {return userLogin;}
 	public String getDate() {return date;}	
 	public String getDetail() {return detail;}	
-	public String getRate() {return String.valueOf(rate);}
-	public void setUser(UserModelBean user) {this.user = user;}	
-	public void setRecipe(RecipeModel recipe) {this.recipe = recipe;}
+	public int getRate() {return rate;}	
+	public void setRecipe(int recipeId) {this.recipeId = recipeId;}
+	public void setUser(String userLogin) {this.userLogin = userLogin;}
 	public void setDate(String date) {this.date = date;}
 	public void setDetail(String detail) {this.detail = detail;}
 	public void setRate(int rate) {this.rate = rate;}
 
 	@Override
 	public String toString() {
-		return "[USER_LOGIN]:"+this.getUser()+",[RECIPE_NAME]:"+this.getRecipe()+",[DATE]:"+this.getDate()+",[DETAIL]:"+this.getDetail()+",[RATE]:"+this.getRate();
+		return "[USER_LOGIN]:"+this.getUserLogin()+",[RECIPE_NAME]:"+this.getRecipeId()+",[DATE]:"+this.getDate()+",[DETAIL]:"+this.getDetail()+",[RATE]:"+this.getRate();
 	}
 	
 	
