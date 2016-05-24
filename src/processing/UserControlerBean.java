@@ -21,10 +21,10 @@ import dao.instance.UserDao;
 @ManagedBean
 @ApplicationScoped
 public class UserControlerBean {
-	private static String LOGGED_LBL = "loggedUser";
-	private static String ERROR_LBL = "connectionError";
+	protected static String LOGGED_LBL = "loggedUser";
+	protected static String ERROR_LBL = "connectionError";
 	
-	private UserDao userDao;
+	protected UserDao userDao;
 	private int nbUsers = 0;
 	
 	public int getNbUsers() {
@@ -50,7 +50,7 @@ public class UserControlerBean {
 		}
 	}
 	
-	public String checkAndAddUser(UserSubmissionModelBean userSubmitted) throws Exception{
+	public String checkAndAddUser(UserSubmissionModelBean userSubmitted){
 		if(userSubmitted.getSurname().matches(UserNameValidator.USERNAME_PATTERN) 
 				&& userSubmitted.getLastname().matches(UserNameValidator.USERNAME_PATTERN) 
 				&& userSubmitted.getEmail().matches(EmailValidator.EMAIL_PATTERN)
@@ -60,9 +60,8 @@ public class UserControlerBean {
 		{
 			this.userDao.addUser(userSubmitted);
 			return "menu.xhtml";
-		}	
-		else
-			throw new Exception("Problème lors dans les propriétés de l'utilisateur lors de l'ajout"); 
+		}
+		return "";
 	}
 	
 	public void logout(UserModelBean loggedUser){

@@ -7,7 +7,7 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped 
 public class UserSubmissionModelBean extends UserModelBean{
 	private String pwd2;
-	
+
 	public String getPwd2() {
 		return pwd2;
 	}
@@ -17,4 +17,8 @@ public class UserSubmissionModelBean extends UserModelBean{
 	}
 
 	public UserSubmissionModelBean() { }
+
+	public UserSubmissionModelBean(String lastname,String surname,int age,String login,String pwd, String email) {
+		super(lastname,surname,age,login,pwd,email);
+	}
 }
