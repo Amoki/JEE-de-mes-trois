@@ -65,7 +65,7 @@ public class UserDao {
 			ResultSet res = query.executeQuery();
 
 			while(res.next()){
-				userList.add(new UserModelBean(res.getString("lastname"),res.getString("surname"),res.getInt("age"),res.getString("login"),res.getString("pwd"),res.getString("email")));
+				userList.add(new UserModelBean(res.getString("lastname"),res.getString("surname"),res.getInt("age"),res.getString("login"),res.getString("pwd"),res.getString("email"),res.getBoolean("admin")));
 			}		
 
 			res.close();
@@ -93,6 +93,7 @@ public class UserDao {
 
 			if(res.next()){
 				user = new UserModelBean(res.getString("lastname"),res.getString("surname"),res.getInt("age"),res.getString("login"),res.getString("pwd"),res.getString("email"));
+				user.setAdmin(res.getBoolean("admin"));
 			}
 
 			res.close();

@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -8,11 +9,7 @@
 <body>
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:ui="http://java.sun.com/jsf/facelets" template="/template.xhtml">
-		<ui:define name="title">
-			Register
-		</ui:define>
-		<ui:define name="body">
+		xmlns:ui="http://java.sun.com/jsf/facelets">
 			<h:form>
 				<h:panelGrid columns="2" cellpadding="15" layout="block">
 					<p:outputLabel value="Firstname: " />
@@ -59,10 +56,9 @@
 
 					</p:password>
 					<p:button value="Cancel" outcome="menu.jsf" />
-					<h:commandButton value="Register" action="#{userControlerBean.checkAndAddUser(userSubmissionModelBean)}"/>
+					<h:commandButton value="Register" action="#{userSubmissionModelBean.checkAndAddUser(userSubmissionModelBean)}"/>
 				</h:panelGrid>
 			</h:form>
-		</ui:define>
-	</ui:composition>z
+	</ui:composition>
 </body>
-</html>
+</html>			
