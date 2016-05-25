@@ -33,6 +33,16 @@ public class UserModelBean implements Serializable{
 		this.isAdmin = false;
 	}
 
+	public UserModelBean(String lastname,String surname,int age,String login,String pwd, String email,boolean admin) {
+		this.lastname = lastname;
+		this.surname = surname;
+		this.age = age;
+		this.email = email;
+		this.login = login;
+		this.pwd = pwd;
+		this.isAdmin = admin;
+	}
+
 	public String getLastname() {return lastname;}
 	public void setLastname(String lastname) { this.lastname = lastname;}
 	public String getSurname() { return surname;}
