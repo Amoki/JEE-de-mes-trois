@@ -93,7 +93,7 @@ public class UserDao {
 
 			if(res.next()){
 				user = new UserModelBean(res.getString("lastname"),res.getString("surname"),res.getInt("age"),res.getString("login"),res.getString("pwd"),res.getString("email"));
-				user.setAdmin(res.getBoolean("admin"));
+				user.setIsAdmin(res.getBoolean("admin"));
 			}
 
 			res.close();
@@ -163,7 +163,7 @@ public class UserDao {
 		
 		System.out.println(users);
 
-		user.setAdmin(true);
+		user.setIsAdmin(true);
 		dao.update(user);
 		
 		user = dao.checkUser("test", "test");

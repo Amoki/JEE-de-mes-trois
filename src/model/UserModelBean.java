@@ -15,7 +15,6 @@ public class UserModelBean implements Serializable{
 	private String email;
 	private String login;
 	private String pwd;
-
 	private boolean isAdmin;
 
 	//Contrainte BEAN constructeur sans paramètre
@@ -56,7 +55,7 @@ public class UserModelBean implements Serializable{
 	public String getPwd() {return pwd;}
 	public void setPwd(String pwd) {this.pwd = pwd;}
 	public boolean getIsAdmin() {return this.isAdmin;	}
-	public void setAdmin(boolean isAdmin) {this.isAdmin = isAdmin;	}
+	public void setIsAdmin(boolean isAdmin) {this.isAdmin = isAdmin;	}
 
 	@Override
 	public String toString() {

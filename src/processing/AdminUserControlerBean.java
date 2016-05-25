@@ -24,6 +24,7 @@ import model.UserSubmissionModelBean;
 public class AdminUserControlerBean extends UserControlerBean {
 	
 	public UserSubmissionModelBean selectedUser = null;
+	public Boolean isNewUser = false;
 	
 	public void setSelectedUser(UserSubmissionModelBean selectedUser) {
 		this.selectedUser = selectedUser;
@@ -33,6 +34,14 @@ public class AdminUserControlerBean extends UserControlerBean {
 		return selectedUser;
 	}
 	
+	public Boolean getIsNewUser() {
+		return isNewUser;
+	}
+
+	public void setIsNewUser(Boolean isNewUser) {
+		this.isNewUser = isNewUser;
+	}
+
 	public String goToAdminUsersManagement(){
 		return "adminUsersManagement.xhtml";
 	}
@@ -98,18 +107,17 @@ public class AdminUserControlerBean extends UserControlerBean {
 		UserSubmissionModelBean sub = new UserSubmissionModelBean("test","test", 10,"test","test","test@test.fr");
 		sub.setPwd2(sub.getPwd());
 		controler.checkAndAddUser(sub);
-		sub.setAdmin(true);
-		
-		
-		sub.setAdmin(true);
+		sub.setIsAdmin(true);
 		controler.updateUser(sub);
 	}
 	
 	public void showPanel(UserModelBean user){
 		if(user != null){
+			isNewUser = false;
 			setSelectedUser(new UserSubmissionModelBean(user));
 		}
 		else{
+			isNewUser = true;
 			setSelectedUser(new UserSubmissionModelBean());
 		}
 	}
@@ -117,4 +125,17 @@ public class AdminUserControlerBean extends UserControlerBean {
 	public void hidePanel(){
 		setSelectedUser(null);
 	}
+	
+	public void saveUser(UserSubmissionModelBean userSubmissionModelBean){
+		if(isNewUser){
+			checkAndAddUser(userSubmissionModelBean);
+		}
+		else{
+			updateUser(userSubmissionModelBean);
+		}
+			
+		hidePanel();
+	}
+	
+	
 }
