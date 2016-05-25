@@ -32,8 +32,7 @@
 						<h:panelGroup id="idFormLogin">
 							<h:panelGrid layout="block" rendered="#{loggedUser == null}">
 								<h:panelGrid columns="2" cellpadding="5" layout="block">
-									<p:commandButton action="#{userControlerBean.goSignin}"
-										icon="ui-icon-plusthick" />
+									<p:button outcome="registerUser.jsf" ajax="false" icon="ui-icon-plusthick" />
 									<p:outputLabel value="Become a member" />
 								</h:panelGrid>
 								<h:panelGrid columns="2" cellpadding="5" layout="block">

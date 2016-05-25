@@ -14,6 +14,7 @@
 		xmlns:ui="http://java.sun.com/jsf/facelets" template="/template.xhtml">
 		<ui:define name="title">Recipes results</ui:define>
 		<ui:define name="body">
+			<p:commandButton value="Back" onclick="history.go(-1)"></p:commandButton>
 			<h:form id="form">
 				<p:dataGrid var="recipe" value="#{recipeList.getRecipeList()}"
 					columns="3" layout="grid" rows="12" paginator="true" id="recipes"
