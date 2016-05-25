@@ -1,3 +1,6 @@
+#bodyContent {
+	width:50%;
+}
 .col-centered {
 	display:inline-block;
 	float: none;
