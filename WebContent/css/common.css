@@ -3,7 +3,9 @@
 	float: none;
 	margin: 0 auto;
 }
-
+.div-fillparent {
+	width: 99%;
+}
 .row-centered {
     text-align:center;
 }

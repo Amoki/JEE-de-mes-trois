@@ -14,9 +14,9 @@
 		xmlns:ui="http://java.sun.com/jsf/facelets" template="/template.xhtml">
 		<ui:define name="title">Recipes results</ui:define>
 		<ui:define name="body">
-			<div class="ui-grid ui-grid-responsive">
+			<div class="ui-grid ui-grid-responsive col-centered div-fillparent">
 				<div class="ui-grid-row">
-					<div class="ui-grid-col-6">
+					<div class="ui-grid-col-4">
 						<!-- Résumé des caractéristiques de la recette -->
 						<h:panelGrid columns="2" style="width:100%">
 							<!-- type -->
@@ -39,27 +39,39 @@
 								value="#{selectedRecipe.expertise}" readonly="true" />
 						</h:panelGrid>
 					</div>
-					<div class="ui-grid-col-6">
-						<!-- zone de Detail -->
-							<!-- Titre de la recette -->
-							<h:outputText id="recipeTitle" value="#{selectedRecipe.title}"></h:outputText>
 
-							<!-- Bouton permettant de revenir à l’affichage de la liste de recette -->
-							<h:commandButton value="Back" action="BACK" />
-
-							<!-- Détail de la recette -->
-							<h:outputText id="recipeDescription"
-								value="#{selectedRecipe.description}"></h:outputText>
-							<h:outputText value="#{recipe.description}" />
-
-							<!-- Image représentant le résultat de la recette -->
-							<h:outputLabel id="recipePicture" value="image"></h:outputLabel>
-						
+					<!-- zone de Detail -->
+					<div class="ui-grid-col-8">
+						<div class="ui-grid ui-grid-responsive">
+							<div class="ui-grid-row">
+								<!-- Titre de la recette -->
+								<div class="ui-grid-col-10">
+									<h:outputText id="recipeTitle" value="#{selectedRecipe.title}"></h:outputText>
+								</div>
+								<!-- Bouton de retour -->
+								<div class="ui-grid-col-2">
+									<h:commandButton value="Back" onclick="history.go(-1)" />
+								</div>
+							</div>
+							<div class="ui-grid-row">
+								<!-- Détail de la recette -->
+								<div class="ui-grid-col-10">
+									<h:outputText id="recipeDescription"
+										value="#{selectedRecipe.description}"></h:outputText>
+									<h:outputText value="#{recipe.description}" />
+								</div>
+								<!-- Image de la recette -->
+								<div class="ui-grid-col-2">
+									<!-- Image représentant le résultat de la recette -->
+									<h:outputLabel id="recipePicture" value="image"></h:outputLabel>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 
-				<!-- zone de commentaires (visualisation + écriture) -->
-				<div class="ui-grid-row">
+				<!-- zone de visualisation commentaires -->
+				<div class="ui-grid-row col-centered div-fillparent">
 					<!-- Liste des précédents commentaires incluant : icone + nom de la personne connecté -->
 					<h:form id="allComments">
 						<p:dataScroller
@@ -91,24 +103,23 @@
 				</div>
 
 				<!--Zone de saisie d’un nouveau commentaire -->
-				<div class="ui-grid-row">
-					<h:form>
+				<h:form rendered="#{loggedUser != null}">
+					<div class="ui-grid-row col-centered div-fillparent">
 						<!-- zone de saisie de texte -->
-						<h:inputTextarea id="commentDetail" value="#{commentSubmissionBean.detail}" />
-	
+						<p:editor id="commentDetail" widgetVar="editorWidget"
+							value="#{commentSubmissionBean.detail}" width="600" />
+
 						<!-- zone de « rating » -->
 						<p:rating id="commentRate" value="#{commentSubmissionBean.rate}" />
-						
+
 						<!-- bouton permettant de valider le commentaire -->
-						<p:commandButton value="Post your comment" 
+						<p:commandButton value="Post your comment"
 							action="#{commentControlerBean.addComment(commentSubmissionBean,loggedUser.login, selectedRecipe.idRecipe)}">
 							<f:ajax render=":allComments" execute="@form" />
 						</p:commandButton>
-					</h:form>	
-				</div>
+					</div>
+				</h:form>
 			</div>
-
-
 		</ui:define>
 	</ui:composition>
 </body>
