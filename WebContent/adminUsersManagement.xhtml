@@ -86,10 +86,11 @@
 							style="#{ component.valid ? '' : 'border-color:red;'}">
 
 						</p:password>
+						<h:outputText value="Admin: " />
+        				<p:selectBooleanCheckbox value="#{adminUserControlerBean.selectedUser.isAdmin}" />
 						<p:commandButton update=":editForm" value="Cancel" action="#{adminUserControlerBean.hidePanel()}" immediate="true"/>
-						<h:commandButton value="Save"
-							action="#{userSubmissionModelBean.checkAndAddUser(userSubmissionModelBean)}" />
-					</h:panelGrid>
+						<h:commandButton value="Save" action="#{adminUserControlerBean.saveUser(adminUserControlerBean.selectedUser)}" />
+					</h:panelGrid> 
 			</h:form>
 		</ui:define>
 	</ui:composition>

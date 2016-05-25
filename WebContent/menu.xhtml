@@ -8,27 +8,28 @@
 <head>
 <title>Cook me!</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/common.css" />
 </head>
 <body>
-	<div id="content">
-		<h:form>
-			<div class="ui-grid ui-grid-responsive">
-				<div class="ui-grid-row">
-					<div class="ui-grid-col-4">
-						<h:commandButton value="Emergency" action="registerUser.jsf" />
-					</div>
-					<div class="ui-grid-col-4">
-						<h:commandButton value="Recipes"
-							action="recipesSearch.jsf" />
-					</div>
-					<div class="ui-grid-col-4">
-						<h:commandButton value="Shop" action="#{menuControler.goShop}" />
-					</div>
-				</div>
+	<h:form>
+		<div class="row-centered vert-centered">
+			<div class="col-xs-6 col-md-3 col-centered">
+				<h:commandButton class="btn btn-warning big-button"
+					value="Emergency" action="registerUser.jsf" />
 			</div>
-		</h:form>
-	</div>
-	<footer> <h:outputText value="Copyright-Sapaudia and co" /> <h:graphicImage
-		value="img/logo.png" /> </footer>
+			<div class="col-xs-6 col-md-3 col-centered">
+				<h:commandButton class="btn btn-info big-button" value="Recipes"
+					action="recipesSearch.jsf" />
+			</div>
+			<div class="col-xs-6 col-md-3 col-centered">
+				<h:commandButton class="btn btn-success big-button" value="Shop"
+					action="none" />
+			</div>
+		</div>
+	</h:form>
+
+	<ui:insert name="footer">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
 </body>
 </html>
