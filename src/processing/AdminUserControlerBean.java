@@ -23,7 +23,15 @@ import model.UserSubmissionModelBean;
 @ApplicationScoped
 public class AdminUserControlerBean extends UserControlerBean {
 	
-	private String hidePanel = "none";
+	public UserSubmissionModelBean selectedUser = null;
+	
+	public void setSelectedUser(UserSubmissionModelBean selectedUser) {
+		this.selectedUser = selectedUser;
+	}
+
+	public UserSubmissionModelBean getSelectedUser() {
+		return selectedUser;
+	}
 	
 	public String goToAdminUsersManagement(){
 		return "adminUsersManagement.xhtml";
@@ -79,7 +87,6 @@ public class AdminUserControlerBean extends UserControlerBean {
 	}
 	
 	public void deleteUser(UserModelBean user){
-		System.out.println("DELETE");
 		if(user != null){
 			this.userDao.delete(user);
 		}
@@ -97,5 +104,17 @@ public class AdminUserControlerBean extends UserControlerBean {
 		sub.setAdmin(true);
 		controler.updateUser(sub);
 	}
-
+	
+	public void showPanel(UserModelBean user){
+		if(user != null){
+			setSelectedUser(new UserSubmissionModelBean(user));
+		}
+		else{
+			setSelectedUser(new UserSubmissionModelBean());
+		}
+	}
+	
+	public void hidePanel(){
+		setSelectedUser(null);
+	}
 }

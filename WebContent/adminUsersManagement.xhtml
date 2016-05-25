@@ -33,42 +33,42 @@
 						<p:commandButton value="Delete"
 							action="#{adminUserControlerBean.deleteUser(user)}"
 							update="userTable" />
-						<h:commandLink value="Edit"
-							action="#{adminUserControlerBean.updateUser(user)}"
-							update="userTable" />
+						<p:commandButton value="Edit"
+							action="#{adminUserControlerBean.showPanel(user)}"
+							update="editForm" />
 					</p:column>
 				</p:dataTable>
-				<h:commandButton value="ADD"
-					action="#{adminUserControlerBean.checkAndAddUser(user)}" />
+				<h:commandButton value="ADD" update="editForm"
+					action="#{adminUserControlerBean.showPanel(null)}" />
 			</h:form>
-			<h:form> 
-					<h:panelGrid columns="2" cellpadding="15" layout="block">
+			<h:form id="editForm"> 
+					<h:panelGrid columns="2" cellpadding="15" layout="block" rendered="#{adminUserControlerBean.selectedUser != null}">
 						<p:outputLabel value="Firstname: " />
 						<p:inputText id="firstName"
-							value="#{userSubmissionModelBean.surname}" required="true"
+							value="#{adminUserControlerBean.selectedUser.surname}" required="true"
 							style="#{ component.valid ? ' ' : 'border-color:red;'}">
 							<f:validator validatorId="validators.username" />
 						</p:inputText>
 						<p:outputLabel value="Lastname: " />
 						<p:inputText id="lastName"
-							value="#{userSubmissionModelBean.lastname}" required="true"
+							value="#{adminUserControlerBean.selectedUser.lastname}" required="true"
 							style="#{ component.valid ? ' ' : 'border-color:red;'}">
 							<f:validator validatorId="validators.username" />
 						</p:inputText>
 						<p:outputLabel value="Age: " />
-						<p:inputText id="age" value="#{userSubmissionModelBean.age}"
+						<p:inputText id="age" value="#{adminUserControlerBean.selectedUser.age}"
 							required="true"
 							style="#{ component.valid ? ' ' : 'border-color:red;'}">
 							<f:validator validatorId="validators.age" />
 						</p:inputText>
 						<p:outputLabel value="Email: " />
 						<p:inputText label="Email: " id="email"
-							value="#{userSubmissionModelBean.email}" required="true"
+							value="#{adminUserControlerBean.selectedUser.email}" required="true"
 							style="#{ component.valid ? ' ' : 'border-color:red;'}">
 							<f:validator validatorId="validators.email" />
 						</p:inputText>
 						<p:outputLabel value="Login: " />
-						<p:inputText id="login" value="#{userSubmissionModelBean.login}"
+						<p:inputText id="login" value="#{adminUserControlerBean.selectedUser.login}"
 							required="true"
 							style="#{ component.valid ? ' ' : 'border-color:red;'}">
 							<f:validator validatorId="validators.login" />
@@ -76,17 +76,17 @@
 
 						<p:outputLabel value="Password: " />
 						<p:password id="password" match="password2"
-							value="#{userSubmissionModelBean.pwd}" required="true"
+							value="#{adminUserControlerBean.selectedUser.pwd}" required="true"
 							style="#{ component.valid ? ' ' : 'border-color:red;'}">
 
 						</p:password>
 						<p:outputLabel value="Confirm: " />
-						<p:password id="password2" value="#{userSubmissionModelBean.pwd2}"
+						<p:password id="password2" value="#{adminUserControlerBean.selectedUser.pwd2}"
 							required="true"
 							style="#{ component.valid ? '' : 'border-color:red;'}">
 
 						</p:password>
-						<p:button value="Cancel" outcome="menu.jsf" />
+						<p:commandButton update=":editForm" value="Cancel" action="#{adminUserControlerBean.hidePanel()}" immediate="true"/>
 						<h:commandButton value="Save"
 							action="#{userSubmissionModelBean.checkAndAddUser(userSubmissionModelBean)}" />
 					</h:panelGrid>
