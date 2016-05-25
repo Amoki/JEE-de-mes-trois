@@ -15,16 +15,16 @@
 		<ui:define name="title">Tell what do you want</ui:define>
 		<ui:define name="body">
 			<h:form>
-				<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+				<h:panelGrid columns="6" >
 					
 					<!-- Temps de préparation -->
-					<i class="icon-clock"></i>
+					<i class="fa fa-clock-o"></i>
 					<h:outputLabel for="preparationDuration" value="Preparation duration " />
 					<p:spinner id="preparationDuration"
 						value="#{searchRecipeBean.duration}" min="0" stepFactor="5" />
 
 					<!-- Complexité de la recette -->
-					<i class="icon-clock"></i>
+					<i class="fa fa-edit"></i>
 					<h:outputLabel for="cookExpertise" value="Cook expertise" />
 					<p:rating id="cookExpertise" value="#{searchRecipeBean.expertise}"
 						cancel="false">
@@ -37,7 +37,7 @@
 					</p:rating>
 
 					<!-- Nombre de personnes -->
-					<i class="icon-clock"></i>
+					<i class="fa fa-users"></i>
 					<h:outputLabel for="nbPeople" value="For how many people" />
 					<h:panelGrid columns="1" style="margin-bottom: 10px">
 						<p:inputText id="nbPeople" value="#{searchRecipeBean.nbpeople}" />
@@ -45,22 +45,21 @@
 					</h:panelGrid>
 
 					<!-- Type de nourriture -->
-					<i class="icon-clock"></i>
+					<i class="fa fa-circle"></i>
 					<h:outputLabel for="cookType" value="Cook type" />
 					<p:selectOneListbox id="cookType" value="#{searchRecipeBean.typeModel}"
 						converter="typeConverter" var="t" filter="true"
-						filterMatchMode="contains">
+						filterMatchMode="contains" scrollHeight="40">
 						<f:selectItems value="#{searchRecipeBean.types}" var="type"
 							itemLabel="#{type.displayName}" itemValue="#{type}" />
 						<p:column>
 							<h:outputText value="#{t.displayName}" />
 						</p:column>
 					</p:selectOneListbox>
-
-					<!-- Bouton qui lance la recherche -->
-					<h:commandButton value="Teach me !"
-						action="#{recipeControlerBean.searchRecipe(searchRecipeBean)}" />
 				</h:panelGrid>
+				<!-- Bouton qui lance la recherche -->
+				<h:commandButton value="Teach me !"
+					action="#{recipeControlerBean.searchRecipe(searchRecipeBean)}" />
 			</h:form>
 		</ui:define>
 	</ui:composition>
