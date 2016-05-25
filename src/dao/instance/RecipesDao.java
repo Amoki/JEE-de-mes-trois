@@ -89,7 +89,7 @@ public class RecipesDao {
 			String querySQL = "SELECT * FROM recipes";
 			boolean begin = true;
 
-			if(recipe.getExpertise() != SearchRecipeBean.ALL_VALUES_INT){
+			if(recipe.getExpertise() != SearchRecipeBean.MIN_EXPERTISE_VALUE){
 				if(begin){
 					begin = false;
 					querySQL += " WHERE ";

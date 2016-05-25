@@ -2,6 +2,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <head>
 <title>Research module</title>
@@ -13,37 +15,52 @@
 		<ui:define name="title">Tell what do you want</ui:define>
 		<ui:define name="body">
 			<h:form>
-				<table border="0">
-					<tr>
-						<!-- Temps de préparation (pré-formatage voir input mask) : input + icone +label -->
-						<td>Preparation duration</td>
-						<td><h:inputText id="preparationDuration"
-								value="#{searchRecipeBean.duration}"></h:inputText></td>
-					</tr>
-					<tr>
-						<!-- Complexité de la recette : input forme étoile (voir rating ) star + icone + label -->
-						<td>Cook expertise</td>
-						<td><h:inputText id="cookExpertise"
-								value="#{searchRecipeBean.expertise}"></h:inputText></td>
-					</tr>
-					<tr>
-						<!-- Nombre de personnes : slider + icone + label -->
-						<td>For how many people</td>
-						<td><h:inputText id="nbPeople"
-								value="#{searchRecipeBean.nbpeople}"></h:inputText></td>
-					</tr>
-					<tr>
-						<!-- Type de nourriture : combobox +icone +label -->
-						<td>Cook type</td>
-						<td><h:inputText id="cookType"
-								value="#{searchRecipeBean.type}"></h:inputText></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><h:commandButton value="Teach me !"
-								action="#{recipeControlerBean.searchRecipe(searchRecipeBean)}" /></td>
-					</tr>
-				</table>
+				<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+					
+					<!-- Temps de préparation -->
+					<i class="icon-clock"></i>
+					<h:outputLabel for="preparationDuration" value="Preparation duration " />
+					<p:spinner id="preparationDuration"
+						value="#{searchRecipeBean.duration}" min="0" stepFactor="5" />
+
+					<!-- Complexité de la recette -->
+					<i class="icon-clock"></i>
+					<h:outputLabel for="cookExpertise" value="Cook expertise" />
+					<p:rating id="cookExpertise" value="#{searchRecipeBean.expertise}"
+						cancel="false">
+						<!-- permet d'ajouter de l'AJAX
+						<p:ajax event="rate" listener="#{ratingView.onrate}"
+							update="messages" />
+						<p:ajax event="cancel" listener="#{ratingView.oncancel}"
+							update="messages" />
+					 -->
+					</p:rating>
+
+					<!-- Nombre de personnes -->
+					<i class="icon-clock"></i>
+					<h:outputLabel for="nbPeople" value="For how many people" />
+					<h:panelGrid columns="1" style="margin-bottom: 10px">
+						<p:inputText id="nbPeople" value="#{searchRecipeBean.nbpeople}" />
+						<p:slider for="nbPeople" />
+					</h:panelGrid>
+
+					<!-- Type de nourriture -->
+					<i class="icon-clock"></i>
+					<h:outputLabel for="cookType" value="Cook type" />
+					<p:selectOneListbox id="cookType" value="#{searchRecipeBean.typeModel}"
+						converter="typeConverter" var="t" filter="true"
+						filterMatchMode="contains">
+						<f:selectItems value="#{searchRecipeBean.types}" var="type"
+							itemLabel="#{type.displayName}" itemValue="#{type}" />
+						<p:column>
+							<h:outputText value="#{t.displayName}" />
+						</p:column>
+					</p:selectOneListbox>
+
+					<!-- Bouton qui lance la recherche -->
+					<h:commandButton value="Teach me !"
+						action="#{recipeControlerBean.searchRecipe(searchRecipeBean)}" />
+				</h:panelGrid>
 			</h:form>
 		</ui:define>
 	</ui:composition>
