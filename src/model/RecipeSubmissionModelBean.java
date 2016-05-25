@@ -7,4 +7,8 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped 
 public class RecipeSubmissionModelBean extends RecipeModel{
 	public RecipeSubmissionModelBean() { }
+	
+	public RecipeSubmissionModelBean(RecipeModel recipe){
+		super(recipe.getTitle() ,recipe.getDescription(), recipe.getExpertise(),recipe.getDuration(),recipe.getNbpeople(),recipe.getType());
+	}
 }

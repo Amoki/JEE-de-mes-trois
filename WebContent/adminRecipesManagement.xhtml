@@ -5,9 +5,6 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<head>
-<title>Manage Recipes</title>
-</head>
 <body>
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:h="http://java.sun.com/jsf/html"
@@ -18,11 +15,70 @@
 		</ui:define>
 		<ui:define name="body">
 			<h:form>
+				<p:dataTable id="recipeTable"
+					value="#{adminRecipeControlerBean.getAllRecipes()}" var="recipe">
+					<p:column headerText="Title">
+						<h:outputText value="#{recipe.title}" />
+					</p:column>
+					<p:column headerText=" ">
+						<p:commandButton value="Delete"
+							action="#{adminRecipeControlerBean.deleteRecipe(recipe)}"
+							update="recipeTable" />
+						<p:commandButton value="Edit"
+							action="#{adminRecipeControlerBean.showPanel(recipe)}"
+							update="editForm" />
+					</p:column>
+				</p:dataTable>
+				<h:commandButton value="ADD" update="editForm"
+					action="#{adminRecipeControlerBean.showPanel(null)}" />
+			</h:form>
+			<h:form id="editForm"> 
+					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" rendered="#{adminRecipeControlerBean.selectedRecipe != null}">
+					
+					<!-- Temps de préparation -->
+					<i class="icon-clock"></i>
+					<h:outputLabel for="preparationDuration" value="Preparation duration " />
+					<p:spinner id="preparationDuration"
+						value="#{adminRecipeControlerBean.selectedRecipe.duration}" min="0" stepFactor="5" />
 
+					<!-- Complexité de la recette -->
+					<i class="icon-clock"></i>
+					<h:outputLabel for="cookExpertise" value="Cook expertise" />
+					<p:rating id="cookExpertise" value="#{adminRecipeControlerBean.selectedRecipe.expertise}"
+						cancel="false">
+						<!-- permet d'ajouter de l'AJAX
+						<p:ajax event="rate" listener="#{ratingView.onrate}"
+							update="messages" />
+						<p:ajax event="cancel" listener="#{ratingView.oncancel}"
+							update="messages" />
+					 -->
+					</p:rating>
 
+					<!-- Nombre de personnes -->
+					<i class="icon-clock"></i>
+					<h:outputLabel for="nbPeople" value="For how many people" />
+					<h:panelGrid columns="1" style="margin-bottom: 10px">
+						<p:inputText id="nbPeople" value="#{adminRecipeControlerBean.selectedRecipe.nbpeople}" />
+						<p:slider for="nbPeople" />
+					</h:panelGrid>
+
+					<!-- Type de nourriture -->
+					<i class="icon-clock"></i>
+					<h:outputLabel for="cookType" value="Cook type" />
+					<p:selectOneListbox id="cookType" value="#{searchRecipeBean.typeModel}"
+						converter="typeConverter" var="t" filter="true"
+						filterMatchMode="contains">
+						<f:selectItems value="#{adminRecipeControlerBean.selectedRecipe.type}" var="type"
+							itemLabel="#{type.displayName}" itemValue="#{type}" />
+						<p:column>
+							<h:outputText value="#{t.displayName}" />
+						</p:column>
+					</p:selectOneListbox>
+						<p:commandButton update=":editForm" value="Cancel" action="#{adminRecipeControlerBean.hidePanel()}" immediate="true"/>
+						<h:commandButton value="Save" action="#{adminRecipeControlerBean.saveRecipe(adminRecipeControlerBean.selectedRecipe)}" />
+				</h:panelGrid>
 			</h:form>
 		</ui:define>
 	</ui:composition>
 </body>
 </html>
-
