@@ -10,8 +10,8 @@
 		<h:panelGrid columns="2" class="footer">
 			<h:form>
 				<h:outputText class="copyright" value="Copyright-Sapaudia and co" />
-				<h:commandLink class="logo" action="menu.jsf">
-					<h:graphicImage  value="img/logo.png" />
+				<h:commandLink class="logo" action="#{menuControlerBean.goMenu}">
+					<h:graphicImage library="images" name="logo.png" />
 				</h:commandLink>
 			</h:form>
 		</h:panelGrid>

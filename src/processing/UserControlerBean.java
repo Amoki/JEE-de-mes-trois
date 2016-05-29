@@ -24,7 +24,6 @@ public class UserControlerBean {
 	protected static String LOGGED_LBL = "loggedUser";
 	protected static String ERROR_LBL = "connectionError";
 
-	
 	protected UserDao userDao;
 	private int nbUsers = 0;
 	
@@ -77,5 +76,9 @@ public class UserControlerBean {
 		}else{
 			
 		}
+	}
+	
+	public String goRegister(){
+		return "/views/user/registerUser.xhtml";
 	}
 }

@@ -5,31 +5,28 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<head>
-<title>Cook me!</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="css/common.css" />
-</head>
-<body>
+<h:head>
+	<title>Cook me!</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"/> 
+	<h:outputStylesheet library="css" name="common.css"/> 
+</h:head>
+<h:body>
 	<h:form>
 		<div class="row-centered vert-centered">
 			<div class="col-xs-6 col-md-3 col-centered">
-				<h:commandButton class="btn btn-warning big-button"
-					value="Emergency" action="registerUser.jsf" />
+				<h:commandButton class="btn btn-warning big-button" value="Emergency" action="none" />
 			</div>
 			<div class="col-xs-6 col-md-3 col-centered">
-				<h:commandButton class="btn btn-info big-button" value="Recipes"
-					action="recipesSearch.jsf" />
+				<h:commandButton class="btn btn-info big-button" value="Recipes" action="#{menuControlerBean.goRecipes}" />
 			</div>
 			<div class="col-xs-6 col-md-3 col-centered">
-				<h:commandButton class="btn btn-success big-button" value="Shop"
-					action="none" />
+				<h:commandButton class="btn btn-success big-button" value="Shop" action="none" />
 			</div>
 		</div>
 	</h:form>
 
 	<ui:insert name="footer">
-		<ui:include src="footer.xhtml" />
+		<ui:include src="template/footer.xhtml" />
 	</ui:insert>
-</body>
+</h:body>
 </html>

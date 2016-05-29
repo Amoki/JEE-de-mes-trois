@@ -8,7 +8,7 @@
 <body>
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:ui="http://java.sun.com/jsf/facelets" template="/template.xhtml">
+		xmlns:ui="http://java.sun.com/jsf/facelets" template="/views/template/template.xhtml">
 		<ui:define name="sectionTitle">
 			Register
 		</ui:define>
@@ -58,7 +58,7 @@
 						style="#{ component.valid ? '' : 'border-color:red;'}">
 
 					</p:password>
-					<p:button value="Cancel" outcome="menu.jsf" />
+					<p:commandButton immediate="true" ajax="false" value="Cancel" action="#{menuControlerBean.goMenu}" />
 					<h:commandButton value="Register" action="#{userControlerBean.checkAndAddUser(userSubmissionModelBean)}"/>
 				</h:panelGrid>
 			</h:form>

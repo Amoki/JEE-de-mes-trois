@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		template="/views/admin/templateAdmin.xhtml">
+		<ui:define name="title">
+			<h:outputText value="Manage Users" />
+		</ui:define>
+		<ui:define name="body">
+			<h:form>
+				<p:dataTable id="userTable"
+					value="#{adminUserControlerBean.getAllUsers()}" var="user">
+					<p:column headerText="Name">
+						<h:outputText value="#{user.surname}" />
+					</p:column>
+
+					<p:column headerText="Login">
+						<h:outputText value="#{user.login}" />
+					</p:column>
+
+					<p:column headerText="Admin">
+						<h:outputText value="#{user.isAdmin}" />
+					</p:column>
+
+					<p:column headerText=" ">
+						<p:commandButton value="Delete"
+							action="#{adminUserControlerBean.deleteUser(user)}"
+							update="userTable" />
+						<p:commandButton value="Edit"
+							action="#{adminUserControlerBean.showPanel(user)}"
+							update="editForm" />
+					</p:column>
+				</p:dataTable>
+				<h:commandButton value="ADD" update="editForm"
+					action="#{adminUserControlerBean.showPanel(null)}" />
+			</h:form>
+			<h:form id="editForm">
+				<h:panelGrid columns="2" cellpadding="15" layout="block"
+					rendered="#{adminUserControlerBean.selectedUser != null}">
+					<p:outputLabel value="Firstname: " />
+					<p:inputText id="firstName"
+						value="#{adminUserControlerBean.selectedUser.surname}"
+						required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+						<f:validator validatorId="validators.username" />
+					</p:inputText>
+					<p:outputLabel value="Lastname: " />
+					<p:inputText id="lastName"
+						value="#{adminUserControlerBean.selectedUser.lastname}"
+						required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+						<f:validator validatorId="validators.username" />
+					</p:inputText>
+					<p:outputLabel value="Age: " />
+					<p:inputText id="age"
+						value="#{adminUserControlerBean.selectedUser.age}" required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+						<f:validator validatorId="validators.age" />
+					</p:inputText>
+					<p:outputLabel value="Email: " />
+					<p:inputText label="Email: " id="email"
+						value="#{adminUserControlerBean.selectedUser.email}"
+						required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+						<f:validator validatorId="validators.email" />
+					</p:inputText>
+					<p:outputLabel value="Login: " />
+					<p:inputText id="login"
+						value="#{adminUserControlerBean.selectedUser.login}"
+						required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+						<f:validator validatorId="validators.login" />
+					</p:inputText>
+
+					<p:outputLabel value="Password: " />
+					<p:password id="password" match="password2"
+						value="#{adminUserControlerBean.selectedUser.pwd}" required="true"
+						style="#{ component.valid ? ' ' : 'border-color:red;'}">
+
+					</p:password>
+					<p:outputLabel value="Confirm: " />
+					<p:password id="password2"
+						value="#{adminUserControlerBean.selectedUser.pwd2}"
+						required="true"
+						style="#{ component.valid ? '' : 'border-color:red;'}">
+
+					</p:password>
+					<h:outputText value="Admin: " />
+					<p:selectBooleanCheckbox
+						value="#{adminUserControlerBean.selectedUser.isAdmin}" />
+					<p:commandButton update=":editForm" value="Cancel"
+						action="#{adminUserControlerBean.hidePanel()}" immediate="true" />
+					<h:commandButton value="Save"
+						action="#{adminUserControlerBean.saveUser(adminUserControlerBean.selectedUser)}" />
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

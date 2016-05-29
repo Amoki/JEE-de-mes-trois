@@ -7,14 +7,11 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 
 import validators.EmailValidator;
 import validators.LoginValidator;
 import validators.UserNameValidator;
 import model.LoginBean;
-import model.RecipeListModelBean;
-import model.RecipeModel;
 import model.UserListModelBean;
 import model.UserModelBean;
 import model.UserSubmissionModelBean;
