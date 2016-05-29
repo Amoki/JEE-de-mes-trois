@@ -41,6 +41,7 @@
 				<h:commandButton value="ADD" update="editForm"
 					action="#{adminUserControlerBean.showPanel(null)}" />
 			</h:form>
+
 			<h:form id="editForm">
 				<h:panelGrid columns="2" cellpadding="15" layout="block"
 					rendered="#{adminUserControlerBean.selectedUser != null}">
@@ -80,15 +81,14 @@
 					</p:inputText>
 
 					<p:outputLabel value="Password: " />
-					<p:password id="password" match="password2"
-						value="#{adminUserControlerBean.selectedUser.pwd}" required="true"
+					<p:password id="password"
+						value="#{adminUserControlerBean.selectedUser.pwd}"
 						style="#{ component.valid ? ' ' : 'border-color:red;'}">
-
 					</p:password>
+					
 					<p:outputLabel value="Confirm: " />
 					<p:password id="password2"
 						value="#{adminUserControlerBean.selectedUser.pwd2}"
-						required="true"
 						style="#{ component.valid ? '' : 'border-color:red;'}">
 
 					</p:password>
