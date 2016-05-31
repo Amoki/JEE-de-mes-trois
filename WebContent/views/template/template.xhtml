@@ -2,26 +2,24 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<h:outputStylesheet library="css" name="bootstrap.min.css"/> 
-	<h:outputStylesheet library="css" name="common.css"/> 
+	<h:outputStylesheet library="css" name="common.css" />
 </h:head>
 <h:body>
-	<div class="ui-grid ui-grid-responsive">
-		<div class="ui-grid-row">
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north">
 			<ui:insert name="header">
 				<ui:include src="header.xhtml" />
 			</ui:insert>
-		</div>
-		<div class="ui-grid-row corebody row-centered">
+		</p:layoutUnit>
+		<p:layoutUnit position="center">
 			<ui:insert name="body">Default Section Content</ui:insert>
-		</div>
-		<div class="ui-grid-row">
-			<ui:insert name="footer">
-				<ui:include src="footer.xhtml" />
-			</ui:insert>
-		</div>
-	</div>
+		</p:layoutUnit>
+		<ui:insert name="footer">
+			<ui:include src="footer.xhtml" />
+		</ui:insert>
+	</p:layout>
 </h:body>
 </html>

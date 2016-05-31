@@ -11,66 +11,78 @@
 <body>
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:ui="http://java.sun.com/jsf/facelets" template="/views/template/template.xhtml">
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		template="/views/template/template.xhtml">
 		<ui:define name="sectionTitle">Tell what do you want</ui:define>
 		<ui:define name="body">
-			<h:form class="col-centered">
-				<div class="row">
-					<div class="col-xs-6">
-						<p:panelGrid style="text-align:center;">
-							<!-- Temps de préparation -->
-							<i class="fa fa-clock-o"></i>
-							<h:outputLabel for="preparationDuration"
-								value="Preparation duration " />
-							<p:spinner id="preparationDuration"
-								value="#{searchRecipeBean.duration}" min="0" stepFactor="5" />
-						</p:panelGrid>
-					</div>
-					<div class="col-xs-6">
-						<p:panelGrid style="text-align:center;">
-							<i class="fa fa-edit"></i>
-							<h:outputLabel for="cookExpertise" value="Cook expertise" />
-							<p:rating id="cookExpertise"
-								value="#{searchRecipeBean.expertise}" cancel="false">
-							</p:rating>
-						</p:panelGrid>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<p:panelGrid style="text-align:center;">
-							<!-- Nombre de personnes -->
-							<i class="fa fa-users"></i>
-							<h:outputLabel for="nbPeople" value="For how many people" />
-							<p:panelGrid columns="1" style="margin-bottom: 10px">
-								<p:inputText id="nbPeople" value="#{searchRecipeBean.nbpeople}" />
-								<p:slider for="nbPeople" />
-							</p:panelGrid>
-						</p:panelGrid>
-					</div>
-					<div class="col-xs-6">
-						<p:panelGrid style="text-align:center;">
-							<!-- Type de nourriture -->
-							<i class="fa fa-circle"></i>
-							<h:outputLabel for="cookType" value="Cook type" />
-							<h:panelGrid>
-								<p:selectOneListbox id="cookType"
-									value="#{searchRecipeBean.typeModel}" converter="typeConverter"
-									var="t" filter="true" filterMatchMode="contains"
-									scrollHeight="40">
-									<f:selectItems value="#{searchRecipeBean.types}" var="type"
-										itemLabel="#{type.displayName}" itemValue="#{type}" />
-									<p:column>
-										<h:outputText value="#{t.displayName}" />
-									</p:column>
-								</p:selectOneListbox>
+			<h:form>
+				<p:panelGrid style="margin: 0 auto;">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="6">Research</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column colspan="3">
+							<h:panelGrid columns="3">
+								<!-- Temps de préparation -->
+								<i class="fa fa-clock-o"></i>
+								<h:outputLabel for="preparationDuration"
+									value="Preparation duration " />
+								<p:spinner id="preparationDuration"
+									value="#{searchRecipeBean.duration}" min="0" stepFactor="5" />
 							</h:panelGrid>
-						</p:panelGrid>
-					</div>
-				</div>
-				<!-- Bouton qui lance la recherche -->
-				<h:commandButton value="Teach me !"
-					action="#{recipeControlerBean.searchRecipe(searchRecipeBean)}" />
+						</p:column>
+						<p:column colspan="3">
+							<h:panelGrid columns="3">
+								<i class="fa fa-edit"></i>
+								<h:outputLabel for="cookExpertise" value="Cook expertise" />
+								<p:rating id="cookExpertise"
+									value="#{searchRecipeBean.expertise}" cancel="false">
+								</p:rating>
+							</h:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="3">
+							<h:panelGrid columns="3">
+								<!-- Nombre de personnes -->
+								<i class="fa fa-users"></i>
+								<h:outputLabel for="nbPeople" value="For how many people" />
+								<p:panelGrid columns="1" style="margin-bottom: 10px">
+									<p:inputText id="nbPeople" value="#{searchRecipeBean.nbpeople}" />
+									<p:slider for="nbPeople" />
+								</p:panelGrid>
+							</h:panelGrid>
+						</p:column>
+						<p:column colspan="3">
+							<h:panelGrid columns="3">
+								<!-- Type de nourriture -->
+								<i class="fa fa-circle"></i>
+								<h:outputLabel for="cookType" value="Cook type" />
+								<h:panelGrid>
+									<p:selectOneListbox id="cookType"
+										value="#{searchRecipeBean.typeModel}"
+										converter="typeConverter" var="t" filter="true"
+										filterMatchMode="contains" scrollHeight="40">
+										<f:selectItems value="#{searchRecipeBean.types}" var="type"
+											itemLabel="#{type.displayName}" itemValue="#{type}" />
+										<p:column>
+											<h:outputText value="#{t.displayName}" />
+										</p:column>
+									</p:selectOneListbox>
+								</h:panelGrid>
+							</h:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="6" style="text-align: center;">
+							<!-- Bouton qui lance la recherche -->
+							<p:commandButton value="Teach me !" ajax="false"
+								action="#{recipeControlerBean.searchRecipe(searchRecipeBean)}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
 			</h:form>
 		</ui:define>
 	</ui:composition>
