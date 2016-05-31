@@ -10,7 +10,6 @@ import javax.faces.bean.RequestScoped;
 public class UserSubmissionModelBean extends UserModelBean implements Serializable{
 	@Override
 	public void setPwd(String pwd) {
-		System.out.println(this.getPwd());
 		if(this.getPwd()!=null && !this.getPwd().equals(pwd)){
 			passwordChanged = true;
 		}
