@@ -6,9 +6,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 
-import validators.AgeValidator;
 import validators.EmailValidator;
 import validators.LoginValidator;
 import validators.UserNameValidator;

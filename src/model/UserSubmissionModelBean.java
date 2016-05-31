@@ -1,18 +1,21 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped 
-public class UserSubmissionModelBean extends UserModelBean{
+public class UserSubmissionModelBean extends UserModelBean implements Serializable{
 	@Override
 	public void setPwd(String pwd) {
-		if(!this.getPwd().equals(pwd)){
+		System.out.println(this.getPwd());
+		if(this.getPwd()!=null && !this.getPwd().equals(pwd)){
 			passwordChanged = true;
-
 		}
-		super.setPwd(pwd);	}
+		super.setPwd(pwd);
+	}
 
 	private String pwd2;
 	private boolean passwordChanged;

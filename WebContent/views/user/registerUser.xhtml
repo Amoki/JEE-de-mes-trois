@@ -59,7 +59,7 @@
 
 					</p:password>
 					<p:commandButton immediate="true" ajax="false" value="Cancel" action="#{menuControlerBean.goMenu}" />
-					<h:commandButton value="Register" action="#{userControlerBean.checkAndAddUser(userSubmissionModelBean)}"/>
+					<p:commandButton value="Register" ajax="false" action="#{userControlerBean.checkAndAddUser(userSubmissionModelBean)}"/>
 				</h:panelGrid>
 			</h:form>
 		</ui:define>
