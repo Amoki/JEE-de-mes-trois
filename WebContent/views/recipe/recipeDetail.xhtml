@@ -11,7 +11,8 @@
 <body>
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:ui="http://java.sun.com/jsf/facelets" template="/views/template/template.xhtml">
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		template="/views/template/template.xhtml">
 		<ui:define name="title">Recipes results</ui:define>
 		<ui:define name="body">
 			<div class="ui-grid ui-grid-responsive col-centered div-fillparent">
@@ -50,7 +51,9 @@
 								</div>
 								<!-- Bouton de retour -->
 								<div class="ui-grid-col-2">
-									<h:commandButton value="Back" onclick="history.go(-1)" />
+								<h:form>
+									<p:commandButton value="Back" ajax="false" action="#{menuControlerBean.goRecipes}"></p:commandButton>
+										</h:form>
 								</div>
 							</div>
 							<div class="ui-grid-row">
@@ -106,7 +109,8 @@
 				<h:form rendered="#{loggedUser != null}">
 					<div class="ui-grid-row col-centered div-fillparent">
 						<!-- zone de saisie de texte -->
-						<p:inputTextarea rows="6" cols="33" value="#{commentSubmissionBean.detail}" />
+						<p:inputTextarea rows="6" cols="33"
+							value="#{commentSubmissionBean.detail}" />
 						<!-- zone de « rating » -->
 						<p:rating id="commentRate" value="#{commentSubmissionBean.rate}" />
 

@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean
+@ManagedBean(name="menuControlerBean")
 @ApplicationScoped
 public class MenuControlerBean {
 	
@@ -35,11 +35,16 @@ public class MenuControlerBean {
 	}
 	
 	public String goBack(){
-		if(history.size() > 0){
+		if(history.peek() != null){
 			history.pop();
 			return history.pop();
 		}
 		else
 			return "/views/menu.xhtml";
+	}
+
+	public String goTo(String string) {
+		history.add(string);
+		return string;
 	}
 }

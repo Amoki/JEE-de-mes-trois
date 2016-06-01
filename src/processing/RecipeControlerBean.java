@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.NoneScoped;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
@@ -22,6 +23,13 @@ import dao.instance.RecipesDao;
 @ApplicationScoped
 public class RecipeControlerBean {
 	protected RecipesDao recipeDao;
+	
+	@ManagedProperty(value="#{menuControlerBean}")
+	private MenuControlerBean menuControlerBean;
+	
+	public void setMenuControlerBean(MenuControlerBean menuControlerBean) {
+		this.menuControlerBean = menuControlerBean;
+	}
 
 	public RecipeControlerBean() {
 		this.recipeDao=DaoFabric.getInstance().createRecipesDao();
@@ -55,8 +63,8 @@ public class RecipeControlerBean {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		sessionMap.put("recipeList", recipeList);
-
-		return "recipeResultList.xhtml";
+		
+		return menuControlerBean.goTo("/views/recipe/recipeResultList.xhtml");
 	}
 	
 	public String displayRecipeDetail(RecipeModelBean recipe){
@@ -64,6 +72,6 @@ public class RecipeControlerBean {
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		sessionMap.put("selectedRecipe", recipe);
 		
-		return "recipeDetail.jsf";
+		return menuControlerBean.goTo("/views/recipe/recipeDetail.xhtml");
 	}
 }
