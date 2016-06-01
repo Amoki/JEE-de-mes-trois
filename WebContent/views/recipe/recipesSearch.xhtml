@@ -51,7 +51,7 @@
 								<h:outputLabel for="nbPeople" value="For how many people" />
 								<p:panelGrid columns="1" style="margin-bottom: 10px">
 									<p:inputText id="nbPeople" value="#{searchRecipeBean.nbpeople}" />
-									<p:slider for="nbPeople" maxValue="20"/>
+									<p:slider for="nbPeople" maxValue="20" />
 								</p:panelGrid>
 							</h:panelGrid>
 						</p:column>
@@ -61,16 +61,14 @@
 								<i class="fa fa-circle"></i>
 								<h:outputLabel for="cookType" value="Cook type" />
 								<h:panelGrid>
-									<p:selectOneListbox id="cookType"
-										value="#{searchRecipeBean.typeModel}"
-										converter="typeConverter" var="t" filter="true"
-										filterMatchMode="contains" scrollHeight="40">
+									<p:selectOneMenu id="console" converter="typeConverter" var="t"
+										value="#{searchRecipeBean.typeModel}" style="width:125px">
 										<f:selectItems value="#{searchRecipeBean.types}" var="type"
 											itemLabel="#{type.displayName}" itemValue="#{type}" />
 										<p:column>
 											<h:outputText value="#{t.displayName}" />
 										</p:column>
-									</p:selectOneListbox>
+									</p:selectOneMenu>
 								</h:panelGrid>
 							</h:panelGrid>
 						</p:column>

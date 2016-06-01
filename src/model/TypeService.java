@@ -16,19 +16,20 @@ public class TypeService {
 	@PostConstruct
 	public void init() {
 		Types = new ArrayList<Type>();
-		Types.add(new Type(0, "Salad", "salad"));
-		Types.add(new Type(1, "Pastas", "pastas"));
-		Types.add(new Type(2, "Meat", "meat"));
-		Types.add(new Type(3, "Fish", "fish"));
-		Types.add(new Type(4, "Reblochon", "reblochon"));
-		Types.add(new Type(5, "Cakes", "cakes"));
-		Types.add(new Type(6, "Chicken", "chicken"));
-		Types.add(new Type(7, "Hot-dog", "hot_dog"));
-		Types.add(new Type(8, "Gratins", "gratins"));
-		Types.add(new Type(8, "Dessert", "dessert"));
+		Types.add(new Type(0, "[ALL]", "[ALL]"));
+		Types.add(new Type(1, "Salad", "salad"));
+		Types.add(new Type(2, "Pastas", "pastas"));
+		Types.add(new Type(3, "Meat", "meat"));
+		Types.add(new Type(4, "Fish", "fish"));
+		Types.add(new Type(5, "Reblochon", "reblochon"));
+		Types.add(new Type(6, "Cakes", "cakes"));
+		Types.add(new Type(7, "Chicken", "chicken"));
+		Types.add(new Type(8, "Hot-dog", "hot_dog"));
+		Types.add(new Type(9, "Gratins", "gratins"));
+		Types.add(new Type(10, "Dessert", "dessert"));
 	}
 
 	public List<Type> getTypes() {
 		return Types;
-	} 
+	}
 }
