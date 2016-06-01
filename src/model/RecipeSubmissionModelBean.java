@@ -9,6 +9,6 @@ public class RecipeSubmissionModelBean extends RecipeModelBean{
 	public RecipeSubmissionModelBean() { }
 	
 	public RecipeSubmissionModelBean(RecipeModelBean recipe){
-		super(recipe.getTitle() ,recipe.getDescription(), recipe.getExpertise(),recipe.getDuration(),recipe.getNbpeople(),recipe.getType());
+		super(recipe.getIdRecipe(), recipe.getTitle() ,recipe.getDescription(), recipe.getExpertise(),recipe.getDuration(),recipe.getNbpeople(),recipe.getType());
 	}
 }
