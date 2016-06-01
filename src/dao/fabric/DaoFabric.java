@@ -6,11 +6,11 @@ import dao.instance.UserDao;
 
 public final class DaoFabric {
 	private static volatile DaoFabric instance = null;
-	private static final String DB_HOST = "db-tp.cpe.fr";
-	private static final String DB_NAME = "binome19";
+	private static final String DB_HOST = "crumiano.com";
+	private static final String DB_NAME = "cookme";
 	private static final String	DB_PORT = "3306";
-	private static final String DB_USER = "binome19";
-	private static final String DB_PWD = "binome19";
+	private static final String DB_USER = "cookme";
+	private static final String DB_PWD = "IRC1417";
 
 	private DaoFabric() {
 		super();

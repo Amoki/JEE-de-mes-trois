@@ -65,7 +65,7 @@ public class AdminRecipeControlerBean extends RecipeControlerBean {
 		return list;
 	}
 	
-	public void updateRecipe(SearchRecipeBean recipe){
+	public void updateRecipe(RecipeSubmissionModelBean recipe){
 		//TODO tests des valeurs des champs
 		this.recipeDao.update(recipe);
 	}
@@ -91,10 +91,10 @@ public class AdminRecipeControlerBean extends RecipeControlerBean {
 	
 	public void saveRecipe(RecipeSubmissionModelBean recipeSubmissionModelBean){
 		if(isNewRecipe){
-			//checkAndAddRecipe(recipeSubmissionModelBean);
+			addRecipe(recipeSubmissionModelBean);
 		}
 		else{
-			//updateRecipe(recipeSubmissionModelBean);
+			updateRecipe(recipeSubmissionModelBean);
 		}
 			
 		hidePanel();
