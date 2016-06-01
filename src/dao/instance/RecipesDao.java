@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import dao.fabric.DaoFabric;
-import model.RecipeModel;
+import model.RecipeModelBean;
 import model.SearchRecipeBean;
 import model.UserModelBean;
 
@@ -27,7 +27,7 @@ public class RecipesDao {
 		dB_PWD = DB_PWD;
 	}
 
-	public void addRecipe(RecipeModel recipe) {
+	public void addRecipe(RecipeModelBean recipe) {
 		// Création de la requête
 		java.sql.PreparedStatement query;
 		try {
@@ -51,9 +51,9 @@ public class RecipesDao {
 		}
 	}
 
-	public ArrayList<RecipeModel> getAllRecipes() {
+	public ArrayList<RecipeModelBean> getAllRecipes() {
 		//return value
-		ArrayList<RecipeModel> recipeList=new ArrayList<RecipeModel>();
+		ArrayList<RecipeModelBean> recipeList=new ArrayList<RecipeModelBean>();
 		// Création de la requête
 		java.sql.PreparedStatement query;
 		try {
@@ -65,7 +65,7 @@ public class RecipesDao {
 			ResultSet res = query.executeQuery();
 
 			while(res.next()){
-				recipeList.add(new RecipeModel(res.getInt("idRecipe"), res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
+				recipeList.add(new RecipeModelBean(res.getInt("idRecipe"), res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
 			}			
 
 			res.close();
@@ -77,9 +77,9 @@ public class RecipesDao {
 		return recipeList;
 	}
 
-	public ArrayList<RecipeModel> getSearchedRecipes(RecipeModel recipe) {
+	public ArrayList<RecipeModelBean> getSearchedRecipes(RecipeModelBean recipe) {
 		//return value
-		ArrayList<RecipeModel> recipeList=new ArrayList<RecipeModel>();
+		ArrayList<RecipeModelBean> recipeList=new ArrayList<RecipeModelBean>();
 		// Création de la requête
 		java.sql.PreparedStatement query;
 		try {
@@ -132,7 +132,7 @@ public class RecipesDao {
 			ResultSet res = query.executeQuery();
 
 			while(res.next()){
-				recipeList.add(new RecipeModel(res.getInt("idRecipe"), res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
+				recipeList.add(new RecipeModelBean(res.getInt("idRecipe"), res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
 			}			
 
 			res.close();
@@ -144,7 +144,7 @@ public class RecipesDao {
 		return recipeList;
 	}
 
-	public void delete(RecipeModel recipe) {
+	public void delete(RecipeModelBean recipe) {
 		// Création de la requête
 		java.sql.PreparedStatement query;
 		try {
@@ -163,7 +163,7 @@ public class RecipesDao {
 		}
 	}
 	
-	public void update(RecipeModel recipe) {
+	public void update(RecipeModelBean recipe) {
 		// Création de la requête
 		java.sql.PreparedStatement query;
 		try {
@@ -192,9 +192,9 @@ public class RecipesDao {
 	public static void main(String[] args) {
 		RecipesDao dao = DaoFabric.getInstance().createRecipesDao();
 
-		RecipeModel recipe = new RecipeModel("Tartiflette", "Du rebloch des patates et des lardons", 5, 30, 6, "Plat");
-		RecipeModel recipe1 = new RecipeModel("Cochon de lait", "Un bon dieu de cochon à la broche", 5, 480, 56, "Plat");
-		RecipeModel recipe2 = new RecipeModel("Tarte au pommes", "Des pommes de la compote et de la pate feuilleté", 5, 30, 6, "Dessert");
+		RecipeModelBean recipe = new RecipeModelBean("Tartiflette", "Du rebloch des patates et des lardons", 5, 30, 6, "Plat");
+		RecipeModelBean recipe1 = new RecipeModelBean("Cochon de lait", "Un bon dieu de cochon à la broche", 5, 480, 56, "Plat");
+		RecipeModelBean recipe2 = new RecipeModelBean("Tarte au pommes", "Des pommes de la compote et de la pate feuilleté", 5, 30, 6, "Dessert");
 
 		dao.addRecipe(recipe);
 		dao.addRecipe(recipe1);
@@ -204,7 +204,7 @@ public class RecipesDao {
 		
 		System.out.println(dao.getSearchedRecipes(recipe));	
 		
-		ArrayList<RecipeModel> searchedRecipe = dao.getSearchedRecipes(recipe1);
+		ArrayList<RecipeModelBean> searchedRecipe = dao.getSearchedRecipes(recipe1);
 		System.out.println(searchedRecipe);
 		
 		searchedRecipe.get(0).setType("VIANDE");
@@ -218,7 +218,7 @@ public class RecipesDao {
 		searchrecipe.setType("Plat");
 		System.out.println(dao.getSearchedRecipes(searchrecipe).size());
 		
-		Iterator<RecipeModel> it = dao.getAllRecipes().iterator();
+		Iterator<RecipeModelBean> it = dao.getAllRecipes().iterator();
 		
 		while(it.hasNext()){
 			//dao.delete(it.next());

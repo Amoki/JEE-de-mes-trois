@@ -20,7 +20,7 @@
 						<h:panelGrid layout="block" rendered="#{loggedUser == null}">
 							<h:panelGrid columns="2">
 								<p:commandButton ajax="false"
-									action="#{userControlerBean.goRegister}"
+									action="#{menuControlerBean.goRegister}"
 									icon="ui-icon-plusthick" />
 								<p:outputLabel value="Become a member" />
 							</h:panelGrid>
@@ -32,9 +32,7 @@
 								<p:password id="userPwd" value="#{loginBean.pwd}"
 									required="true"></p:password>
 								<p:commandButton type="submit" icon="ui-icon-arrow-1-e"
-									action="#{userControlerBean.checkUser(loginBean)}">
-									<f:ajax render="idFormLogin" execute="@form" />
-								</p:commandButton>
+									action="#{userControlerBean.checkUser(loginBean)}" update="idFormLogin"/>
 							</h:panelGrid>
 						</h:panelGrid>
 						<h:panelGrid columns="1" rendered="#{loggedUser != null}">

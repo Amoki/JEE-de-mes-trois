@@ -74,8 +74,4 @@ public class UserControlerBean {
 			
 		}
 	}
-	
-	public String goRegister(){
-		return "/views/user/registerUser.xhtml";
-	}
 }

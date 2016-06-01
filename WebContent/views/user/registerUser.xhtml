@@ -58,7 +58,7 @@
 						style="#{ component.valid ? '' : 'border-color:red;'}">
 
 					</p:password>
-					<p:commandButton immediate="true" ajax="false" value="Cancel" action="#{menuControlerBean.goMenu}" />
+					<p:commandButton immediate="true" ajax="false" value="Cancel" action="#{menuControlerBean.goBack}" />
 					<p:commandButton value="Register" ajax="false" action="#{userControlerBean.checkAndAddUser(userSubmissionModelBean)}"/>
 				</h:panelGrid>
 			</h:form>

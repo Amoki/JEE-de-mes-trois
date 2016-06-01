@@ -13,7 +13,7 @@ import validators.LoginValidator;
 import validators.UserNameValidator;
 import model.LoginBean;
 import model.RecipeListModelBean;
-import model.RecipeModel;
+import model.RecipeModelBean;
 import model.RecipeSubmissionModelBean;
 import model.SearchRecipeBean;
 import model.UserListModelBean;
@@ -44,17 +44,17 @@ public class AdminRecipeControlerBean extends RecipeControlerBean {
 		this.selectedRecipe = selectedRecipe;
 	}
 
-	public void deleteRecipe(RecipeModel recipe){
+	public void deleteRecipe(RecipeModelBean recipe){
 		if(recipe != null){
 			this.recipeDao.delete(recipe);
 		}
 	}
 
-	public ArrayList<RecipeModel> getAllRecipes(){
-		ArrayList<RecipeModel> list = this.recipeDao.getAllRecipes();
+	public ArrayList<RecipeModelBean> getAllRecipes(){
+		ArrayList<RecipeModelBean> list = this.recipeDao.getAllRecipes();
 		RecipeListModelBean recipeList=new RecipeListModelBean();
 
-		for(RecipeModel recipe:list){
+		for(RecipeModelBean recipe:list){
 			recipeList.addRecipeList(recipe);
 		}
 		
@@ -74,7 +74,7 @@ public class AdminRecipeControlerBean extends RecipeControlerBean {
 		AdminRecipeControlerBean controler = new AdminRecipeControlerBean();
 	}
 	
-	public void showPanel(RecipeModel recipe){
+	public void showPanel(RecipeModelBean recipe){
 		if(recipe != null){
 			isNewRecipe = false;
 			setSelectedRecipe(new RecipeSubmissionModelBean(recipe));

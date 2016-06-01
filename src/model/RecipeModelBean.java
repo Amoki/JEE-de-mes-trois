@@ -1,6 +1,8 @@
 package model;
 
-public class RecipeModel {
+import java.io.Serializable;
+
+public class RecipeModelBean implements Serializable {
 
 	private int idRecipe;
 	private String title;
@@ -10,9 +12,9 @@ public class RecipeModel {
 	private int duration;
 	private String type;
 
-	public RecipeModel() {}
+	public RecipeModelBean() {}
 	
-	public RecipeModel(String title,String description,int expertise,int duration,int nbpeople,String type) {
+	public RecipeModelBean(String title,String description,int expertise,int duration,int nbpeople,String type) {
 		this.title = title;
 		this.description = description;
 		this.expertise = expertise;
@@ -21,7 +23,7 @@ public class RecipeModel {
 		this.type = type;
 	}
 
-	public RecipeModel(int idRecipe, String title,String description,int expertise,int duration,int nbpeople,String type) {
+	public RecipeModelBean(int idRecipe, String title,String description,int expertise,int duration,int nbpeople,String type) {
 		this.idRecipe = idRecipe;
 		this.title = title;
 		this.description = description;

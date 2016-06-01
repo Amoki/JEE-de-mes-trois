@@ -11,11 +11,13 @@
 <body>
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:ui="http://java.sun.com/jsf/facelets" template="/views/template/template.xhtml">
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		template="/views/template/template.xhtml">
 		<ui:define name="sectionTitle">Recipes results</ui:define>
 		<ui:define name="body">
-			<p:commandButton value="Back" onclick="history.go(-1)"></p:commandButton>
 			<h:form id="form">
+				<p:commandButton value="Back" ajax="false"
+					action="#{menuControlerBean.goRecipes}"></p:commandButton>
 				<p:dataGrid var="recipe" value="#{recipeList.getRecipeList()}"
 					columns="3" layout="grid" rows="12" paginator="true" id="recipes"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -24,31 +26,23 @@
 						<h:outputText value="Results" />
 					</f:facet>
 					<p:panel>
-						<div class="ui-grid ui-grid-responsive">
-							<div class="ui-grid-row">
-								<div class="ui-grid-col-6">
-									<h:panelGrid columns="2" style="width:100%">
-										<i class="fa fa-circle"></i>
-										<h:outputText value="#{recipe.type}" />
-										<i class="fa fa-users"></i>
-										<h:outputText value="#{recipe.nbpeople}" />
-										<i class="fa fa-clock-o"></i>
-										<h:outputText value="#{recipe.duration}" />
-										<i class="fa fa-edit"></i>
-										<p:rating value="#{recipe.expertise}" readonly="true" />
-									</h:panelGrid>
-								</div>
-								<div class="ui-grid-col-6">
-									<h:panelGrid columns="1" cellpadding="5" layout="block">
-										<h:commandLink
-											action="#{recipeControlerBean.displayRecipeDetail(recipe)}">
-											<h:outputText value="#{recipe.title}" />
-										</h:commandLink>
-										<h:outputText value="#{recipe.description}" />
-									</h:panelGrid>
-								</div>
-							</div>
-						</div>
+						<h:panelGrid columns="2" style="width:100%">
+							<i class="fa fa-circle"></i>
+							<h:outputText value="#{recipe.type}" />
+							<i class="fa fa-users"></i>
+							<h:outputText value="#{recipe.nbpeople}" />
+							<i class="fa fa-clock-o"></i>
+							<h:outputText value="#{recipe.duration}" />
+							<i class="fa fa-edit"></i>
+							<p:rating value="#{recipe.expertise}" readonly="true" />
+						</h:panelGrid>
+						<h:panelGrid columns="1" cellpadding="5" layout="block">
+							<h:commandLink
+								action="#{recipeControlerBean.displayRecipeDetail(recipe)}">
+								<h:outputText value="#{recipe.title}" />
+							</h:commandLink>
+							<h:outputText value="#{recipe.description}" />
+						</h:panelGrid>
 					</p:panel>
 				</p:dataGrid>
 			</h:form>

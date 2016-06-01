@@ -5,11 +5,15 @@ import java.util.Map;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.NoneScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import model.RecipeListModelBean;
-import model.RecipeModel;
+import model.RecipeModelBean;
 import model.RecipeSubmissionModelBean;
 import model.SearchRecipeBean;
 import dao.fabric.DaoFabric;
@@ -19,16 +23,23 @@ import dao.instance.RecipesDao;
 @ApplicationScoped
 public class RecipeControlerBean {
 	protected RecipesDao recipeDao;
+	
+	@ManagedProperty(value="#{menuControlerBean}")
+	private MenuControlerBean menuControlerBean;
+	
+	public void setMenuControlerBean(MenuControlerBean menuControlerBean) {
+		this.menuControlerBean = menuControlerBean;
+	}
 
 	public RecipeControlerBean() {
 		this.recipeDao=DaoFabric.getInstance().createRecipesDao();
 	}
 
 	public void loadAllRecipe(){
-		ArrayList<RecipeModel> list = this.recipeDao.getAllRecipes();
+		ArrayList<RecipeModelBean> list = this.recipeDao.getAllRecipes();
 		RecipeListModelBean recipeList=new RecipeListModelBean();
 
-		for(RecipeModel recipe:list){
+		for(RecipeModelBean recipe:list){
 			recipeList.addRecipeList(recipe);
 		}
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -43,24 +54,24 @@ public class RecipeControlerBean {
 	}
 
 	public String searchRecipe(SearchRecipeBean recipe){
-		ArrayList<RecipeModel> list = this.recipeDao.getSearchedRecipes(recipe);
+		ArrayList<RecipeModelBean> list = this.recipeDao.getSearchedRecipes(recipe);
 		RecipeListModelBean recipeList=new RecipeListModelBean();
 
-		for(RecipeModel rec:list){
+		for(RecipeModelBean rec:list){
 			recipeList.addRecipeList(rec);
 		}
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		sessionMap.put("recipeList", recipeList);
-
-		return "recipeResultList.xhtml";
+		
+		return menuControlerBean.goTo("/views/recipe/recipeResultList.xhtml");
 	}
 	
-	public String displayRecipeDetail(RecipeModel recipe){
+	public String displayRecipeDetail(RecipeModelBean recipe){
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		sessionMap.put("selectedRecipe", recipe);
 		
-		return "recipeDetail.jsf";
+		return menuControlerBean.goTo("/views/recipe/recipeDetail.xhtml");
 	}
 }
