@@ -32,9 +32,7 @@
 								<p:password id="userPwd" value="#{loginBean.pwd}"
 									required="true"></p:password>
 								<p:commandButton type="submit" icon="ui-icon-arrow-1-e"
-									action="#{userControlerBean.checkUser(loginBean)}">
-									<f:ajax render="idFormLogin" execute="@form" />
-								</p:commandButton>
+									action="#{userControlerBean.checkUser(loginBean)}" update="idFormLogin"/>
 							</h:panelGrid>
 						</h:panelGrid>
 						<h:panelGrid columns="1" rendered="#{loggedUser != null}">

@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.NoneScoped;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @RequestScoped
-public class SearchRecipeBean extends RecipeModel{
+public class SearchRecipeBean extends RecipeModelBean{
 	public static final String ALL_VALUES_STRING="[ALL]";
 	public static final int ALL_VALUES_INT=0;
 	public static final int MIN_EXPERTISE_VALUE = 1;

@@ -11,9 +11,6 @@ import javax.faces.context.FacesContext;
 import model.CommentListModelBean;
 import model.CommentModel;
 import model.CommentSubmissionBean;
-import model.RecipeListModelBean;
-import model.RecipeModel;
-import model.UserModelBean;
 import dao.fabric.DaoFabric;
 import dao.instance.CommentDao;
 

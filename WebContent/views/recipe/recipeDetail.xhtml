@@ -106,9 +106,7 @@
 				<h:form rendered="#{loggedUser != null}">
 					<div class="ui-grid-row col-centered div-fillparent">
 						<!-- zone de saisie de texte -->
-						<p:editor id="commentDetail" widgetVar="editorWidget"
-							value="#{commentSubmissionBean.detail}" width="600" />
-
+						<p:inputTextarea rows="6" cols="33" value="#{commentSubmissionBean.detail}" />
 						<!-- zone de « rating » -->
 						<p:rating id="commentRate" value="#{commentSubmissionBean.rate}" />
 
