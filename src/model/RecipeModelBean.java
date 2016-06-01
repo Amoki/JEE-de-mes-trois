@@ -1,6 +1,10 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedProperty;
 
 public class RecipeModelBean implements Serializable {
 
@@ -11,6 +15,11 @@ public class RecipeModelBean implements Serializable {
 	private int nbpeople;
 	private int duration;
 	private String type;
+	private List<Type> types;
+	private Type typeModel;
+
+	@ManagedProperty("#{typeService}")
+	private TypeService service;
 
 	public RecipeModelBean() {}
 	
@@ -50,5 +59,26 @@ public class RecipeModelBean implements Serializable {
 
 	public String toString() {
 		return "[TITLE]:"+this.getTitle()+",[DESCRIPTION]:"+this.getDescription()+",[EXPERTISE]:"+this.getExpertise()+",[DURATION]:"+this.getDuration()+",[NBPEOPLE]:"+this.getNbpeople()+",[TYPE]:"+this.getType()+",[ID_RECIPE]:"+this.getIdRecipe();
+	}
+	
+	public List<Type> getTypes() {return types;}
+	public void setTypes(List<Type> types) {this.types = types;}
+	public void setService(TypeService service) {this.service = service;}
+
+	public void setTypeModel(Type typeModel) {
+		if(typeModel != null){
+			this.typeModel = typeModel;
+			this.setType(typeModel.getValue());
+		}
+	}
+
+	public Type getTypeModel() {
+		return this.typeModel;
+	}
+
+	@PostConstruct
+	public void init() {
+		types = service.getTypes();
+		typeModel = service.getType(getType());
 	}
 }
