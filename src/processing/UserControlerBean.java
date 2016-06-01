@@ -2,6 +2,7 @@ package processing;
 
 import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -39,13 +40,11 @@ public class UserControlerBean {
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			Map<String, Object> sessionMap = externalContext.getSessionMap();
 			sessionMap.put(LOGGED_LBL, user);
-			sessionMap.put(ERROR_LBL, false);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Connection Success."));
 			nbUsers++;
 			return "";
 		}else{ 
-			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-			Map<String, Object> sessionMap = externalContext.getSessionMap();
-			sessionMap.put(ERROR_LBL, true);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Connection fail."));
 			return "";
 		}
 	}

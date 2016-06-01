@@ -33,7 +33,7 @@
 									required="true"></p:password>
 								<p:commandButton type="submit" icon="ui-icon-arrow-1-e"
 									action="#{userControlerBean.checkUser(loginBean)}">
-									<f:ajax render=":idValidateLogin idFormLogin" execute="@form" />
+									<f:ajax render="idFormLogin" execute="@form" />
 								</p:commandButton>
 							</h:panelGrid>
 						</h:panelGrid>
@@ -43,22 +43,14 @@
 								value="#{userControlerBean.nbUsers} user(s) already connected" />
 							<p:commandButton icon="ui-icon-arrow-1-w"
 								action="#{userControlerBean.logout(loggedUser)}">
-								<f:ajax render=":idValidateLogin idFormLogin" execute="@form" />
+								<f:ajax render="idFormLogin" execute="@form" />
 							</p:commandButton>
 						</h:panelGrid>
 					</h:panelGroup>
 				</h:form>
 			</p:layoutUnit>
 			<p:layoutUnit position="center">
-				<h:panelGroup id="idValidateLogin">
-					<h:panelGroup layout="block" rendered="#{connectionError}">
-					    	Connection fail
-						</h:panelGroup>
-					<h:panelGroup layout="block"
-						rendered="#{connectionError == false and loggedUser != null}">
-					    	Connection success
-						</h:panelGroup>
-				</h:panelGroup>
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 			</p:layoutUnit>
 		</p:layout>
 	</ui:composition>
