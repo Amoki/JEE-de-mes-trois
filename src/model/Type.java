@@ -3,14 +3,14 @@ package model;
 public class Type {
 	private int id;    
 	private String displayName; 
-	private String name;
+	private String value;
 
 	public Type() {}
 
-	public Type(int id, String displayName, String name) {
+	public Type(int id, String displayName, String value) {
 		this.id = id;
 		this.displayName = displayName;
-		this.name = name;
+		this.value = value;
 	}
 
 	public int getId() {
@@ -28,18 +28,13 @@ public class Type {
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	
+	public String getValue(){
+		return value;
 	}
 
 	@Override
 	public String toString() {
-		return name;
+		return getDisplayName();
 	}
-
 }
