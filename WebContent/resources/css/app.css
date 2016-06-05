@@ -28,24 +28,15 @@
 }
 
 .logo {
-	position: relative;
-	float: right;
+	position: fixed;
+	right: 0px;
 	bottom: 0px;
 }
 
 .copyright {
-	position: relative;
-	float: left;
+	position: fixed;
+	left: 0px;
 	bottom: 0px;
-}
-
-.footer {
-	position: absolute;
-	width: 100%;
-	bottom: 0px;
-	height: 150px;
-	padding: 10px;
-	background-color: #D0D0D0;
 }
 
 

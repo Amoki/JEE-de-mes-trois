@@ -36,13 +36,11 @@
 				<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
 					rendered="#{adminRecipeControllerBean.selectedRecipe != null}">
 					
-					<i class="icon-clock"></i>
 					<h:outputLabel value="Title : " />
 					<p:inputText id="title"
 						value="#{adminRecipeControllerBean.selectedRecipe.title}"
 						required="true">
 					</p:inputText>
-					<i class="icon-clock"></i>
 					<h:outputLabel value="Description : " />
 					<p:inputText id="description"
 						value="#{adminRecipeControllerBean.selectedRecipe.description}"
