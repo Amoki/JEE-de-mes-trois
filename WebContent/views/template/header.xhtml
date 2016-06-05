@@ -21,8 +21,8 @@
 				</h:form>
 			</p:layoutUnit>
 			<p:layoutUnit position="east" size="400">
-				<h:form>
-					<h:panelGroup id="formLogin">
+			<h:form>
+					<h:panelGroup id="formsignUp">
 						<h:panelGrid layout="block" rendered="#{loggedUser == null}">
 							<h:panelGrid columns="2">
 								<p:commandButton ajax="false"
@@ -30,6 +30,12 @@
 									icon="ui-icon-plusthick" />
 								<p:outputLabel value="Sign up!" />
 							</h:panelGrid>
+						</h:panelGrid>
+					</h:panelGroup>
+				</h:form>
+				<h:form>
+					<h:panelGroup id="formLogin">
+						<h:panelGrid layout="block" rendered="#{loggedUser == null}">
 							<h:panelGrid columns="2">
 								<p:outputLabel value="Login: " />
 								<p:inputText id="userLogin" value="#{loginBean.login}"

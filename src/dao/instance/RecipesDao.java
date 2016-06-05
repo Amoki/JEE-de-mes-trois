@@ -112,7 +112,6 @@ public class RecipesDao {
 				}
 				querySQL += "duration=" + recipe.getDuration() + " ";
 			}
-			System.out.println(querySQL);
 			java.sql.PreparedStatement query = connection.prepareStatement(querySQL);
 
 			ResultSet res = query.executeQuery();
