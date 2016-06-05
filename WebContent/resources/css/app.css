@@ -40,8 +40,12 @@
 }
 
 .footer {
+	position: fixed;
+	width: 100%;
+	bottom: 0px;
+	height: 30px;
 	padding: 10px;
-	background: red;
+	background: #D0D0D0;
 }
 
 
