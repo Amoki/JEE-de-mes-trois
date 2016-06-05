@@ -37,13 +37,13 @@
 					rendered="#{adminRecipeControllerBean.selectedRecipe != null}">
 					
 					<i class="icon-clock"></i>
-					<h:outputLabel value="Title: " />
+					<h:outputLabel value="Title : " />
 					<p:inputText id="title"
 						value="#{adminRecipeControllerBean.selectedRecipe.title}"
 						required="true">
 					</p:inputText>
 					<i class="icon-clock"></i>
-					<h:outputLabel value="Description: " />
+					<h:outputLabel value="Description : " />
 					<p:inputText id="description"
 						value="#{adminRecipeControllerBean.selectedRecipe.description}"
 						required="true">
@@ -52,7 +52,7 @@
 						<h:panelGrid columns="3">
 							<i class="fa fa-clock-o"></i>
 							<h:outputLabel for="preparationDuration"
-								value="Preparation duration " />
+								value="Duration : " />
 							<p:spinner id="preparationDuration"
 								value="#{adminRecipeControllerBean.selectedRecipe.duration}"
 								min="0" stepFactor="5" />
@@ -61,7 +61,7 @@
 					<p:column colspan="3">
 						<h:panelGrid columns="3">
 							<i class="fa fa-edit"></i>
-							<h:outputLabel for="cookExpertise" value="Cook expertise" />
+							<h:outputLabel for="cookExpertise" value="Expertise : " />
 							<p:rating id="cookExpertise"
 								value="#{adminRecipeControllerBean.selectedRecipe.expertise}"
 								cancel="false">
@@ -72,7 +72,7 @@
 						<p:column colspan="3">
 							<h:panelGrid columns="3">
 								<i class="fa fa-users"></i>
-								<h:outputLabel for="nbPeople" value="For how many people" />
+								<h:outputLabel for="nbPeople" value="Nb people : " />
 								<h:panelGrid columns="1" style="margin-bottom: 10px">
 									<p:inputText id="nbPeople"
 										value="#{adminRecipeControllerBean.selectedRecipe.nbpeople}" />
@@ -83,7 +83,7 @@
 						<p:column colspan="3">
 							<h:panelGrid columns="3">
 								<i class="fa fa-circle"></i>
-								<h:outputLabel for="cookType" value="Cook type" />
+								<h:outputLabel for="cookType" value="Type" />
 								<p:selectOneListbox id="cookType"
 									value="#{adminRecipeControllerBean.selectedRecipe.typeModel}" converter="typeConverter"
 									var="t" filter="true" filterMatchMode="contains">
