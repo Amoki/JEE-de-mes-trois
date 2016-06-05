@@ -28,19 +28,24 @@
 }
 
 .logo {
-	position: fixed;
+	position: relative;
+	float: right;
 	bottom: 0px;
-	right: 0px;
 }
 
 .copyright {
-	position: fixed;
+	position: relative;
+	float: left;
 	bottom: 0px;
-	left: 0px;
 }
 
 .footer {
-	margin: 5px;
+	padding: 10px;
+	background: red;
 }
 
+
+.loginForm {
+	padding: 15px;
+}
 
