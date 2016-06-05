@@ -40,11 +40,11 @@ public class AdminUserControllerBean extends UserControllerBean {
 	}
 
 	public String goToAdminUsersManagement(){
-		return "adminUsersManagement.xhtml";
+		return "manageUsers.xhtml";
 	}
 	
 	public String goToAdminRecipesManagement(){
-		return "adminRecipesManagement.xhtml";
+		return "manageRecipes.xhtml";
 	}
 	
 	public String checkUser(LoginBean loginBean) {
