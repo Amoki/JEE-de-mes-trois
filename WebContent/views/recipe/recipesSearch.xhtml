@@ -25,8 +25,6 @@
 					<p:row>
 						<p:column colspan="3">
 							<h:panelGrid columns="3">
-								<!-- Temps de préparation -->
-								<i class="fa fa-clock-o"></i>
 								<h:outputLabel for="preparationDuration"
 									value="Preparation duration " />
 								<p:spinner id="preparationDuration"
@@ -35,7 +33,6 @@
 						</p:column>
 						<p:column colspan="3">
 							<h:panelGrid columns="3">
-								<i class="fa fa-edit"></i>
 								<h:outputLabel for="cookExpertise" value="Cook expertise" />
 								<p:rating id="cookExpertise"
 									value="#{searchRecipeBean.expertise}" cancel="false">
@@ -46,8 +43,6 @@
 					<p:row>
 						<p:column colspan="3">
 							<h:panelGrid columns="3">
-								<!-- Nombre de personnes -->
-								<i class="fa fa-users"></i>
 								<h:outputLabel for="nbPeople" value="For how many people" />
 								<p:panelGrid columns="1" style="margin-bottom: 10px">
 									<p:inputText id="nbPeople" value="#{searchRecipeBean.nbpeople}" />
@@ -57,8 +52,6 @@
 						</p:column>
 						<p:column colspan="3">
 							<h:panelGrid columns="3">
-								<!-- Type de nourriture -->
-								<i class="fa fa-circle"></i>
 								<h:outputLabel for="cookType" value="Cook type" />
 								<h:panelGrid>
 									<p:selectOneMenu id="console" converter="typeConverter" var="t"
@@ -75,7 +68,6 @@
 					</p:row>
 					<p:row>
 						<p:column colspan="6" style="text-align: center;">
-							<!-- Bouton qui lance la recherche -->
 							<p:commandButton value="Teach me !" ajax="false"
 								action="#{recipeControllerBean.searchRecipe(searchRecipeBean)}" />
 						</p:column>
