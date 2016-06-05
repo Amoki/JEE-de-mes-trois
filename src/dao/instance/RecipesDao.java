@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import beans.RecipeModelBean;
 import beans.SearchRecipeBean;
+import beans.TypeModelBean;
 
 public class RecipesDao {
 	private Connection connection;
@@ -28,14 +29,13 @@ public class RecipesDao {
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			java.sql.PreparedStatement query = connection.prepareStatement("INSERT INTO recipes(title,description,expertise,duration,nbpeople,type) VALUES(?,?,?,?,?,?)");
+			java.sql.PreparedStatement query = connection.prepareStatement("INSERT INTO recipes(title,description,expertise,duration,nbpeople) VALUES(?,?,?,?,?)");
 
 			query.setString(1, recipe.getTitle());
 			query.setString(2,recipe.getDescription());
 			query.setInt(3, recipe.getExpertise());
 			query.setInt(4, recipe.getDuration());
 			query.setInt(5, recipe.getNbpeople());
-			query.setString(6, recipe.getType());
 
 			query.execute();
 
@@ -50,12 +50,23 @@ public class RecipesDao {
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			java.sql.PreparedStatement query = connection.prepareStatement("SELECT * FROM \"recipes\"");
+			java.sql.PreparedStatement query = connection.prepareStatement("SELECT *, t.id as type_id FROM \"recipes\" r LEFT JOIN \"types\" t on r.type = t.id");
 
 			ResultSet res = query.executeQuery();
 
 			while(res.next()){
-				recipeList.add(new RecipeModelBean(res.getInt("id"), res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
+				recipeList.add(new RecipeModelBean(
+					res.getInt("id"),
+					res.getString("title"),
+					res.getString("description"),
+					res.getInt("expertise"),
+					res.getInt("nbpeople"),
+					res.getInt("duration"),
+					new TypeModelBean(
+						res.getInt("type_id"),
+						res.getString("name")
+					)
+				));
 			}			
 
 			res.close();
@@ -63,7 +74,6 @@ public class RecipesDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return recipeList;
 	}
 
@@ -72,7 +82,7 @@ public class RecipesDao {
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			String querySQL = "SELECT * FROM recipes";
+			String querySQL = "SELECT *, t.id as type_id FROM \"recipes\" r LEFT JOIN \"types\" t on r.type = t.id";
 			boolean begin = true;
 
 			if(recipe.getExpertise() != SearchRecipeBean.MIN_EXPERTISE_VALUE){
@@ -102,23 +112,23 @@ public class RecipesDao {
 				}
 				querySQL += "duration=" + recipe.getDuration() + " ";
 			}
-			if(!recipe.getType().equals(SearchRecipeBean.ALL_VALUES_STRING)){
-				if(begin){
-					begin = false;
-					querySQL += " WHERE ";
-				}
-				else{
-					querySQL += "AND ";
-				}
-				querySQL += "type='" + recipe.getType() + "' ";
-			}
-
 			java.sql.PreparedStatement query = connection.prepareStatement(querySQL);
 
 			ResultSet res = query.executeQuery();
 
 			while(res.next()){
-				recipeList.add(new RecipeModelBean(res.getInt("id"), res.getString("title"),res.getString("description"),res.getInt("expertise"),res.getInt("nbPeople"),res.getInt("duration"),res.getString("type")));
+				recipeList.add(new RecipeModelBean(
+					res.getInt("id"),
+					res.getString("title"),
+					res.getString("description"),
+					res.getInt("expertise"),
+					res.getInt("nbPeople"),
+					res.getInt("duration"),
+					new TypeModelBean(
+						res.getInt("type_id"),
+						res.getString("name")
+					)
+				));
 			}			
 
 			res.close();
@@ -126,7 +136,6 @@ public class RecipesDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return recipeList;
 	}
 
@@ -157,7 +166,7 @@ public class RecipesDao {
 			query.setInt(3, recipe.getExpertise());
 			query.setInt(4, recipe.getNbpeople());
 			query.setInt(5, recipe.getDuration());
-			query.setString(6, recipe.getType());
+			query.setInt(6, recipe.getType().getId());
 
 			query.setInt(7, recipe.getRecipeId());
 

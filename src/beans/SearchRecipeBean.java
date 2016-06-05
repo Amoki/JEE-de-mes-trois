@@ -18,7 +18,7 @@ public class SearchRecipeBean extends RecipeModelBean{
 	public SearchRecipeBean() {
 		this.setDescription(ALL_VALUES_STRING);
 		this.setTitle(ALL_VALUES_STRING);
-		this.setType(ALL_VALUES_STRING);
+		this.setType(null);
 		this.setNbpeople(ALL_VALUES_INT);
 		this.setDuration(ALL_VALUES_INT);
 		this.setExpertise(MIN_EXPERTISE_VALUE);

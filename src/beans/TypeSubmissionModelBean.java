@@ -3,8 +3,6 @@ package beans;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import models.TypeModelBean;
-
 @ManagedBean
 @RequestScoped 
 public class TypeSubmissionModelBean extends TypeModelBean{

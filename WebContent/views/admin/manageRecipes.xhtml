@@ -77,16 +77,11 @@
 						</p:column>
 						<p:column colspan="3">
 							<h:panelGrid columns="3">
-								<h:outputLabel for="cookType" value="Type" />
-								<p:selectOneListbox id="cookType"
-									value="#{adminRecipeControllerBean.selectedRecipe.typeModel}" converter="typeConverter"
-									var="t" filter="true" filterMatchMode="contains">
-									<f:selectItems value="#{searchRecipeBean.types}" scrollHeight="40"
-										var="type" itemLabel="#{type.displayName}" itemValue="#{type}" />
-									<p:column>
-										<h:outputText value="#{t.displayName}" />
-									</p:column>
-								</p:selectOneListbox>
+								<p:outputLabel for="type" value="type:" />
+					            <p:selectOneMenu id="type" value="#{adminRecipeControllerBean.selectedRecipe.type}">
+					                <f:selectItem itemValue="#{type}" itemLabel="#{type.name}" />
+					                <f:selectItems value="#{adminTypeControllerBean.getAllTypes()}" />
+					            </p:selectOneMenu>
 							</h:panelGrid>
 						</p:column>
 					</p:row>

@@ -27,7 +27,7 @@ public class UserDao {
 	public void addUser(UserModelBean user) {
 		java.sql.PreparedStatement query;
 		try {
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
 			query = connection.prepareStatement("INSERT INTO \"users\" (lastname,firstname,age,login,pwd,email) VALUES(?,?,?,?,?,?)");
 
