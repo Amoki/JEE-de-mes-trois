@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.UserModelBean;
+import beans.UserModelBean;
 
 public class UserDao {
 	private Connection connection;

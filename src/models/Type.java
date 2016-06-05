@@ -1,4 +1,4 @@
-package model;
+package models;
 
 public class Type {
 	private int id;    

@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.CommentModel;
-import model.TypeModelBean;
-import model.UserModelBean;
+import beans.TypeModelBean;
+import beans.UserModelBean;
+import models.CommentModel;
 
 public class TypeDao {
 	private Connection connection;

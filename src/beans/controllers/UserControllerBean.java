@@ -1,4 +1,4 @@
-package processing;
+package beans.controllers;
 
 import java.util.Map;
 
@@ -8,12 +8,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import beans.LoginBean;
+import beans.UserModelBean;
+import beans.UserSubmissionModelBean;
 import validators.EmailValidator;
 import validators.LoginValidator;
 import validators.UserNameValidator;
-import model.LoginBean;
-import model.UserModelBean;
-import model.UserSubmissionModelBean;
 import dao.fabric.DaoFabric;
 import dao.instance.UserDao;
 

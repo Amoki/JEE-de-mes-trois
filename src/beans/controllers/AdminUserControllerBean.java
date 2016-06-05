@@ -1,4 +1,4 @@
-package processing;
+package beans.controllers;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -8,13 +8,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import beans.LoginBean;
+import beans.UserListModelBean;
+import beans.UserModelBean;
+import beans.UserSubmissionModelBean;
 import validators.EmailValidator;
 import validators.LoginValidator;
 import validators.UserNameValidator;
-import model.LoginBean;
-import model.UserListModelBean;
-import model.UserModelBean;
-import model.UserSubmissionModelBean;
 
 @ManagedBean
 @ApplicationScoped
@@ -96,16 +96,6 @@ public class AdminUserControllerBean extends UserControllerBean {
 		if(user != null){
 			this.userDao.delete(user);
 		}
-	}
-	
-	public static void main(String[] args) {
-		AdminUserControllerBean controller = new AdminUserControllerBean();
-		
-		UserSubmissionModelBean sub = new UserSubmissionModelBean("test","test", 10,"test","test","test@test.fr");
-		sub.setPwd2(sub.getPwd());
-		controller.checkAndAddUser(sub);
-		sub.setIsAdmin(true);
-		controller.updateUser(sub);
 	}
 	
 	public void showPanel(UserModelBean user){

@@ -1,4 +1,4 @@
-package processing;
+package beans.controllers;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -8,9 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import model.RecipeListModelBean;
-import model.RecipeModelBean;
-import model.RecipeSubmissionModelBean;
+import beans.RecipeListModelBean;
+import beans.RecipeModelBean;
+import beans.RecipeSubmissionModelBean;
 
 @ManagedBean
 @ApplicationScoped
@@ -61,9 +61,6 @@ public class AdminRecipeControllerBean extends RecipeControllerBean {
 		this.recipeDao.update(recipe);
 	}
 
-	public static void main(String[] args) {
-	}
-	
 	public void showPanel(RecipeModelBean recipe){
 		if(recipe != null){
 			isNewRecipe = false;

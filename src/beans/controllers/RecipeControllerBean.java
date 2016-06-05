@@ -1,4 +1,4 @@
-package processing;
+package beans.controllers;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -9,12 +9,12 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import beans.RecipeListModelBean;
+import beans.RecipeModelBean;
+import beans.RecipeSubmissionModelBean;
+import beans.SearchRecipeBean;
 import dao.fabric.DaoFabric;
 import dao.instance.RecipesDao;
-import model.RecipeListModelBean;
-import model.RecipeModelBean;
-import model.RecipeSubmissionModelBean;
-import model.SearchRecipeBean;
 
 @ManagedBean
 @ApplicationScoped

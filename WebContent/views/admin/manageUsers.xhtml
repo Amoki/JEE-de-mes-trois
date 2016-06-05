@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"  
-	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <body>
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
@@ -12,97 +11,100 @@
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		template="/views/admin/adminTemplate.xhtml">
 		<ui:define name="title">
-			<h:outputText value="Manage Users" />
+		Manage Recipes
 		</ui:define>
 		<ui:define name="body">
 			<h:form>
-				<p:dataTable id="userTable"
-					value="#{adminUserControllerBean.getAllUsers()}" var="user">
-					<p:column headerText="Name">
-						<h:outputText value="#{user.firstname}" />
+				<p:dataTable id="recipeTable"
+					value="#{adminRecipeControllerBean.getAllRecipes()}" var="recipe">
+					<p:column headerText="Title">
+						<h:outputText value="#{recipe.title}" />
 					</p:column>
-
-					<p:column headerText="Login">
-						<h:outputText value="#{user.login}" />
-					</p:column>
-
-					<p:column headerText="Admin">
-						<h:outputText value="#{user.admin}" />
-					</p:column>
-
 					<p:column headerText=" ">
 						<p:commandButton value="Delete"
-							action="#{adminUserControllerBean.deleteUser(user)}"
-							update="userTable" />
+							action="#{adminRecipeControllerBean.deleteRecipe(recipe)}"
+							update="recipeTable" />
 						<p:commandButton value="Edit"
-							action="#{adminUserControllerBean.showPanel(user)}"
+							action="#{adminRecipeControllerBean.showPanel(recipe)}"
 							update="editForm" />
 					</p:column>
 				</p:dataTable>
 				<h:commandButton value="ADD" update="editForm"
-					action="#{adminUserControllerBean.showPanel(null)}" />
+					action="#{adminRecipeControllerBean.showPanel(null)}" />
 			</h:form>
-
 			<h:form id="editForm">
-				<h:panelGrid columns="2" cellpadding="15" layout="block"
-					rendered="#{adminUserControllerBean.selectedUser != null}">
-					<p:outputLabel value="Firstname: " />
-					<p:inputText id="firstName"
-						value="#{adminUserControllerBean.selectedUser.firstname}"
-						required="true"
-						style="#{ component.valid ? ' ' : 'border-color:red;'}">
-						<f:validator validatorId="validators.username" />
-					</p:inputText>
-					<p:outputLabel value="Lastname: " />
-					<p:inputText id="lastName"
-						value="#{adminUserControllerBean.selectedUser.lastname}"
-						required="true"
-						style="#{ component.valid ? ' ' : 'border-color:red;'}">
-						<f:validator validatorId="validators.username" />
-					</p:inputText>
-					<p:outputLabel value="Age: " />
-					<p:inputText id="age"
-						value="#{adminUserControllerBean.selectedUser.age}" required="true"
-						style="#{ component.valid ? ' ' : 'border-color:red;'}">
-						<f:validator validatorId="validators.age" />
-					</p:inputText>
-					<p:outputLabel value="Email: " />
-					<p:inputText label="Email: " id="email"
-						value="#{adminUserControllerBean.selectedUser.email}"
-						required="true"
-						style="#{ component.valid ? ' ' : 'border-color:red;'}">
-						<f:validator validatorId="validators.email" />
-					</p:inputText>
-					<p:outputLabel value="Login: " />
-					<p:inputText id="login"
-						value="#{adminUserControllerBean.selectedUser.login}"
-						required="true"
-						style="#{ component.valid ? ' ' : 'border-color:red;'}">
-						<f:validator validatorId="validators.login" />
-					</p:inputText>
-
-					<p:outputLabel value="Password: " />
-					<p:password id="password"
-						value="#{adminUserControllerBean.selectedUser.pwd}"
-						style="#{ component.valid ? ' ' : 'border-color:red;'}">
-						    <c:if test="#{adminUserControllerBean.isNewUser}">
-						    	<f:attribute name="match" value="password2"/>
-						    </c:if>
-					</p:password>
+				<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
+					rendered="#{adminRecipeControllerBean.selectedRecipe != null}">
 					
-					<p:outputLabel value="Confirm: " />
-					<p:password id="password2"
-						value="#{adminUserControllerBean.selectedUser.pwd2}"
-						style="#{ component.valid ? '' : 'border-color:red;'}">
-
-					</p:password>
-					<h:outputText value="Admin: " />
-					<p:selectBooleanCheckbox
-						value="#{adminUserControllerBean.selectedUser.admin}" />
-					<p:commandButton update=":editForm" value="Cancel"
-						action="#{adminUserControllerBean.hidePanel()}" immediate="true" />
-					<h:commandButton value="Save"
-						action="#{adminUserControllerBean.saveUser(adminUserControllerBean.selectedUser)}" />
+					<i class="icon-clock"></i>
+					<h:outputLabel value="Title: " />
+					<p:inputText id="title"
+						value="#{adminRecipeControllerBean.selectedRecipe.title}"
+						required="true">
+					</p:inputText>
+					<i class="icon-clock"></i>
+					<h:outputLabel value="Description: " />
+					<p:inputText id="description"
+						value="#{adminRecipeControllerBean.selectedRecipe.description}"
+						required="true">
+					</p:inputText>
+					<p:column colspan="3">
+						<h:panelGrid columns="3">
+							<i class="fa fa-clock-o"></i>
+							<h:outputLabel for="preparationDuration"
+								value="Preparation duration " />
+							<p:spinner id="preparationDuration"
+								value="#{adminRecipeControllerBean.selectedRecipe.duration}"
+								min="0" stepFactor="5" />
+						</h:panelGrid>
+					</p:column>
+					<p:column colspan="3">
+						<h:panelGrid columns="3">
+							<i class="fa fa-edit"></i>
+							<h:outputLabel for="cookExpertise" value="Cook expertise" />
+							<p:rating id="cookExpertise"
+								value="#{adminRecipeControllerBean.selectedRecipe.expertise}"
+								cancel="false">
+							</p:rating>
+						</h:panelGrid>
+					</p:column>
+					<p:row>
+						<p:column colspan="3">
+							<h:panelGrid columns="3">
+								<i class="fa fa-users"></i>
+								<h:outputLabel for="nbPeople" value="For how many people" />
+								<h:panelGrid columns="1" style="margin-bottom: 10px">
+									<p:inputText id="nbPeople"
+										value="#{adminRecipeControllerBean.selectedRecipe.nbpeople}" />
+									<p:slider for="nbPeople" />
+								</h:panelGrid>
+							</h:panelGrid>
+						</p:column>
+						<p:column colspan="3">
+							<h:panelGrid columns="3">
+								<i class="fa fa-circle"></i>
+								<h:outputLabel for="cookType" value="Cook type" />
+								<p:selectOneListbox id="cookType"
+									value="#{adminRecipeControllerBean.selectedRecipe.typeModel}" converter="typeConverter"
+									var="t" filter="true" filterMatchMode="contains">
+									<f:selectItems value="#{searchRecipeBean.types}" scrollHeight="40"
+										var="type" itemLabel="#{type.displayName}" itemValue="#{type}" />
+									<p:column>
+										<h:outputText value="#{t.displayName}" />
+									</p:column>
+								</p:selectOneListbox>
+							</h:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="6" style="text-align: center;">
+							<p:commandButton update=":editForm" value="Cancel"
+								action="#{adminRecipeControllerBean.hidePanel()}"
+								immediate="true" />
+							<h:commandButton value="Save"
+								action="#{adminRecipeControllerBean.saveRecipe(adminRecipeControllerBean.selectedRecipe)}" />
+						</p:column>
+					</p:row>
 				</h:panelGrid>
 			</h:form>
 		</ui:define>

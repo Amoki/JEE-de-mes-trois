@@ -1,10 +1,13 @@
-package model;
+package beans;
 
 import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedProperty;
+
+import models.Type;
+import models.TypeService;
 
 public class RecipeModelBean implements Serializable {
 

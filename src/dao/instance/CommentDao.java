@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.CommentModel;
-import model.UserModelBean;
+import beans.UserModelBean;
+import models.CommentModel;
 
 public class CommentDao {
 	private Connection connection;

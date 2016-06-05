@@ -1,6 +1,8 @@
-package model;
+package models;
 
 import java.sql.Date;
+
+import beans.UserModelBean;
 
 public class CommentModel{
 	private int recId;

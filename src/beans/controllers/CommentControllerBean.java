@@ -1,4 +1,4 @@
-package processing;
+package beans.controllers;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -8,12 +8,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import beans.CommentListModelBean;
+import beans.CommentSubmissionBean;
+import beans.UserModelBean;
 import dao.fabric.DaoFabric;
 import dao.instance.CommentDao;
-import model.CommentListModelBean;
-import model.CommentModel;
-import model.CommentSubmissionBean;
-import model.UserModelBean;
+import models.CommentModel;
 
 @ManagedBean
 @ApplicationScoped

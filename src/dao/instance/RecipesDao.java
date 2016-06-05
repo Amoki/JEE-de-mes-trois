@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.RecipeModelBean;
-import model.SearchRecipeBean;
+import beans.RecipeModelBean;
+import beans.SearchRecipeBean;
 
 public class RecipesDao {
 	private Connection connection;

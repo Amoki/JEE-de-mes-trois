@@ -1,10 +1,12 @@
-package model;
+package beans;
 
 import java.sql.Date;
 import java.util.Calendar;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+
+import models.CommentModel;
 
 @ManagedBean
 @RequestScoped
