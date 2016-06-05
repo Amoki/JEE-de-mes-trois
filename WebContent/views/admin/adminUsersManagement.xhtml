@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"  xmlns:c="http://java.sun.com/jstl/core"
-	
+	xmlns:f="http://java.sun.com/jsf/core"  
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 <body>
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
@@ -19,7 +19,7 @@
 				<p:dataTable id="userTable"
 					value="#{adminUserControlerBean.getAllUsers()}" var="user">
 					<p:column headerText="Name">
-						<h:outputText value="#{user.surname}" />
+						<h:outputText value="#{user.firstname}" />
 					</p:column>
 
 					<p:column headerText="Login">
@@ -48,7 +48,7 @@
 					rendered="#{adminUserControlerBean.selectedUser != null}">
 					<p:outputLabel value="Firstname: " />
 					<p:inputText id="firstName"
-						value="#{adminUserControlerBean.selectedUser.surname}"
+						value="#{adminUserControlerBean.selectedUser.firstname}"
 						required="true"
 						style="#{ component.valid ? ' ' : 'border-color:red;'}">
 						<f:validator validatorId="validators.username" />
