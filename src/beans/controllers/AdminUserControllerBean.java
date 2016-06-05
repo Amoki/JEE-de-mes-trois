@@ -38,13 +38,16 @@ public class AdminUserControllerBean extends UserControllerBean {
 	public void setIsNewUser(Boolean isNewUser) {
 		this.isNewUser = isNewUser;
 	}
-
+	
 	public String goToAdminUsersManagement(){
 		return "manageUsers.xhtml";
 	}
 	
 	public String goToAdminRecipesManagement(){
 		return "manageRecipes.xhtml";
+	}
+	public String goToAdminTypeManagement(){
+		return "manageTypes.xhtml";
 	}
 	
 	public String checkUser(LoginBean loginBean) {

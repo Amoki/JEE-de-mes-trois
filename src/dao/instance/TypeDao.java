@@ -1,14 +1,12 @@
 package dao.instance;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import beans.TypeModelBean;
-import beans.UserModelBean;
-import models.CommentModel;
+import models.TypeModelBean;
+
 
 public class TypeDao {
 	private Connection connection;
@@ -42,6 +40,42 @@ public class TypeDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public void update(TypeModelBean type) {
+		java.sql.PreparedStatement query;
+		try {
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			query = connection.prepareStatement("UPDATE INTO \"types\" SET name = ? WHERE id = ?");
+
+			query.setString(1, type.getName());
+			query.setInt(2, type.getId());
+			
+
+			query.execute();
+
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void delete(TypeModelBean type) {
+		java.sql.PreparedStatement query;
+		try {
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			query = connection.prepareStatement("DELETE FROM \"types\" WHERE id=?");
+
+			query.setInt(1, type.getId());
+			
+
+			query.execute();
+
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	public ArrayList<TypeModelBean> getAllTypes() {
 		ArrayList<TypeModelBean> typeList = new ArrayList<TypeModelBean>();

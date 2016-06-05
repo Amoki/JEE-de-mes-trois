@@ -2,6 +2,7 @@ package dao.fabric;
 
 import dao.instance.CommentDao;
 import dao.instance.RecipesDao;
+import dao.instance.TypeDao;
 import dao.instance.UserDao;
 
 public final class DaoFabric {
@@ -45,5 +46,10 @@ public final class DaoFabric {
 	public CommentDao createCommentDao(){
 		CommentDao commentDao = new CommentDao(DaoFabric.DB_HOST,DaoFabric.DB_PORT,DaoFabric.DB_NAME,DaoFabric.DB_USER,DaoFabric.DB_PWD);
 		return commentDao;
+	}
+	
+	public TypeDao createTypeDao(){
+		TypeDao typeDao = new TypeDao(DaoFabric.DB_HOST,DaoFabric.DB_PORT,DaoFabric.DB_NAME,DaoFabric.DB_USER,DaoFabric.DB_PWD);
+		return typeDao;
 	}
 }

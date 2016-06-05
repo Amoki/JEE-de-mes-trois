@@ -1,7 +1,6 @@
 
 package dao.instance;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class CommentDao {
 			query.setInt(2, comment.getUser().getId());
 			query.setInt(3, comment.getRate());
 			query.setString(4, comment.getContent());
-			query.setDate(5, (Date) comment.getDate());
+			query.setDate(5, comment.getDate());
 			
 
 			query.execute();
