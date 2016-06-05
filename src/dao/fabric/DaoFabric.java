@@ -21,11 +21,6 @@ public final class DaoFabric {
 		}
 	}
 	
-	/**
-	 * Méthode permettant de renvoyer une instance de la classe Singleton
-	 *
-	 * @return Retourne l'instance du singleton.
-	 */
 	public final static DaoFabric getInstance() {
 		if (DaoFabric.instance == null) {
 			synchronized (DaoFabric.class) {

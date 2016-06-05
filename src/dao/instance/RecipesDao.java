@@ -25,13 +25,10 @@ public class RecipesDao {
 	}
 
 	public void addRecipe(RecipeModelBean recipe) {
-		// Création de la requête
-		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("INSERT INTO recipes(title,description,expertise,duration,nbpeople,type) VALUES(?,?,?,?,?,?)");
+			java.sql.PreparedStatement query = connection.prepareStatement("INSERT INTO recipes(title,description,expertise,duration,nbpeople,type) VALUES(?,?,?,?,?,?)");
 
 			query.setString(1, recipe.getTitle());
 			query.setString(2,recipe.getDescription());
@@ -49,15 +46,11 @@ public class RecipesDao {
 	}
 
 	public ArrayList<RecipeModelBean> getAllRecipes() {
-		//return value
 		ArrayList<RecipeModelBean> recipeList=new ArrayList<RecipeModelBean>();
-		// Création de la requête
-		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("SELECT * FROM \"recipes\"");
+			java.sql.PreparedStatement query = connection.prepareStatement("SELECT * FROM \"recipes\"");
 
 			ResultSet res = query.executeQuery();
 
@@ -75,12 +68,8 @@ public class RecipesDao {
 	}
 
 	public ArrayList<RecipeModelBean> getSearchedRecipes(RecipeModelBean recipe) {
-		//return value
 		ArrayList<RecipeModelBean> recipeList=new ArrayList<RecipeModelBean>();
-		// Création de la requête
-		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
 			String querySQL = "SELECT * FROM recipes";
@@ -124,7 +113,7 @@ public class RecipesDao {
 				querySQL += "type='" + recipe.getType() + "' ";
 			}
 
-			query = connection.prepareStatement(querySQL);
+			java.sql.PreparedStatement query = connection.prepareStatement(querySQL);
 
 			ResultSet res = query.executeQuery();
 
@@ -142,13 +131,10 @@ public class RecipesDao {
 	}
 
 	public void delete(RecipeModelBean recipe) {
-		// Création de la requête
-		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("DELETE FROM \"recipes\" WHERE id=?");
+			java.sql.PreparedStatement query = connection.prepareStatement("DELETE FROM \"recipes\" WHERE id=?");
 
 			query.setInt(1, recipe.getIdRecipe());
 
@@ -161,13 +147,10 @@ public class RecipesDao {
 	}
 	
 	public void update(RecipeModelBean recipe) {
-		// Création de la requête
-		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("UPDATE \"recipes\" SET title=?,description=?,expertise=?,nbpeople=?,duration=?,type=? WHERE id=?");
+			java.sql.PreparedStatement query = connection.prepareStatement("UPDATE \"recipes\" SET title=?,description=?,expertise=?,nbpeople=?,duration=?,type=? WHERE id=?");
 
 			query.setString(1, recipe.getTitle());
 			query.setString(2, recipe.getDescription());

@@ -7,7 +7,6 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-//contrainte BEAN implements Serializable
 public class UserModelBean implements Serializable{
 	/**
 	 * 
@@ -21,7 +20,6 @@ public class UserModelBean implements Serializable{
 	private String pwd;
 	private boolean isAdmin;
 
-	//Contrainte BEAN constructeur sans paramètre
 	public UserModelBean() {
 	}
 

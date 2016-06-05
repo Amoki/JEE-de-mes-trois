@@ -25,10 +25,8 @@ public class UserDao {
 	}
 
 	public void addUser(UserModelBean user) {
-		// Création de la requête
 		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
 			query = connection.prepareStatement("INSERT INTO \"users\" (lastname,firstname,age,login,pwd,email) VALUES(?,?,?,?,?,?)");
@@ -49,15 +47,11 @@ public class UserDao {
 	}
 
 	public ArrayList<UserModelBean> getAllUser(){
-		//return value
 		ArrayList<UserModelBean> userList=new ArrayList<UserModelBean>();
-		// Création de la requête
-		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("SELECT * FROM \"users\"");
+			java.sql.PreparedStatement query = connection.prepareStatement("SELECT * FROM \"users\"");
 
 			ResultSet res = query.executeQuery();
 
@@ -82,15 +76,11 @@ public class UserDao {
 	}
 
 	public UserModelBean checkUser(String login, String pwd){
-		//return value
 		UserModelBean user = null;
-		// Création de la requête
-		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("SELECT * FROM \"users\" WHERE login=? AND pwd=?");
+			java.sql.PreparedStatement query = connection.prepareStatement("SELECT * FROM \"users\" WHERE login=? AND pwd=?");
 			query.setString(1, login);
 			query.setString(2, pwd);
 
@@ -110,13 +100,10 @@ public class UserDao {
 	}
 
 	public void update(UserModelBean user) {
-		// Création de la requête
-		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("UPDATE \"users\" SET lastname=?,surname=?,age=?,login=?,pwd=?,email=?,admin=? WHERE login=?");
+			java.sql.PreparedStatement query = connection.prepareStatement("UPDATE \"users\" SET lastname=?,surname=?,age=?,login=?,pwd=?,email=?,admin=? WHERE login=?");
 
 			query.setString(1, user.getLastname());
 			query.setString(2, user.getFirstname());
@@ -137,13 +124,10 @@ public class UserDao {
 	}
 
 	public void delete(UserModelBean user) {
-		// Création de la requête
-		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("DELETE FROM \"users\" WHERE login=?");
+			java.sql.PreparedStatement query = connection.prepareStatement("DELETE FROM \"users\" WHERE login=?");
 
 			query.setString(1, user.getLogin());
 

@@ -37,11 +37,9 @@ public class CommentControlerBean {
 			commentList.addCommentList(comment);
 		}		
 
-		//récupère l'espace de mémoire de JSF
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 
-		//place la liste de recette dans l'espace de mémoire de JSF
 		sessionMap.put("commentList", commentList);
 		return list;
 	} 	

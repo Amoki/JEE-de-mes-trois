@@ -58,7 +58,6 @@ public class AdminRecipeControlerBean extends RecipeControlerBean {
 	}
 	
 	public void updateRecipe(RecipeSubmissionModelBean recipe){
-		//TODO tests des valeurs des champs
 		this.recipeDao.update(recipe);
 	}
 

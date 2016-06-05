@@ -68,7 +68,6 @@ public class UserControlerBean {
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			Map<String, Object> sessionMap = externalContext.getSessionMap();
 			sessionMap.remove(LOGGED_LBL);
-			
 			nbUsers--;
 		}else{
 			

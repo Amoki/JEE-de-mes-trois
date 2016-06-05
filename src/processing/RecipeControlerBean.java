@@ -45,7 +45,6 @@ public class RecipeControlerBean {
 	}
 
 	public String addRecipe(RecipeSubmissionModelBean recipe){
-		//TODO testé les valeurs des champs
 		this.recipeDao.addRecipe(recipe);
 		return "successfulRegister.xhtml";
 	}
