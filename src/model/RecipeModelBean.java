@@ -8,6 +8,10 @@ import javax.faces.bean.ManagedProperty;
 
 public class RecipeModelBean implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7539195485588511241L;
 	private int idRecipe;
 	private String title;
 	private String description;

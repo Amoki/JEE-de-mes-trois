@@ -1,14 +1,11 @@
 package dao.instance;
 
 import java.sql.Connection;
-import java.sql.PseudoColumnUsage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dao.fabric.DaoFabric;
 import model.UserModelBean;
-import model.UserSubmissionModelBean;
 
 public class UserDao {
 	private Connection connection;
@@ -34,10 +31,10 @@ public class UserDao {
 			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("INSERT INTO users (lastname,surname,age,login,pwd,email) VALUES(?,?,?,?,?,?)");
+			query = connection.prepareStatement("INSERT INTO \"users\" (lastname,firstname,age,login,pwd,email) VALUES(?,?,?,?,?,?)");
 
 			query.setString(1, user.getLastname());
-			query.setString(2, user.getSurname());
+			query.setString(2, user.getFirstname());
 			query.setInt(3, user.getAge());
 			query.setString(4, user.getLogin());
 			query.setString(5, user.getPwd());
@@ -58,14 +55,22 @@ public class UserDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("SELECT * FROM users");
+			query = connection.prepareStatement("SELECT * FROM \"users\"");
 
 			ResultSet res = query.executeQuery();
 
 			while(res.next()){
-				userList.add(new UserModelBean(res.getString("lastname"),res.getString("surname"),res.getInt("age"),res.getString("login"),res.getString("pwd"),res.getString("email"),res.getBoolean("admin")));
+				userList.add(new UserModelBean(
+						res.getString("lastname"),
+						res.getString("firstname"),
+						res.getInt("age"),
+						res.getString("login"),
+						res.getString("pwd"),
+						res.getString("email"),
+						res.getBoolean("admin")
+				));
 			}		
 
 			res.close();
@@ -83,16 +88,16 @@ public class UserDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("SELECT * FROM users WHERE login=? AND pwd=?");
+			query = connection.prepareStatement("SELECT * FROM \"users\" WHERE login=? AND pwd=?");
 			query.setString(1, login);
 			query.setString(2, pwd);
 
 			ResultSet res = query.executeQuery();
 
 			if(res.next()){
-				user = new UserModelBean(res.getString("lastname"),res.getString("surname"),res.getInt("age"),res.getString("login"),res.getString("pwd"),res.getString("email"));
+				user = new UserModelBean(res.getString("lastname"),res.getString("firstname"),res.getInt("age"),res.getString("login"),res.getString("pwd"),res.getString("email"));
 				user.setIsAdmin(res.getBoolean("admin"));
 			}
 
@@ -109,12 +114,12 @@ public class UserDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("UPDATE users SET lastname=?,surname=?,age=?,login=?,pwd=?,email=?,admin=? WHERE login=?");
+			query = connection.prepareStatement("UPDATE \"users\" SET lastname=?,surname=?,age=?,login=?,pwd=?,email=?,admin=? WHERE login=?");
 
 			query.setString(1, user.getLastname());
-			query.setString(2, user.getSurname());
+			query.setString(2, user.getFirstname());
 			query.setInt(3, user.getAge());
 			query.setString(4, user.getLogin());
 			query.setString(5, user.getPwd());
@@ -136,9 +141,9 @@ public class UserDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("DELETE FROM users WHERE login=?");
+			query = connection.prepareStatement("DELETE FROM \"users\" WHERE login=?");
 
 			query.setString(1, user.getLogin());
 
@@ -148,30 +153,5 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-		UserDao dao = DaoFabric.getInstance().createUserDao();
-
-		UserModelBean user = new UserModelBean("test","test",0,"test","test","test");
-		dao.addUser(user);
-
-		user = dao.checkUser("test", "test");
-		System.out.println(user);
-
-		ArrayList<UserModelBean> users = dao.getAllUser();
-		
-		System.out.println(users);
-
-		user.setIsAdmin(true);
-		dao.update(user);
-		
-		user = dao.checkUser("test", "test");
-		System.out.println(user);
-		
-		dao.delete(user);
-		
-		user = dao.checkUser("test", "test");
-		System.out.println(user);
 	}
 }

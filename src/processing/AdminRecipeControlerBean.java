@@ -8,17 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import validators.EmailValidator;
-import validators.LoginValidator;
-import validators.UserNameValidator;
-import model.LoginBean;
 import model.RecipeListModelBean;
 import model.RecipeModelBean;
 import model.RecipeSubmissionModelBean;
-import model.SearchRecipeBean;
-import model.UserListModelBean;
-import model.UserModelBean;
-import model.UserSubmissionModelBean;
 
 @ManagedBean
 @ApplicationScoped
@@ -71,7 +63,6 @@ public class AdminRecipeControlerBean extends RecipeControlerBean {
 	}
 
 	public static void main(String[] args) {
-		AdminRecipeControlerBean controler = new AdminRecipeControlerBean();
 	}
 	
 	public void showPanel(RecipeModelBean recipe){

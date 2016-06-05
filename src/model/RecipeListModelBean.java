@@ -10,6 +10,10 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class RecipeListModelBean  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2786626726527644903L;
 	private List<RecipeModelBean> recipeList;
 	public RecipeListModelBean() {
 		recipeList=new ArrayList<RecipeModelBean>();

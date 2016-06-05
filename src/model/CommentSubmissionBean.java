@@ -9,6 +9,6 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class CommentSubmissionBean extends CommentModel {
 	public CommentSubmissionBean(){
-		this.setDate(new Date().toLocaleString());
+		this.setDate(new Date().toString());
 	}
 }

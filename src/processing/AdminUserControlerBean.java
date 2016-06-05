@@ -81,7 +81,7 @@ public class AdminUserControlerBean extends UserControlerBean {
 	}
 	
 	public void updateUser(UserSubmissionModelBean user){
-		if(user.getSurname().matches(UserNameValidator.USERNAME_PATTERN) 
+		if(user.getFirstname().matches(UserNameValidator.USERNAME_PATTERN) 
 				&& user.getLastname().matches(UserNameValidator.USERNAME_PATTERN) 
 				&& user.getEmail().matches(EmailValidator.EMAIL_PATTERN)
 				&& user.getLogin().matches(LoginValidator.LOGIN_PATTERN)

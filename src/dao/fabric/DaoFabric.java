@@ -6,16 +6,16 @@ import dao.instance.UserDao;
 
 public final class DaoFabric {
 	private static volatile DaoFabric instance = null;
-	private static final String DB_HOST = "crumiano.com";
-	private static final String DB_NAME = "cookme";
-	private static final String	DB_PORT = "3306";
-	private static final String DB_USER = "cookme";
-	private static final String DB_PWD = "IRC1417";
+	private static final String DB_HOST = "db-host";
+    private static final String DB_PORT = "5432";
+    private static final String DB_NAME = "jee";
+    private static final String DB_USER = "jee";
+    private static final String DB_PWD = "azerty";
 
 	private DaoFabric() {
 		super();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -38,17 +38,17 @@ public final class DaoFabric {
 	}
 	
 	public UserDao createUserDao() {
-		UserDao userDao = new UserDao(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
+		UserDao userDao = new UserDao(DaoFabric.DB_HOST,DaoFabric.DB_PORT,DaoFabric.DB_NAME,DaoFabric.DB_USER,DaoFabric.DB_PWD);
 		return userDao;
 	}
 	
 	public RecipesDao createRecipesDao(){
-		RecipesDao receipesDao = new RecipesDao(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
+		RecipesDao receipesDao = new RecipesDao(DaoFabric.DB_HOST,DaoFabric.DB_PORT,DaoFabric.DB_NAME,DaoFabric.DB_USER,DaoFabric.DB_PWD);
 		return receipesDao;
 	}
 	
 	public CommentDao createCommentDao(){
-		CommentDao commentDao = new CommentDao(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
+		CommentDao commentDao = new CommentDao(DaoFabric.DB_HOST,DaoFabric.DB_PORT,DaoFabric.DB_NAME,DaoFabric.DB_USER,DaoFabric.DB_PWD);
 		return commentDao;
 	}
 }

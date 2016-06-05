@@ -9,8 +9,12 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 //contrainte BEAN implements Serializable
 public class UserModelBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8913846021477010293L;
 	private String lastname;
-	private String surname;
+	private String firstname;
 	private int age;
 	private String email;
 	private String login;
@@ -21,10 +25,10 @@ public class UserModelBean implements Serializable{
 	public UserModelBean() {
 	}
 
-	public UserModelBean(String lastname,String surname,int age,String login,String pwd, String email)
+	public UserModelBean(String lastname,String firstname,int age,String login,String pwd, String email)
 	{
 		this.lastname = lastname;
-		this.surname = surname;
+		this.firstname = firstname;
 		this.age = age;
 		this.email = email;
 		this.login = login;
@@ -32,9 +36,9 @@ public class UserModelBean implements Serializable{
 		this.isAdmin = false;
 	}
 
-	public UserModelBean(String lastname,String surname,int age,String login,String pwd, String email,boolean admin) {
+	public UserModelBean(String lastname,String firstname,int age,String login,String pwd, String email,boolean admin) {
 		this.lastname = lastname;
-		this.surname = surname;
+		this.firstname = firstname;
 		this.age = age;
 		this.email = email;
 		this.login = login;
@@ -44,8 +48,8 @@ public class UserModelBean implements Serializable{
 
 	public String getLastname() {return lastname;}
 	public void setLastname(String lastname) { this.lastname = lastname;}
-	public String getSurname() { return surname;}
-	public void setSurname(String surname) {this.surname = surname;}
+	public String getFirstname() { return firstname;}
+	public void setFirstname(String firstname) {this.firstname = firstname;}
 	public int getAge() { return age;}
 	public void setAge(int age) {this.age = age;}
 	public String getEmail() {return email;}
@@ -59,6 +63,6 @@ public class UserModelBean implements Serializable{
 
 	@Override
 	public String toString() {
-		return "[SURNAME]:"+this.getSurname()+",[LASTNAME]:"+this.getLastname()+",[AGE]:"+this.getAge()+",[EMAIL]:"+this.getEmail()+",[LOGIN]:"+this.getLogin()+",[PWD]:"+this.getPwd()+",[EMAIL]:"+this.getEmail()+",[ISADMIN]:"+this.getIsAdmin();
+		return "[SURNAME]:"+this.getFirstname()+",[LASTNAME]:"+this.getLastname()+",[AGE]:"+this.getAge()+",[EMAIL]:"+this.getEmail()+",[LOGIN]:"+this.getLogin()+",[PWD]:"+this.getPwd()+",[EMAIL]:"+this.getEmail()+",[ISADMIN]:"+this.getIsAdmin();
 	}
 }

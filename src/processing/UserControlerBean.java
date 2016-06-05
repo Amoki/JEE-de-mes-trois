@@ -50,7 +50,7 @@ public class UserControlerBean {
 	}
 	
 	public String checkAndAddUser(UserSubmissionModelBean userSubmitted){
-		if(userSubmitted.getSurname().matches(UserNameValidator.USERNAME_PATTERN) 
+		if(userSubmitted.getFirstname().matches(UserNameValidator.USERNAME_PATTERN) 
 				&& userSubmitted.getLastname().matches(UserNameValidator.USERNAME_PATTERN) 
 				&& userSubmitted.getEmail().matches(EmailValidator.EMAIL_PATTERN)
 				&& userSubmitted.getLogin().matches(LoginValidator.LOGIN_PATTERN)

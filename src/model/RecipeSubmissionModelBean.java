@@ -6,6 +6,11 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped 
 public class RecipeSubmissionModelBean extends RecipeModelBean{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -378565738460467632L;
+
 	public RecipeSubmissionModelBean() { }
 	
 	public RecipeSubmissionModelBean(RecipeModelBean recipe){

@@ -1,18 +1,16 @@
 package model;
 
-import java.util.List;
-
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.NoneScoped;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @RequestScoped
 public class SearchRecipeBean extends RecipeModelBean{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5954392368745043064L;
 	public static final String ALL_VALUES_STRING="[ALL]";
 	public static final int ALL_VALUES_INT=0;
 	public static final int MIN_EXPERTISE_VALUE = 1;

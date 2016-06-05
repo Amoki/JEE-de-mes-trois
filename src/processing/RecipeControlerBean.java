@@ -6,18 +6,15 @@ import java.util.Map;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.NoneScoped;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import dao.fabric.DaoFabric;
+import dao.instance.RecipesDao;
 import model.RecipeListModelBean;
 import model.RecipeModelBean;
 import model.RecipeSubmissionModelBean;
 import model.SearchRecipeBean;
-import dao.fabric.DaoFabric;
-import dao.instance.RecipesDao;
 
 @ManagedBean
 @ApplicationScoped

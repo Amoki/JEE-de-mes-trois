@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dao.fabric.DaoFabric;
 import model.CommentModel;
 
 public class CommentDao {
@@ -29,10 +28,10 @@ public class CommentDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
 			// values (int recipe, String userLogin, String date, String detail, int rate)
-			query = connection.prepareStatement("INSERT INTO comments VALUES(?,?,?,?,?)");
+			query = connection.prepareStatement("INSERT INTO \"comments\" VALUES(?,?,?,?,?)");
 
 			query.setInt(1, comment.getRecipeId());
 			query.setString(2, comment.getUserLogin());
@@ -55,9 +54,9 @@ public class CommentDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("SELECT * FROM comments where recipeId =?");
+			query = connection.prepareStatement("SELECT * FROM \"comments\" where recipeId =?");
 			query.setInt(1, recipeId);
 			
 			ResultSet res = query.executeQuery();
@@ -73,54 +72,5 @@ public class CommentDao {
 		}
 
 		return commentList;
-	}
-	public static void main(String[] args) {
-		// Création de quelques commentaires de 2 méthodes différentes
-		System.out.println("Création des comments...");
-		CommentModel comment1 = new CommentModel(5, "JordanChase", "15/02/2017", "Recette DE GUEU LA CE", 1);
-		System.out.println(comment1);
-
-		CommentModel comment2 = new CommentModel(5, "Manio", "15/03/2021", "Je m'en suis mit plein le bide", 5);
-		System.out.println(comment2);
-		
-		CommentModel comment3 = new CommentModel(5, "Liarick", "21/01/1994", "PARFAIT !", 8);
-		System.out.println(comment3);
-		
-		CommentModel comment4 = new CommentModel(18, "Hellsjoke", "30/07/1954", "Vieillot !", 4);
-		System.out.println(comment4);
-		
-		
-		// Création de la Dao
-		System.out.println("Création de la Dao...");
-		CommentDao commentDao;
-		commentDao=DaoFabric.getInstance().createCommentDao();
-
-		System.out.println("Insertion 1... recipeId 5");
-		commentDao.addComment(comment1);
-		for (CommentModel cl: commentDao.getAllComment(5)){
-			System.out.println(cl);
-		}
-		
-		System.out.println("Insertion 2... recipeId 5");
-		commentDao.addComment(comment2);
-		for (CommentModel cl: commentDao.getAllComment(5)){
-			System.out.println(cl);
-		}
-		
-		System.out.println("Insertion 3... recipeId 5");
-		commentDao.addComment(comment3);
-		for (CommentModel cl: commentDao.getAllComment(5)){
-			System.out.println(cl);
-		}
-		
-		System.out.println("Insertion 4... recipeId 5");
-		commentDao.addComment(comment4);
-		for (CommentModel cl: commentDao.getAllComment(5)){
-			System.out.println(cl);
-		}
-		System.out.println("recipeId 18");
-		for (CommentModel cl: commentDao.getAllComment(18)){
-			System.out.println(cl);
-		}
 	}
 }

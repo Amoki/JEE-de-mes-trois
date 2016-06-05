@@ -10,6 +10,11 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class CommentListModelBean implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5480268938617067946L;
 	private List<CommentModel> commentList;
 	public CommentListModelBean() {
 		commentList=new ArrayList<CommentModel>();

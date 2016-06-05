@@ -8,6 +8,11 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped 
 public class UserSubmissionModelBean extends UserModelBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6042494618324288851L;
+
 	@Override
 	public void setPwd(String pwd) {
 		if(this.getPwd()!=null && !this.getPwd().equals(pwd)){
@@ -34,7 +39,7 @@ public class UserSubmissionModelBean extends UserModelBean implements Serializab
 	}
 
 	public UserSubmissionModelBean(UserModelBean user){
-		super(user.getLastname(),user.getSurname(),user.getAge(),user.getLogin(),user.getPwd(),user.getEmail());
+		super(user.getLastname(),user.getFirstname(),user.getAge(),user.getLogin(),user.getPwd(),user.getEmail());
 	}
 
 	public boolean getPasswordChanged() {

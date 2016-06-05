@@ -4,12 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import dao.fabric.DaoFabric;
 import model.RecipeModelBean;
 import model.SearchRecipeBean;
-import model.UserModelBean;
 
 public class RecipesDao {
 	private Connection connection;
@@ -32,7 +29,7 @@ public class RecipesDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
 			query = connection.prepareStatement("INSERT INTO recipes(title,description,expertise,duration,nbpeople,type) VALUES(?,?,?,?,?,?)");
 
@@ -58,9 +55,9 @@ public class RecipesDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("SELECT * FROM recipes");
+			query = connection.prepareStatement("SELECT * FROM \"recipes\"");
 
 			ResultSet res = query.executeQuery();
 
@@ -84,7 +81,7 @@ public class RecipesDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
 			String querySQL = "SELECT * FROM recipes";
 			boolean begin = true;
@@ -149,9 +146,9 @@ public class RecipesDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("DELETE FROM recipes WHERE idRecipe=?");
+			query = connection.prepareStatement("DELETE FROM \"recipes\" WHERE id=?");
 
 			query.setInt(1, recipe.getIdRecipe());
 
@@ -168,9 +165,9 @@ public class RecipesDao {
 		java.sql.PreparedStatement query;
 		try {
 			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("UPDATE recipes SET title=?,description=?,expertise=?,nbpeople=?,duration=?,type=? WHERE idRecipe=?");
+			query = connection.prepareStatement("UPDATE \"recipes\" SET title=?,description=?,expertise=?,nbpeople=?,duration=?,type=? WHERE id=?");
 
 			query.setString(1, recipe.getTitle());
 			query.setString(2, recipe.getDescription());
@@ -187,43 +184,5 @@ public class RecipesDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-		RecipesDao dao = DaoFabric.getInstance().createRecipesDao();
-
-		RecipeModelBean recipe = new RecipeModelBean("Tartiflette", "Du rebloch des patates et des lardons", 5, 30, 6, "Plat");
-		RecipeModelBean recipe1 = new RecipeModelBean("Cochon de lait", "Un bon dieu de cochon à la broche", 5, 480, 56, "Plat");
-		RecipeModelBean recipe2 = new RecipeModelBean("Tarte au pommes", "Des pommes de la compote et de la pate feuilleté", 5, 30, 6, "Dessert");
-
-		dao.addRecipe(recipe);
-		dao.addRecipe(recipe1);
-		dao.addRecipe(recipe2);
-
-		System.out.println(dao.getAllRecipes());
-		
-		System.out.println(dao.getSearchedRecipes(recipe));	
-		
-		ArrayList<RecipeModelBean> searchedRecipe = dao.getSearchedRecipes(recipe1);
-		System.out.println(searchedRecipe);
-		
-		searchedRecipe.get(0).setType("VIANDE");
-		
-		dao.update(searchedRecipe.get(0));
-		System.out.println(dao.getSearchedRecipes(recipe1));
-		
-		System.out.println(dao.getSearchedRecipes(recipe2));
-
-		SearchRecipeBean searchrecipe = new SearchRecipeBean();
-		searchrecipe.setType("Plat");
-		System.out.println(dao.getSearchedRecipes(searchrecipe).size());
-		
-		Iterator<RecipeModelBean> it = dao.getAllRecipes().iterator();
-		
-		while(it.hasNext()){
-			//dao.delete(it.next());
-		}
-
-		System.out.println(dao.getAllRecipes());
 	}
 }
