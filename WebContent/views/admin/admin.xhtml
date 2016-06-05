@@ -23,7 +23,7 @@
 					<p:inputText id="login" value="#{loginBean.login}" required="true" />
 						
 					<p:outputLabel value="Password :" />
-					<p:inputSecret id="password" value="#{loginBean.pwd}" required="true" />
+					<p:inputText id="password" type="password" value="#{loginBean.pwd}" required="true" />
 					
 					<h:commandButton value="Sign In" action="#{adminUserControllerBean.checkUser(loginBean)}"/>
 				
