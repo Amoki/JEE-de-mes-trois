@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.CommentModel;
+import model.UserModelBean;
 
 public class CommentDao {
 	private Connection connection;
@@ -30,7 +31,7 @@ public class CommentDao {
 			query = connection.prepareStatement("INSERT INTO \"comments\" VALUES(?,?,?,?,?)");
 
 			query.setInt(1, comment.getRecId());
-			query.setInt(2, comment.getUserId());
+			query.setInt(2, comment.getUser().getId());
 			query.setString(3, comment.getDate());
 			query.setString(4, comment.getDetail());
 			query.setInt(5, comment.getRate());
@@ -48,7 +49,7 @@ public class CommentDao {
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			java.sql.PreparedStatement query = connection.prepareStatement("SELECT * FROM \"comments\" where rec_id =?");
+			java.sql.PreparedStatement query = connection.prepareStatement("SELECT * FROM \"comments\" c INNER JOIN \"users\" u on c.user_id = u.id where c.rec_id =?");
 			query.setInt(1, recipeId);
 			
 			ResultSet res = query.executeQuery();
@@ -56,10 +57,18 @@ public class CommentDao {
 			while(res.next()){
 				commentList.add(new CommentModel(
 						res.getInt("rec_id"),
-						res.getInt("user_id"),
-						res.getString("date"),
-						res.getString("detail"),
-						res.getInt("rate")
+						new UserModelBean(
+								res.getString("lastname"),
+								res.getString("firstname"),
+								res.getInt("age"),
+								res.getString("login"),
+								res.getString("pwd"),
+								res.getString("email"),
+								res.getBoolean("admin")
+						),
+						res.getString("com_date"),
+						res.getString("content"),
+						res.getInt("rating")
 				));
 			}			
 			res.close();

@@ -8,11 +8,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import dao.fabric.DaoFabric;
+import dao.instance.CommentDao;
 import model.CommentListModelBean;
 import model.CommentModel;
 import model.CommentSubmissionBean;
-import dao.fabric.DaoFabric;
-import dao.instance.CommentDao;
+import model.UserModelBean;
 
 @ManagedBean
 @ApplicationScoped
@@ -23,9 +24,9 @@ public class CommentControlerBean {
 		this.commentDao=DaoFabric.getInstance().createCommentDao();
 	}
 
-	public void addComment(CommentSubmissionBean comment, int userId, int idRecipe){
-		comment.setRecId(idRecipe);
-		comment.setUserId(userId);
+	public void addComment(CommentSubmissionBean comment, UserModelBean user, int recId){
+		comment.setRecId(recId);
+		comment.setUser(user);
 		this.commentDao.addComment(comment);
 	}
 

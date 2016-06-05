@@ -2,16 +2,16 @@ package model;
 
 public class CommentModel{
 	private int recId;
-	private int userId;
+	private UserModelBean user;
 	private String date;
 	private String detail;
 	private int rate;
 	
 	public CommentModel(){}
 	
-	public CommentModel(int recId, int userId, String date, String detail, int rate){
+	public CommentModel(int recId, UserModelBean user, String date, String detail, int rate){
 		this.recId = recId;
-		this.userId = userId;
+		this.user = user;
 		this.date = date;
 		this.detail = detail;
 		this.rate = rate;
@@ -26,12 +26,12 @@ public class CommentModel{
 		this.recId = recId;
 	}
 
-	public int getUserId() {
-		return userId;
+	public UserModelBean getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(UserModelBean user) {
+		this.user = user;
 	}
 
 	public String getDate() {
@@ -52,6 +52,6 @@ public class CommentModel{
 
 	@Override
 	public String toString() {
-		return "[RECIPE_ID]:"+this.getRecId()+",[USER_LOGIN]:"+this.getUserId()+",[DATE]:"+this.getDate()+",[DETAIL]:"+this.getDetail()+",[RATE]:"+this.getRate();
+		return "[RECIPE_ID]:"+this.getRecId()+",[USER_LOGIN]:"+this.getUser().getFirstname()+",[DATE]:"+this.getDate()+",[DETAIL]:"+this.getDetail()+",[RATE]:"+this.getRate();
 	}
 }

@@ -12,13 +12,15 @@ public class UserModelBean implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -8913846021477010293L;
+	
+	private int id;
 	private String lastname;
 	private String firstname;
 	private int age;
 	private String email;
 	private String login;
 	private String pwd;
-	private boolean isAdmin;
+	private boolean admin;
 
 	public UserModelBean() {
 	}
@@ -31,7 +33,7 @@ public class UserModelBean implements Serializable{
 		this.email = email;
 		this.login = login;
 		this.pwd = pwd;
-		this.isAdmin = false;
+		this.admin = false;
 	}
 
 	public UserModelBean(String lastname,String firstname,int age,String login,String pwd, String email,boolean admin) {
@@ -41,9 +43,30 @@ public class UserModelBean implements Serializable{
 		this.email = email;
 		this.login = login;
 		this.pwd = pwd;
-		this.isAdmin = admin;
+		this.admin = admin;
+	}
+	
+	public UserModelBean(int id, String lastname,String firstname,int age,String login,String pwd, String email,boolean admin) {
+		this.id = id;
+		this.lastname = lastname;
+		this.firstname = firstname;
+		this.age = age;
+		this.email = email;
+		this.login = login;
+		this.pwd = pwd;
+		this.admin = admin;
+	}
+	public int getId() {
+		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.admin = isAdmin;
+	}
 	public String getLastname() {return lastname;}
 	public void setLastname(String lastname) { this.lastname = lastname;}
 	public String getFirstname() { return firstname;}
@@ -56,8 +79,8 @@ public class UserModelBean implements Serializable{
 	public void setLogin(String login) {this.login = login;}
 	public String getPwd() {return pwd;}
 	public void setPwd(String pwd) {this.pwd = pwd;}
-	public boolean getIsAdmin() {return this.isAdmin;	}
-	public void setIsAdmin(boolean isAdmin) {this.isAdmin = isAdmin;	}
+	public boolean getIsAdmin() {return this.admin;	}
+	public void setIsAdmin(boolean isAdmin) {this.admin = isAdmin;	}
 
 	@Override
 	public String toString() {
