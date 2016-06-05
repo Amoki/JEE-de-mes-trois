@@ -58,7 +58,7 @@ public class UserControllerBean {
 				&& userSubmitted.getPwd().equals(userSubmitted.getPwd2()))
 		{
 			this.userDao.addUser(userSubmitted);
-			return "home.xhtml";
+			return "/views/home.html";
 		}
 		return "";
 	}
