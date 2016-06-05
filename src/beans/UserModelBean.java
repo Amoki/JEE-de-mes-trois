@@ -73,9 +73,7 @@ public class UserModelBean implements Serializable{
 		this.id = id;
 	}
 
-	public void setAdmin(boolean isAdmin) {
-		this.admin = isAdmin;
-	}
+	
 	public String getLastname() {return lastname;}
 	public void setLastname(String lastname) { this.lastname = lastname;}
 	public String getFirstname() { return firstname;}
@@ -88,11 +86,12 @@ public class UserModelBean implements Serializable{
 	public void setLogin(String login) {this.login = login;}
 	public String getPwd() {return pwd;}
 	public void setPwd(String pwd) {this.pwd = pwd;}
-	public boolean getIsAdmin() {return this.admin;	}
-	public void setIsAdmin(boolean isAdmin) {this.admin = isAdmin;	}
+	
+	public boolean getAdmin() {return this.admin;	}
+	public void setAdmin(boolean admin) {this.admin = admin;}
 
 	@Override
 	public String toString() {
-		return "[SURNAME]:"+this.getFirstname()+",[LASTNAME]:"+this.getLastname()+",[AGE]:"+this.getAge()+",[EMAIL]:"+this.getEmail()+",[LOGIN]:"+this.getLogin()+",[PWD]:"+this.getPwd()+",[EMAIL]:"+this.getEmail()+",[ISADMIN]:"+this.getIsAdmin();
+		return "[SURNAME]:"+this.getFirstname()+",[LASTNAME]:"+this.getLastname()+",[AGE]:"+this.getAge()+",[EMAIL]:"+this.getEmail()+",[LOGIN]:"+this.getLogin()+",[PWD]:"+this.getPwd()+",[EMAIL]:"+this.getEmail()+",[ISADMIN]:"+this.getAdmin();
 	}
 }

@@ -96,7 +96,7 @@ public class UserDao {
 						res.getString("pwd"),
 						res.getString("email")
 				);
-				user.setIsAdmin(res.getBoolean("admin"));
+				user.setAdmin(res.getBoolean("admin"));
 			}
 
 			res.close();
@@ -119,7 +119,7 @@ public class UserDao {
 			query.setString(4, user.getLogin());
 			query.setString(5, user.getPwd());
 			query.setString(6, user.getEmail());
-			query.setBoolean(7, user.getIsAdmin());
+			query.setBoolean(7, user.getAdmin());
 
 			query.setString(8, user.getLogin());
 

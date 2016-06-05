@@ -53,7 +53,7 @@ public class AdminUserControllerBean extends UserControllerBean {
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		UserModelBean user = (UserModelBean) sessionMap.get(LOGGED_LBL);
 
-		if(user != null && !user.getIsAdmin()){
+		if(user != null && !user.getAdmin()){
 			sessionMap.remove(LOGGED_LBL);
 			sessionMap.put(ERROR_LBL, true);
 			return "admin.xhtml";
@@ -97,7 +97,7 @@ public class AdminUserControllerBean extends UserControllerBean {
 			this.userDao.delete(user);
 		}
 	}
-	
+
 	public void showPanel(UserModelBean user){
 		if(user != null){
 			isNewUser = false;
