@@ -88,6 +88,7 @@ public class UserDao {
 
 			if(res.next()){
 				user = new UserModelBean(
+						res.getInt("id"),
 						res.getString("lastname"),
 						res.getString("firstname"),
 						res.getInt("age"),

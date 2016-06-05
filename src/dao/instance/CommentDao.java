@@ -1,6 +1,7 @@
 
 package dao.instance;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,13 +29,14 @@ public class CommentDao {
 		java.sql.PreparedStatement query;
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
-			query = connection.prepareStatement("INSERT INTO \"comments\" VALUES(?,?,?,?,?)");
+			query = connection.prepareStatement("INSERT INTO \"comments\" (rec_id, user_id, rating, content, com_date) VALUES(?,?,?,?,?)");
 
 			query.setInt(1, comment.getRecId());
 			query.setInt(2, comment.getUser().getId());
-			query.setString(3, comment.getDate());
-			query.setString(4, comment.getDetail());
-			query.setInt(5, comment.getRate());
+			query.setInt(3, comment.getRate());
+			query.setString(4, comment.getContent());
+			query.setDate(5, (Date) comment.getDate());
+			
 
 			query.execute();
 
@@ -58,6 +60,7 @@ public class CommentDao {
 				commentList.add(new CommentModel(
 						res.getInt("rec_id"),
 						new UserModelBean(
+								res.getInt("user_id"),
 								res.getString("lastname"),
 								res.getString("firstname"),
 								res.getInt("age"),
@@ -66,7 +69,7 @@ public class CommentDao {
 								res.getString("email"),
 								res.getBoolean("admin")
 						),
-						res.getString("com_date"),
+						res.getDate("com_date"),
 						res.getString("content"),
 						res.getInt("rating")
 				));

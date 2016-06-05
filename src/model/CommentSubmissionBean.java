@@ -1,6 +1,7 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.Calendar;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -9,6 +10,6 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class CommentSubmissionBean extends CommentModel {
 	public CommentSubmissionBean(){
-		this.setDate(new Date().toString());
+		this.setDate(new Date(Calendar.getInstance().getTime().getTime()));
 	}
 }

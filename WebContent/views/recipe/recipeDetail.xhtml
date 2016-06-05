@@ -78,7 +78,7 @@
 					<!-- Liste des précédents commentaires incluant : icone + nom de la personne connecté -->
 					<h:form id="allComments">
 						<p:dataScroller
-							value="#{commentControllerBean.loadAllRecipeComments(selectedRecipe.idRecipe)}"
+							value="#{commentControllerBean.loadAllRecipeComments(selectedRecipe.recipeId)}"
 							var="comment" chunkSize="10">
 							<!-- En tête -->
 							<f:facet name="header">
@@ -89,13 +89,13 @@
 								columnClasses="user,date,comment,mark">
 								<p:outputPanel>
 									<i class="fa fa-user"></i>
-									<h:outputText value="#{comment.userLogin}" />
+									<h:outputText value="#{comment.user.login}" />
 								</p:outputPanel>
 								<p:outputPanel>
 									<h:outputText value="#{comment.date}" />
 								</p:outputPanel>
 								<p:outputPanel>
-									<h:outputText value="#{comment.detail}" />
+									<h:outputText value="#{comment.content}" />
 								</p:outputPanel>
 								<p:outputPanel>
 									<p:rating value="#{comment.rate}" readonly="true" />
@@ -110,13 +110,13 @@
 					<div class="ui-grid-row col-centered div-fillparent">
 						<!-- zone de saisie de texte -->
 						<p:inputTextarea rows="6" cols="33"
-							value="#{commentSubmissionBean.detail}" />
+							value="#{commentSubmissionBean.content}" />
 						<!-- zone de « rating » -->
 						<p:rating id="commentRate" value="#{commentSubmissionBean.rate}" />
 
 						<!-- bouton permettant de valider le commentaire -->
 						<p:commandButton value="Post your comment"
-							action="#{commentControllerBean.addComment(commentSubmissionBean,loggedUser.login, selectedRecipe.idRecipe)}">
+							action="#{commentControllerBean.addComment(commentSubmissionBean,loggedUser, selectedRecipe.recipeId)}">
 							<f:ajax render=":allComments" execute="@form" />
 						</p:commandButton>
 					</div>

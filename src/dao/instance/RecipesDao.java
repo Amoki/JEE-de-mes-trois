@@ -136,7 +136,7 @@ public class RecipesDao {
 
 			java.sql.PreparedStatement query = connection.prepareStatement("DELETE FROM \"recipes\" WHERE id=?");
 
-			query.setInt(1, recipe.getIdRecipe());
+			query.setInt(1, recipe.getRecipeId());
 
 			query.execute();
 
@@ -159,7 +159,7 @@ public class RecipesDao {
 			query.setInt(5, recipe.getDuration());
 			query.setString(6, recipe.getType());
 
-			query.setInt(7, recipe.getIdRecipe());
+			query.setInt(7, recipe.getRecipeId());
 
 			query.execute();
 
