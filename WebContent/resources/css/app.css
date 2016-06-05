@@ -53,3 +53,26 @@
 	padding: 15px;
 }
 
+.btn-yellow {
+	background-color: #F7DA64;
+}
+
+.btn-orange {
+	background-color: #FBA026;
+}
+
+.btn-red {
+	background-color: #EB6B56;
+}
+
+.btn-lightblue {
+	background-color: #54ACD2;
+}
+
+.btn-blue {
+	background-color: #2C82C9;
+}
+
+.btn-darkblue {
+	background-color: #2969B0;
+}
