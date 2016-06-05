@@ -26,7 +26,7 @@
 		<param-value>flick</param-value>
 	</context-param>
 	<welcome-file-list>
-		<welcome-file>views/menu.xhtml</welcome-file>
+		<welcome-file>views/home.xhtml</welcome-file>
 	</welcome-file-list>
 	<mime-mapping>
 		<extension>ttf</extension>

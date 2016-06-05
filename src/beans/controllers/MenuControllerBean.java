@@ -23,8 +23,8 @@ public class MenuControllerBean {
 	}
 	
 	public String goMenu(){
-		history.add("/views/menu.xhtml");
-		return "/views/menu.xhtml";
+		history.add("/views/home.xhtml");
+		return "/views/home.xhtml";
 	}
 	
 	public String goRegister(){
@@ -38,7 +38,7 @@ public class MenuControllerBean {
 			return history.pop();
 		}
 		else
-			return "/views/menu.xhtml";
+			return "/views/home.xhtml";
 	}
 
 	public String goTo(String string) {
