@@ -9,18 +9,18 @@
 <body>
 	<ui:composition>
 		<p:layout>
-			<p:layoutUnit position="west" size="200">
+			<p:layoutUnit class="grey" position="west" size="200">
 				<h1>
 					<ui:insert name="sectionTitle">Section Title</ui:insert>
 				</h1>
 			</p:layoutUnit>
-			<p:layoutUnit position="center">
+			<p:layoutUnit class="grey" position="center">
 				<h:form>
 					<p:messages id="messages" showDetail="true" autoUpdate="true"
 						closable="true" />
 				</h:form>
 			</p:layoutUnit>
-			<p:layoutUnit position="east" size="400">
+			<p:layoutUnit class="grey" position="east" size="400">
 				<h:form>
 					<h:panelGroup id="formLogin">
 						<h:panelGrid layout="block" rendered="#{loggedUser == null}">
