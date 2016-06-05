@@ -52,7 +52,7 @@
 								<!-- Bouton de retour -->
 								<div class="ui-grid-col-2">
 								<h:form>
-									<p:commandButton value="Back" ajax="false" action="#{menuControlerBean.goRecipes}"></p:commandButton>
+									<p:commandButton value="Back" ajax="false" action="#{menuControllerBean.goRecipes}"></p:commandButton>
 										</h:form>
 								</div>
 							</div>
@@ -78,7 +78,7 @@
 					<!-- Liste des précédents commentaires incluant : icone + nom de la personne connecté -->
 					<h:form id="allComments">
 						<p:dataScroller
-							value="#{commentControlerBean.loadAllRecipeComments(selectedRecipe.idRecipe)}"
+							value="#{commentControllerBean.loadAllRecipeComments(selectedRecipe.idRecipe)}"
 							var="comment" chunkSize="10">
 							<!-- En tête -->
 							<f:facet name="header">
@@ -116,7 +116,7 @@
 
 						<!-- bouton permettant de valider le commentaire -->
 						<p:commandButton value="Post your comment"
-							action="#{commentControlerBean.addComment(commentSubmissionBean,loggedUser.login, selectedRecipe.idRecipe)}">
+							action="#{commentControllerBean.addComment(commentSubmissionBean,loggedUser.login, selectedRecipe.idRecipe)}">
 							<f:ajax render=":allComments" execute="@form" />
 						</p:commandButton>
 					</div>

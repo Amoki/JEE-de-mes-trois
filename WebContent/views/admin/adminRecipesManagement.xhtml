@@ -16,30 +16,30 @@
 		<ui:define name="body">
 			<h:form>
 				<p:dataTable id="recipeTable"
-					value="#{adminRecipeControlerBean.getAllRecipes()}" var="recipe">
+					value="#{adminRecipeControllerBean.getAllRecipes()}" var="recipe">
 					<p:column headerText="Title">
 						<h:outputText value="#{recipe.title}" />
 					</p:column>
 					<p:column headerText=" ">
 						<p:commandButton value="Delete"
-							action="#{adminRecipeControlerBean.deleteRecipe(recipe)}"
+							action="#{adminRecipeControllerBean.deleteRecipe(recipe)}"
 							update="recipeTable" />
 						<p:commandButton value="Edit"
-							action="#{adminRecipeControlerBean.showPanel(recipe)}"
+							action="#{adminRecipeControllerBean.showPanel(recipe)}"
 							update="editForm" />
 					</p:column>
 				</p:dataTable>
 				<h:commandButton value="ADD" update="editForm"
-					action="#{adminRecipeControlerBean.showPanel(null)}" />
+					action="#{adminRecipeControllerBean.showPanel(null)}" />
 			</h:form>
 			<h:form id="editForm">
 				<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
-					rendered="#{adminRecipeControlerBean.selectedRecipe != null}">
+					rendered="#{adminRecipeControllerBean.selectedRecipe != null}">
 					<!-- Titre -->
 					<i class="icon-clock"></i>
 					<h:outputLabel value="Title: " />
 					<p:inputText id="title"
-						value="#{adminRecipeControlerBean.selectedRecipe.title}"
+						value="#{adminRecipeControllerBean.selectedRecipe.title}"
 						required="true">
 					</p:inputText>
 
@@ -48,7 +48,7 @@
 					<i class="icon-clock"></i>
 					<h:outputLabel value="Description: " />
 					<p:inputText id="description"
-						value="#{adminRecipeControlerBean.selectedRecipe.description}"
+						value="#{adminRecipeControllerBean.selectedRecipe.description}"
 						required="true">
 					</p:inputText>
 					<p:column colspan="3">
@@ -58,7 +58,7 @@
 							<h:outputLabel for="preparationDuration"
 								value="Preparation duration " />
 							<p:spinner id="preparationDuration"
-								value="#{adminRecipeControlerBean.selectedRecipe.duration}"
+								value="#{adminRecipeControllerBean.selectedRecipe.duration}"
 								min="0" stepFactor="5" />
 						</h:panelGrid>
 					</p:column>
@@ -69,7 +69,7 @@
 							<i class="fa fa-edit"></i>
 							<h:outputLabel for="cookExpertise" value="Cook expertise" />
 							<p:rating id="cookExpertise"
-								value="#{adminRecipeControlerBean.selectedRecipe.expertise}"
+								value="#{adminRecipeControllerBean.selectedRecipe.expertise}"
 								cancel="false">
 							</p:rating>
 						</h:panelGrid>
@@ -85,7 +85,7 @@
 								<h:outputLabel for="nbPeople" value="For how many people" />
 								<h:panelGrid columns="1" style="margin-bottom: 10px">
 									<p:inputText id="nbPeople"
-										value="#{adminRecipeControlerBean.selectedRecipe.nbpeople}" />
+										value="#{adminRecipeControllerBean.selectedRecipe.nbpeople}" />
 									<p:slider for="nbPeople" />
 								</h:panelGrid>
 							</h:panelGrid>
@@ -96,7 +96,7 @@
 								<i class="fa fa-circle"></i>
 								<h:outputLabel for="cookType" value="Cook type" />
 								<p:selectOneListbox id="cookType"
-									value="#{adminRecipeControlerBean.selectedRecipe.typeModel}" converter="typeConverter"
+									value="#{adminRecipeControllerBean.selectedRecipe.typeModel}" converter="typeConverter"
 									var="t" filter="true" filterMatchMode="contains">
 									<f:selectItems value="#{searchRecipeBean.types}" scrollHeight="40"
 										var="type" itemLabel="#{type.displayName}" itemValue="#{type}" />
@@ -110,10 +110,10 @@
 					<p:row>
 						<p:column colspan="6" style="text-align: center;">
 							<p:commandButton update=":editForm" value="Cancel"
-								action="#{adminRecipeControlerBean.hidePanel()}"
+								action="#{adminRecipeControllerBean.hidePanel()}"
 								immediate="true" />
 							<h:commandButton value="Save"
-								action="#{adminRecipeControlerBean.saveRecipe(adminRecipeControlerBean.selectedRecipe)}" />
+								action="#{adminRecipeControllerBean.saveRecipe(adminRecipeControllerBean.selectedRecipe)}" />
 						</p:column>
 					</p:row>
 

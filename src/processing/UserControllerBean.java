@@ -19,7 +19,7 @@ import dao.instance.UserDao;
 
 @ManagedBean
 @ApplicationScoped
-public class UserControlerBean {
+public class UserControllerBean {
 	protected static String LOGGED_LBL = "loggedUser";
 	protected static String ERROR_LBL = "connectionError";
 
@@ -30,7 +30,7 @@ public class UserControlerBean {
 		return nbUsers;
 	}
 
-	public UserControlerBean() {
+	public UserControllerBean() {
 		this.userDao=DaoFabric.getInstance().createUserDao();
 	}
 	

@@ -18,7 +18,7 @@ import model.UserSubmissionModelBean;
 
 @ManagedBean
 @ApplicationScoped
-public class AdminUserControlerBean extends UserControlerBean {
+public class AdminUserControllerBean extends UserControllerBean {
 	
 	public UserSubmissionModelBean selectedUser = null;
 	public Boolean isNewUser = false;
@@ -99,13 +99,13 @@ public class AdminUserControlerBean extends UserControlerBean {
 	}
 	
 	public static void main(String[] args) {
-		AdminUserControlerBean controler = new AdminUserControlerBean();
+		AdminUserControllerBean controller = new AdminUserControllerBean();
 		
 		UserSubmissionModelBean sub = new UserSubmissionModelBean("test","test", 10,"test","test","test@test.fr");
 		sub.setPwd2(sub.getPwd());
-		controler.checkAndAddUser(sub);
+		controller.checkAndAddUser(sub);
 		sub.setIsAdmin(true);
-		controler.updateUser(sub);
+		controller.updateUser(sub);
 	}
 	
 	public void showPanel(UserModelBean user){

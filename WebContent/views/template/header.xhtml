@@ -9,20 +9,26 @@
 <body>
 	<ui:composition>
 		<p:layout>
-			<p:layoutUnit position="west" size="500">
+			<p:layoutUnit position="west" size="200">
 				<h1>
-					<ui:insert name="sectionTitle">Default Section Title</ui:insert>
+					<ui:insert name="sectionTitle">Section Title</ui:insert>
 				</h1>
 			</p:layoutUnit>
-			<p:layoutUnit position="east" size="350">
+			<p:layoutUnit position="center">
 				<h:form>
-					<h:panelGroup id="idFormLogin">
+					<p:messages id="messages" showDetail="true" autoUpdate="true"
+						closable="true" />
+				</h:form>
+			</p:layoutUnit>
+			<p:layoutUnit position="east" size="400">
+				<h:form>
+					<h:panelGroup id="formLogin">
 						<h:panelGrid layout="block" rendered="#{loggedUser == null}">
 							<h:panelGrid columns="2">
 								<p:commandButton ajax="false"
-									action="#{menuControlerBean.goRegister}"
+									action="#{menuControllerBean.goRegister}"
 									icon="ui-icon-plusthick" />
-								<p:outputLabel value="Become a member" />
+								<p:outputLabel value="Sign up!" />
 							</h:panelGrid>
 							<h:panelGrid columns="2">
 								<p:outputLabel value="Login: " />
@@ -32,25 +38,19 @@
 								<p:password id="userPwd" value="#{loginBean.pwd}"
 									required="true"></p:password>
 								<p:commandButton type="submit" icon="ui-icon-arrow-1-e"
-									action="#{userControlerBean.checkUser(loginBean)}" update="idFormLogin"/>
+									action="#{userControllerBean.checkUser(loginBean)}" update="formLogin"/>
 							</h:panelGrid>
 						</h:panelGrid>
 						<h:panelGrid columns="1" rendered="#{loggedUser != null}">
 							<p:outputLabel value="Welcome #{loggedUser.login}" />
 							<p:outputLabel
-								value="#{userControlerBean.nbUsers} user(s) already connected" />
+								value="#{userControllerBean.nbUsers} user(s) already connected" />
 							<p:commandButton icon="ui-icon-arrow-1-w"
-								action="#{userControlerBean.logout(loggedUser)}">
-								<f:ajax render="idFormLogin" execute="@form" />
+								action="#{userControllerBean.logout(loggedUser)}">
+								<f:ajax render="formLogin" execute="@form" />
 							</p:commandButton>
 						</h:panelGrid>
 					</h:panelGroup>
-				</h:form>
-			</p:layoutUnit>
-			<p:layoutUnit position="center">
-				<h:form>
-					<p:messages id="messages" showDetail="true" autoUpdate="true"
-						closable="true" />
 				</h:form>
 			</p:layoutUnit>
 		</p:layout>

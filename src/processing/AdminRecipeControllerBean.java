@@ -14,7 +14,7 @@ import model.RecipeSubmissionModelBean;
 
 @ManagedBean
 @ApplicationScoped
-public class AdminRecipeControlerBean extends RecipeControlerBean {
+public class AdminRecipeControllerBean extends RecipeControllerBean {
 
 	public RecipeSubmissionModelBean selectedRecipe = null;
 	public Boolean isNewRecipe = false;

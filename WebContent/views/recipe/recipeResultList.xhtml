@@ -17,7 +17,7 @@
 		<ui:define name="body">
 			<h:form id="form">
 				<p:commandButton value="Back" ajax="false"
-					action="#{menuControlerBean.goRecipes}"></p:commandButton>
+					action="#{menuControllerBean.goRecipes}"></p:commandButton>
 				<p:dataGrid var="recipe" value="#{recipeList.getRecipeList()}"
 					columns="3" layout="grid" rows="12" paginator="true" id="recipes"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -38,7 +38,7 @@
 						</h:panelGrid>
 						<h:panelGrid columns="1" cellpadding="5" layout="block">
 							<h:commandLink
-								action="#{recipeControlerBean.displayRecipeDetail(recipe)}">
+								action="#{recipeControllerBean.displayRecipeDetail(recipe)}">
 								<h:outputText value="#{recipe.title}" />
 							</h:commandLink>
 							<h:outputText value="#{recipe.description}" />

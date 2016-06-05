@@ -6,9 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean(name="menuControlerBean")
+@ManagedBean(name="menuControllerBean")
 @ApplicationScoped
-public class MenuControlerBean {
+public class MenuControllerBean {
 	
 	private Stack<String> history;
 	

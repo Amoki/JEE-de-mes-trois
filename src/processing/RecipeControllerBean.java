@@ -18,17 +18,17 @@ import model.SearchRecipeBean;
 
 @ManagedBean
 @ApplicationScoped
-public class RecipeControlerBean {
+public class RecipeControllerBean {
 	protected RecipesDao recipeDao;
 	
-	@ManagedProperty(value="#{menuControlerBean}")
-	private MenuControlerBean menuControlerBean;
+	@ManagedProperty(value="#{menuControllerBean}")
+	private MenuControllerBean menuControllerBean;
 	
-	public void setMenuControlerBean(MenuControlerBean menuControlerBean) {
-		this.menuControlerBean = menuControlerBean;
+	public void setMenuControllerBean(MenuControllerBean menuControllerBean) {
+		this.menuControllerBean = menuControllerBean;
 	}
 
-	public RecipeControlerBean() {
+	public RecipeControllerBean() {
 		this.recipeDao=DaoFabric.getInstance().createRecipesDao();
 	}
 
@@ -60,7 +60,7 @@ public class RecipeControlerBean {
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		sessionMap.put("recipeList", recipeList);
 		
-		return menuControlerBean.goTo("/views/recipe/recipeResultList.xhtml");
+		return menuControllerBean.goTo("/views/recipe/recipeResultList.xhtml");
 	}
 	
 	public String displayRecipeDetail(RecipeModelBean recipe){
@@ -68,6 +68,6 @@ public class RecipeControlerBean {
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		sessionMap.put("selectedRecipe", recipe);
 		
-		return menuControlerBean.goTo("/views/recipe/recipeDetail.xhtml");
+		return menuControllerBean.goTo("/views/recipe/recipeDetail.xhtml");
 	}
 }

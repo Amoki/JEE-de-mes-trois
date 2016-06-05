@@ -17,7 +17,7 @@
 		<ui:define name="body">
 			<h:form>
 				<p:dataTable id="userTable"
-					value="#{adminUserControlerBean.getAllUsers()}" var="user">
+					value="#{adminUserControllerBean.getAllUsers()}" var="user">
 					<p:column headerText="Name">
 						<h:outputText value="#{user.firstname}" />
 					</p:column>
@@ -32,50 +32,50 @@
 
 					<p:column headerText=" ">
 						<p:commandButton value="Delete"
-							action="#{adminUserControlerBean.deleteUser(user)}"
+							action="#{adminUserControllerBean.deleteUser(user)}"
 							update="userTable" />
 						<p:commandButton value="Edit"
-							action="#{adminUserControlerBean.showPanel(user)}"
+							action="#{adminUserControllerBean.showPanel(user)}"
 							update="editForm" />
 					</p:column>
 				</p:dataTable>
 				<h:commandButton value="ADD" update="editForm"
-					action="#{adminUserControlerBean.showPanel(null)}" />
+					action="#{adminUserControllerBean.showPanel(null)}" />
 			</h:form>
 
 			<h:form id="editForm">
 				<h:panelGrid columns="2" cellpadding="15" layout="block"
-					rendered="#{adminUserControlerBean.selectedUser != null}">
+					rendered="#{adminUserControllerBean.selectedUser != null}">
 					<p:outputLabel value="Firstname: " />
 					<p:inputText id="firstName"
-						value="#{adminUserControlerBean.selectedUser.firstname}"
+						value="#{adminUserControllerBean.selectedUser.firstname}"
 						required="true"
 						style="#{ component.valid ? ' ' : 'border-color:red;'}">
 						<f:validator validatorId="validators.username" />
 					</p:inputText>
 					<p:outputLabel value="Lastname: " />
 					<p:inputText id="lastName"
-						value="#{adminUserControlerBean.selectedUser.lastname}"
+						value="#{adminUserControllerBean.selectedUser.lastname}"
 						required="true"
 						style="#{ component.valid ? ' ' : 'border-color:red;'}">
 						<f:validator validatorId="validators.username" />
 					</p:inputText>
 					<p:outputLabel value="Age: " />
 					<p:inputText id="age"
-						value="#{adminUserControlerBean.selectedUser.age}" required="true"
+						value="#{adminUserControllerBean.selectedUser.age}" required="true"
 						style="#{ component.valid ? ' ' : 'border-color:red;'}">
 						<f:validator validatorId="validators.age" />
 					</p:inputText>
 					<p:outputLabel value="Email: " />
 					<p:inputText label="Email: " id="email"
-						value="#{adminUserControlerBean.selectedUser.email}"
+						value="#{adminUserControllerBean.selectedUser.email}"
 						required="true"
 						style="#{ component.valid ? ' ' : 'border-color:red;'}">
 						<f:validator validatorId="validators.email" />
 					</p:inputText>
 					<p:outputLabel value="Login: " />
 					<p:inputText id="login"
-						value="#{adminUserControlerBean.selectedUser.login}"
+						value="#{adminUserControllerBean.selectedUser.login}"
 						required="true"
 						style="#{ component.valid ? ' ' : 'border-color:red;'}">
 						<f:validator validatorId="validators.login" />
@@ -83,26 +83,26 @@
 
 					<p:outputLabel value="Password: " />
 					<p:password id="password"
-						value="#{adminUserControlerBean.selectedUser.pwd}"
+						value="#{adminUserControllerBean.selectedUser.pwd}"
 						style="#{ component.valid ? ' ' : 'border-color:red;'}">
-						    <c:if test="#{adminUserControlerBean.isNewUser}">
+						    <c:if test="#{adminUserControllerBean.isNewUser}">
 						    	<f:attribute name="match" value="password2"/>
 						    </c:if>
 					</p:password>
 					
 					<p:outputLabel value="Confirm: " />
 					<p:password id="password2"
-						value="#{adminUserControlerBean.selectedUser.pwd2}"
+						value="#{adminUserControllerBean.selectedUser.pwd2}"
 						style="#{ component.valid ? '' : 'border-color:red;'}">
 
 					</p:password>
 					<h:outputText value="Admin: " />
 					<p:selectBooleanCheckbox
-						value="#{adminUserControlerBean.selectedUser.isAdmin}" />
+						value="#{adminUserControllerBean.selectedUser.isAdmin}" />
 					<p:commandButton update=":editForm" value="Cancel"
-						action="#{adminUserControlerBean.hidePanel()}" immediate="true" />
+						action="#{adminUserControllerBean.hidePanel()}" immediate="true" />
 					<h:commandButton value="Save"
-						action="#{adminUserControlerBean.saveUser(adminUserControlerBean.selectedUser)}" />
+						action="#{adminUserControllerBean.saveUser(adminUserControllerBean.selectedUser)}" />
 				</h:panelGrid>
 			</h:form>
 		</ui:define>

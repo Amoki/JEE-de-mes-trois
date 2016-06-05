@@ -17,10 +17,10 @@ import model.UserModelBean;
 
 @ManagedBean
 @ApplicationScoped
-public class CommentControlerBean {
+public class CommentControllerBean {
 	private CommentDao commentDao;
 
-	public CommentControlerBean() {
+	public CommentControllerBean() {
 		this.commentDao=DaoFabric.getInstance().createCommentDao();
 	}
 
