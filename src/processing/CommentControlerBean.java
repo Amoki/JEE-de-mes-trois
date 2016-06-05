@@ -23,9 +23,9 @@ public class CommentControlerBean {
 		this.commentDao=DaoFabric.getInstance().createCommentDao();
 	}
 
-	public void addComment(CommentSubmissionBean comment, String loginUser, int idRecipe){
-		comment.setRecipeId(idRecipe);
-		comment.setUserLogin(loginUser);
+	public void addComment(CommentSubmissionBean comment, int userId, int idRecipe){
+		comment.setRecId(idRecipe);
+		comment.setUserId(userId);
 		this.commentDao.addComment(comment);
 	}
 

@@ -24,17 +24,13 @@ public class CommentDao {
 	}
 
 	public void addComment(CommentModel comment) {
-		// Création de la requête
 		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
-
-			// values (int recipe, String userLogin, String date, String detail, int rate)
 			query = connection.prepareStatement("INSERT INTO \"comments\" VALUES(?,?,?,?,?)");
 
-			query.setInt(1, comment.getRecipeId());
-			query.setString(2, comment.getUserLogin());
+			query.setInt(1, comment.getRecId());
+			query.setInt(2, comment.getUserId());
 			query.setString(3, comment.getDate());
 			query.setString(4, comment.getDetail());
 			query.setInt(5, comment.getRate());
@@ -49,21 +45,22 @@ public class CommentDao {
 
 	public ArrayList<CommentModel> getAllComment(int recipeId) {
 		ArrayList<CommentModel> commentList=new ArrayList<CommentModel>();
-		
-		// Création de la requête
-		java.sql.PreparedStatement query;
 		try {
-			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 
-			query = connection.prepareStatement("SELECT * FROM \"comments\" where recipeId =?");
+			java.sql.PreparedStatement query = connection.prepareStatement("SELECT * FROM \"comments\" where rec_id =?");
 			query.setInt(1, recipeId);
 			
 			ResultSet res = query.executeQuery();
 
 			while(res.next()){
-				commentList.add(new CommentModel(res.getInt("recipeId"), res.getString("userLogin"),
-										res.getString("date"), res.getString("detail"), res.getInt("rate")));
+				commentList.add(new CommentModel(
+						res.getInt("rec_id"),
+						res.getInt("user_id"),
+						res.getString("date"),
+						res.getString("detail"),
+						res.getInt("rate")
+				));
 			}			
 			res.close();
 			connection.close();
