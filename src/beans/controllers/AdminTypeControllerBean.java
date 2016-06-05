@@ -42,7 +42,7 @@ public class AdminTypeControllerBean extends TypeControllerBean {
 		}
 	}
 
-	public ArrayList<TypeModelBean> getAllRecipes(){
+	public ArrayList<TypeModelBean> getAllTypes(){
 		ArrayList<TypeModelBean> list = this.typeDao.getAllTypes();
 		TypeListModelBean typeList = new TypeListModelBean();
 
@@ -76,7 +76,7 @@ public class AdminTypeControllerBean extends TypeControllerBean {
 		setSelectedType(null);
 	}
 	
-	public void saveRecipe(TypeSubmissionModelBean typeSubmissionModelBean){
+	public void saveType(TypeSubmissionModelBean typeSubmissionModelBean){
 		if(isNewType){
 			addType(typeSubmissionModelBean);
 		}

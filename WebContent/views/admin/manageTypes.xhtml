@@ -16,14 +16,14 @@
 		<ui:define name="body">
 			<h:form>
 				<p:dataTable id="typeTable"
-					value="#{adminTypeControllerBean.getAlltypes()}" var="type">
+					value="#{adminTypeControllerBean.getAllTypes()}" var="type">
 					<p:column headerText="Name">
 						<h:outputText value="#{type.name}" />
 					</p:column>
 					<p:column headerText=" ">
 						<p:commandButton value="Delete"
 							action="#{adminTypeControllerBean.deleteType(type)}"
-							update="recipeTable" />
+							update="typeTable" />
 						<p:commandButton value="Edit"
 							action="#{adminTypeControllerBean.showPanel(type)}"
 							update="editForm" />
