@@ -50,21 +50,6 @@
 								</p:panelGrid>
 							</h:panelGrid>
 						</p:column>
-						<p:column colspan="3">
-							<h:panelGrid columns="3">
-								<h:outputLabel for="cookType" value="Cook type" />
-								<h:panelGrid>
-									<p:selectOneMenu id="console" converter="typeConverter" var="t"
-										value="#{searchRecipeBean.typeModel}" style="width:125px">
-										<f:selectItems value="#{searchRecipeBean.types}" var="type"
-											itemLabel="#{type.displayName}" itemValue="#{type}" />
-										<p:column>
-											<h:outputText value="#{t.displayName}" />
-										</p:column>
-									</p:selectOneMenu>
-								</h:panelGrid>
-							</h:panelGrid>
-						</p:column>
 					</p:row>
 					<p:row>
 						<p:column colspan="6" style="text-align: center;">

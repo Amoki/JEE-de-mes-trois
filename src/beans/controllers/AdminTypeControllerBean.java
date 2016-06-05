@@ -9,8 +9,8 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import beans.TypeListModelBean;
+import beans.TypeModelBean;
 import beans.TypeSubmissionModelBean;
-import models.TypeModelBean;
 
 @ManagedBean
 @ApplicationScoped

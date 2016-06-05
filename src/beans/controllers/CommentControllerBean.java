@@ -9,11 +9,11 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import beans.CommentListModelBean;
+import beans.CommentModel;
 import beans.CommentSubmissionBean;
 import beans.UserModelBean;
 import dao.fabric.DaoFabric;
 import dao.instance.CommentDao;
-import models.CommentModel;
 
 @ManagedBean
 @ApplicationScoped

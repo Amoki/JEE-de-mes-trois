@@ -6,8 +6,6 @@ import java.util.Calendar;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import models.CommentModel;
-
 @ManagedBean
 @RequestScoped
 public class CommentSubmissionBean extends CommentModel {
