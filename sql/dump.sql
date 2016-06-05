@@ -1,194 +1,329 @@
--- MySQL dump 10.13  Distrib 5.5.38, for debian-linux-gnu (i686)
 --
--- Host: db-tp.cpe.fr    Database: binome19
--- ------------------------------------------------------
--- Server version	5.5.46-0+deb8u1
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Current Database: `binome19`
+-- PostgreSQL database dump
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `binome19` /*!40100 DEFAULT CHARACTER SET latin1 */;
+-- Dumped from database version 9.5.2
+-- Dumped by pg_dump version 9.5.1
 
-USE `binome19`;
+-- Started on 2016-06-05 15:08:22
 
---
--- Table structure for table `DB_PM`
---
-
-DROP TABLE IF EXISTS `DB_PM`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `DB_PM` (
-  `Login` varchar(100) DEFAULT NULL,
-  `Password` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
 
 --
--- Dumping data for table `DB_PM`
+-- TOC entry 1 (class 3079 OID 12360)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
-LOCK TABLES `DB_PM` WRITE;
-/*!40000 ALTER TABLE `DB_PM` DISABLE KEYS */;
-/*!40000 ALTER TABLE `DB_PM` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
 
 --
--- Table structure for table `DB_Recipe`
+-- TOC entry 2138 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
 
-DROP TABLE IF EXISTS `DB_Recipe`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `DB_Recipe` (
-  `title` varchar(100) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `expertise` mediumint(9) DEFAULT NULL,
-  `duration` mediumint(9) DEFAULT NULL,
-  `nbpeople` mediumint(9) DEFAULT NULL,
-  `type` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
 
 --
--- Dumping data for table `DB_Recipe`
+-- TOC entry 186 (class 1259 OID 26326)
+-- Name: comments; Type: TABLE; Schema: public; Owner: jee
 --
 
-LOCK TABLES `DB_Recipe` WRITE;
-/*!40000 ALTER TABLE `DB_Recipe` DISABLE KEYS */;
-INSERT INTO `DB_Recipe` VALUES ('Fish Salad','bla bla bal bla',5,180,10,'salad'),('Fresh Meat','bla bla bal bla',1,20,1,'meat'),('Fish Salad','bla bla bal bla',5,180,10,'salad'),('Fresh Meat','bla bla bal bla',1,20,1,'meat'),('Fish Salad','bla bla bal bla',5,180,10,'salad'),('Fresh Meat','bla bla bal bla',1,20,1,'meat'),('Fish Salad','bla bla bal bla',5,180,10,'salad'),('Fresh Meat','bla bla bal bla',1,20,1,'meat'),('Fish Salad','bla bla bal bla',5,180,10,'salad'),('Fresh Meat','bla bla bal bla',1,20,1,'meat'),('kjhkhk','lkojm',45,32,65,'fiuhgjd'),('kjhkhk','lkojm',45,32,65,'fiuhgjd'),('kjhkhk','lkojm',45,32,65,'fiuhgjd'),('kjhkhk','lkojm',45,32,65,'fiuhgjd'),('olivier','lkojm',45,32,65,'fiuhgjd'),('loic','lkojm',45,32,65,'fiuhgjd'),('bebe','sais',2,2,2,'je '),('bebe','sais',2,2,2,'je '),('bnbnbn','ghjkl',14,14,14,'gigigi'),('xcxcxc','xcxc',4,6,5,'xcxcxc'),('gfgffg','gffgf',4,4,4,'fgfgf'),('gfgffg','gffgf',4,4,4,'fgfgf'),('gfgffg','gffgf',4,4,4,'fgfgf');
-/*!40000 ALTER TABLE `DB_Recipe` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE TABLE comments (
+    id integer NOT NULL,
+    rec_id integer,
+    user_id integer,
+    rating integer,
+    content character varying(255),
+    com_date timestamp without time zone
+);
+
+
+ALTER TABLE comments OWNER TO jee;
 
 --
--- Table structure for table `DB_WEBDYN`
+-- TOC entry 185 (class 1259 OID 26324)
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: jee
 --
 
-DROP TABLE IF EXISTS `DB_WEBDYN`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `DB_WEBDYN` (
-  `surname` varchar(20) DEFAULT NULL,
-  `lastname` varchar(20) DEFAULT NULL,
-  `age` tinyint(4) DEFAULT NULL,
-  `login` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `pwd` varchar(8) CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE SEQUENCE comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE comments_id_seq OWNER TO jee;
 
 --
--- Dumping data for table `DB_WEBDYN`
+-- TOC entry 2139 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jee
 --
 
-LOCK TABLES `DB_WEBDYN` WRITE;
-/*!40000 ALTER TABLE `DB_WEBDYN` DISABLE KEYS */;
-INSERT INTO `DB_WEBDYN` VALUES ('lolo','gogo',25,'lili','3535'),('olol','thithi',24,'oyéoyé','pdpd'),('chien','chatte',2,'Olivier','lap'),('pipi','caca',1,'coco','ococ'),('Olivier','mange',1,'fruit','parjour'),('mange','Olivier',1,'fruit','parjour'),('mange','Olivier',1,'fruit','parjour'),('mange','Olivier',1,'bite','parjour'),('fdfddf','fdfdffdf',5,'dfdf','dfdffdfd'),('gtrg','rgtr',23,'gfdgdhg','fgfduj'),('John','Doe',55,'jdoe','pwd'),('John','Doe',55,'jdoe','pwd'),('John','Doe',55,'jdoe','pwd'),('John','Doe',55,'jdoe','pwd'),('John','Doe',55,'jdoe','pwd'),('John','Doe',55,'jdoe','pwd'),('titi','jojo',23,'titidu73','hanouna'),('titi','jojo',23,'titidu73','hanouna'),('titi','jojo',23,'titidu73','hanouna'),('titi','jojo',23,'titidu73','hanouna'),('titi','jojo',23,'titidu73','hanouna'),('titi','jojo',23,'titidu73','hanouna'),('titi','jojo',23,'titidu73','hanouna');
-/*!40000 ALTER TABLE `DB_WEBDYN` ENABLE KEYS */;
-UNLOCK TABLES;
+ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
+
 
 --
--- Table structure for table `comments`
+-- TOC entry 184 (class 1259 OID 26315)
+-- Name: recipes; Type: TABLE; Schema: public; Owner: jee
 --
 
-DROP TABLE IF EXISTS `comments`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `comments` (
-  `recipeId` int(11) NOT NULL,
-  `userLogin` varchar(100) NOT NULL,
-  `date` char(50) NOT NULL,
-  `detail` varchar(200) NOT NULL,
-  `rate` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE recipes (
+    id integer NOT NULL,
+    title character varying(255),
+    description character varying(2048),
+    summary character varying(255),
+    type character varying(255),
+    expertise integer,
+    duration integer,
+    nbpeople integer,
+    img character varying(255)
+);
+
+
+ALTER TABLE recipes OWNER TO jee;
 
 --
--- Dumping data for table `comments`
+-- TOC entry 183 (class 1259 OID 26313)
+-- Name: recipes_id_seq; Type: SEQUENCE; Schema: public; Owner: jee
 --
 
-LOCK TABLES `comments` WRITE;
-/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (0,'thebg','24 mai 2016 17:49:36','ssss',5),(80,'liarick','25 mai 2016 10:27:53','mouhahahahaha',4),(80,'jordan','25 mai 2016 11:18:41','toto',4);
-/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE SEQUENCE recipes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE recipes_id_seq OWNER TO jee;
 
 --
--- Table structure for table `recipes`
+-- TOC entry 2140 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: recipes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jee
 --
 
-DROP TABLE IF EXISTS `recipes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `recipes` (
-  `title` varchar(50) NOT NULL,
-  `description` text NOT NULL,
-  `expertise` int(11) NOT NULL,
-  `nbpeople` int(11) NOT NULL,
-  `duration` int(11) NOT NULL,
-  `type` varchar(50) NOT NULL,
-  `idRecipe` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`idRecipe`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+ALTER SEQUENCE recipes_id_seq OWNED BY recipes.id;
+
 
 --
--- Dumping data for table `recipes`
+-- TOC entry 182 (class 1259 OID 26302)
+-- Name: users; Type: TABLE; Schema: public; Owner: jee
 --
 
-LOCK TABLES `recipes` WRITE;
-/*!40000 ALTER TABLE `recipes` DISABLE KEYS */;
-INSERT INTO `recipes` VALUES ('Tartiflette','Du rebloch des patates et des lardons',5,6,30,'Reblochon',79),('Cochon de lait','Un bon dieu de cochon à la broche',5,56,480,'Meat',80),('Tarte au pommes','Des pommes de la compote et de la pate feuilleté',5,6,30,'Dessert',81);
-/*!40000 ALTER TABLE `recipes` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE TABLE users (
+    id integer NOT NULL,
+    firstname character varying(255),
+    lastname character varying(255),
+    age integer,
+    login character varying(255),
+    pwd character varying(255),
+    email character varying(255),
+    admin boolean
+);
+
+
+ALTER TABLE users OWNER TO jee;
 
 --
--- Table structure for table `users`
+-- TOC entry 181 (class 1259 OID 26300)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: jee
 --
 
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `lastname` varchar(50) NOT NULL,
-  `surname` varchar(50) NOT NULL,
-  `age` int(11) NOT NULL,
-  `login` varchar(50) NOT NULL,
-  `pwd` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `admin` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`login`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO jee;
 
 --
--- Dumping data for table `users`
+-- TOC entry 2141 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jee
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('chase','jordan',23,'chase','chase','jordanchase@gmail.com',1),('verdez','gilles2',70,'gilles','fatou','a@g.d',0),('raton','julien',56,'liarick','liarick','jijilamorose@truc.machin',0);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-25 11:53:50
+--
+-- TOC entry 2000 (class 2604 OID 26329)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: jee
+--
+
+ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+
+
+--
+-- TOC entry 1999 (class 2604 OID 26318)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: jee
+--
+
+ALTER TABLE ONLY recipes ALTER COLUMN id SET DEFAULT nextval('recipes_id_seq'::regclass);
+
+
+--
+-- TOC entry 1998 (class 2604 OID 26305)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: jee
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- TOC entry 2130 (class 0 OID 26326)
+-- Dependencies: 186
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: jee
+--
+
+COPY comments (id, rec_id, user_id, rating, content, com_date) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2142 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jee
+--
+
+SELECT pg_catalog.setval('comments_id_seq', 1, false);
+
+
+--
+-- TOC entry 2128 (class 0 OID 26315)
+-- Dependencies: 184
+-- Data for Name: recipes; Type: TABLE DATA; Schema: public; Owner: jee
+--
+
+COPY recipes (id, title, description, summary, type, expertise, duration, nbpeople, img) FROM stdin;
+1	Omelette	Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui IN ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed DO eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Repas chaud	2	6	1	omlette.png
+2	Meringue Itelaienne	Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui IN ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed DO eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Dessert	10	25	6	meringue.png
+3	Salade Niçoise	Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui IN ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed DO eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Salade	3	10	2	salade.png
+4	a	a	\N	Pastas	0	10	20	\N
+\.
+
+
+--
+-- TOC entry 2143 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: recipes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jee
+--
+
+SELECT pg_catalog.setval('recipes_id_seq', 4, true);
+
+
+--
+-- TOC entry 2126 (class 0 OID 26302)
+-- Dependencies: 182
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: jee
+--
+
+COPY users (id, firstname, lastname, age, login, pwd, email, admin) FROM stdin;
+1	Adrien	REDON	20	aredon	P@ssw0rd	yolo@yolo.fr	t
+2	Hugo	DUROUX	24	amoki	P@ssw0rd	yolo@yolo.fr	t
+3	Nicolas	LEBRUN	20	beudy	P@ssw0rd	yolo@yolo.fr	t
+4	Not	ADMIN	20	notadmin	P@ssw0rd	yolo@yolo.fr	t
+\.
+
+
+--
+-- TOC entry 2144 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jee
+--
+
+SELECT pg_catalog.setval('users_id_seq', 1, false);
+
+
+--
+-- TOC entry 2008 (class 2606 OID 26331)
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: jee
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2006 (class 2606 OID 26323)
+-- Name: recipes_pkey; Type: CONSTRAINT; Schema: public; Owner: jee
+--
+
+ALTER TABLE ONLY recipes
+    ADD CONSTRAINT recipes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2002 (class 2606 OID 26312)
+-- Name: users_login_key; Type: CONSTRAINT; Schema: public; Owner: jee
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_login_key UNIQUE (login);
+
+
+--
+-- TOC entry 2004 (class 2606 OID 26310)
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: jee
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2009 (class 2606 OID 26332)
+-- Name: comments_rec_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: jee
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT comments_rec_id_fkey FOREIGN KEY (rec_id) REFERENCES recipes(id);
+
+
+--
+-- TOC entry 2010 (class 2606 OID 26337)
+-- Name: comments_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: jee
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT comments_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- TOC entry 2137 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2016-06-05 15:08:23
+
+--
+-- PostgreSQL database dump complete
+--
+
