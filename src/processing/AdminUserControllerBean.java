@@ -53,7 +53,7 @@ public class AdminUserControllerBean extends UserControllerBean {
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		UserModelBean user = (UserModelBean) sessionMap.get(LOGGED_LBL);
 
-		if(user != null && !user.getIsAdmin()){
+		if(user != null && !user.getAdmin()){
 			sessionMap.remove(LOGGED_LBL);
 			sessionMap.put(ERROR_LBL, true);
 			return "admin.xhtml";
@@ -104,7 +104,7 @@ public class AdminUserControllerBean extends UserControllerBean {
 		UserSubmissionModelBean sub = new UserSubmissionModelBean("test","test", 10,"test","test","test@test.fr");
 		sub.setPwd2(sub.getPwd());
 		controller.checkAndAddUser(sub);
-		sub.setIsAdmin(true);
+		sub.setAdmin(true);
 		controller.updateUser(sub);
 	}
 	
