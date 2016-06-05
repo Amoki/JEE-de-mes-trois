@@ -18,38 +18,27 @@
 			<div class="ui-grid ui-grid-responsive col-centered div-fillparent">
 				<div class="ui-grid-row">
 					<div class="ui-grid-col-4">
-						<!-- Résumé des caractéristiques de la recette -->
 						<h:panelGrid columns="2" style="width:100%">
-							<!-- type -->
-							<i class="fa fa-circle"></i>
+						
 							<h:outputText id="recipeType" value="#{selectedRecipe.type}" />
 
-							<!-- time -->
-							<i class="fa fa-clock-o"></i>
 							<h:outputText id="preparationDuration"
 								value="#{selectedRecipe.duration} minutes" />
 
-							<!-- nbpeople -->
-							<i class="fa fa-users"></i>
 							<h:outputText id="recipeNbPeople"
 								value="#{selectedRecipe.nbpeople} persons"></h:outputText>
 
-							<!-- expertise -->
-							<i class="fa fa-edit"></i>
 							<p:rating id="recipeExpertise"
 								value="#{selectedRecipe.expertise}" readonly="true" />
 						</h:panelGrid>
 					</div>
 
-					<!-- zone de Detail -->
 					<div class="ui-grid-col-8">
 						<div class="ui-grid ui-grid-responsive">
 							<div class="ui-grid-row">
-								<!-- Titre de la recette -->
 								<div class="ui-grid-col-10">
 									<h:outputText id="recipeTitle" value="#{selectedRecipe.title}"></h:outputText>
 								</div>
-								<!-- Bouton de retour -->
 								<div class="ui-grid-col-2">
 								<h:form>
 									<p:commandButton value="Back" ajax="false" action="#{menuControllerBean.goRecipes}"></p:commandButton>
@@ -57,34 +46,24 @@
 								</div>
 							</div>
 							<div class="ui-grid-row">
-								<!-- Détail de la recette -->
 								<div class="ui-grid-col-10">
 									<h:outputText id="recipeDescription"
 										value="#{selectedRecipe.description}"></h:outputText>
 									<h:outputText value="#{recipe.description}" />
-								</div>
-								<!-- Image de la recette -->
-								<div class="ui-grid-col-2">
-									<!-- Image représentant le résultat de la recette -->
-									<h:outputLabel id="recipePicture" value="image"></h:outputLabel>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- zone de visualisation commentaires -->
 				<div class="ui-grid-row col-centered div-fillparent">
-					<!-- Liste des précédents commentaires incluant : icone + nom de la personne connecté -->
 					<h:form id="allComments">
 						<p:dataScroller
 							value="#{commentControllerBean.loadAllRecipeComments(selectedRecipe.recipeId)}"
 							var="comment" chunkSize="10">
-							<!-- En tête -->
 							<f:facet name="header">
 								<h:outputText value="Comments" />
 							</f:facet>
-							<!-- Detail -->
 							<h:panelGrid columns="4" style="width:100%"
 								columnClasses="user,date,comment,mark">
 								<p:outputPanel>
@@ -98,23 +77,19 @@
 									<h:outputText value="#{comment.content}" />
 								</p:outputPanel>
 								<p:outputPanel>
-									<p:rating value="#{comment.rate}" readonly="true" />
+									<p:rating value="#{comment.rating}" readonly="true" />
 								</p:outputPanel>
 							</h:panelGrid>
 						</p:dataScroller>
 					</h:form>
 				</div>
 
-				<!--Zone de saisie d’un nouveau commentaire -->
 				<h:form rendered="#{loggedUser != null}">
 					<div class="ui-grid-row col-centered div-fillparent">
-						<!-- zone de saisie de texte -->
 						<p:inputTextarea rows="6" cols="33"
 							value="#{commentSubmissionBean.content}" />
-						<!-- zone de « rating » -->
-						<p:rating id="commentRate" value="#{commentSubmissionBean.rate}" />
+						<p:rating id="commentRate" value="#{commentSubmissionBean.rating}" />
 
-						<!-- bouton permettant de valider le commentaire -->
 						<p:commandButton value="Post your comment"
 							action="#{commentControllerBean.addComment(commentSubmissionBean,loggedUser, selectedRecipe.recipeId)}">
 							<f:ajax render=":allComments" execute="@form" />

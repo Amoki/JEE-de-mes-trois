@@ -32,7 +32,7 @@ public class CommentDao {
 
 			query.setInt(1, comment.getRecId());
 			query.setInt(2, comment.getUser().getId());
-			query.setInt(3, comment.getRate());
+			query.setInt(3, comment.getRating());
 			query.setString(4, comment.getContent());
 			query.setDate(5, comment.getDate());
 			

@@ -9,16 +9,16 @@ public class CommentModel{
 	private UserModelBean user;
 	private Date date;
 	private String content;
-	private int rate;
+	private int rating;
 	
 	public CommentModel(){}
 	
-	public CommentModel(int recId, UserModelBean user, Date date, String content, int rate){
+	public CommentModel(int recId, UserModelBean user, Date date, String content, int rating){
 		this.recId = recId;
 		this.user = user;
 		this.date = date;
 		this.content = content;
-		this.rate = rate;
+		this.rating = rating;
 	}
 
 	
@@ -42,24 +42,20 @@ public class CommentModel{
 		return content;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 	public Date getDate() {
 		return date;
 	}
 
-	public int getRate() {
-		return rate;
+	public int getRating() {
+		return rating;
 	}	
 	
 	public void setDate(Date date) {this.date = date;}
-	public void setDetail(String detail) {this.content = detail;}
-	public void setRate(int rate) {this.rate = rate;}
+	public void setContent(String content) {this.content = content;}
+	public void setRating(int rating) {this.rating = rating;}
 
 	@Override
 	public String toString() {
-		return "[RECIPE_ID]:"+this.getRecId()+",[USER_LOGIN]:"+this.getUser().getFirstname()+",[DATE]:"+this.getDate().toString()+",[DETAIL]:"+this.getContent()+",[RATE]:"+this.getRate();
+		return "[RECIPE_ID]:"+this.getRecId()+",[USER_LOGIN]:"+this.getUser().getFirstname()+",[DATE]:"+this.getDate().toString()+",[CONTENT]:"+this.getContent()+",[RATE]:"+this.getRating();
 	}
 }
